@@ -185,7 +185,7 @@ ErrorOr<void> AllocatingMemoryStream::discard(size_t count)
     VERIFY(m_write_offset >= m_read_offset);
 
     if (count > used_buffer_size())
-        return Error::from_string_literal("Number of discarded bytes is higher than the number of allocated bytes");
+        return Error::from_string_literal("Number of discarded bytes is greater than the number of allocated bytes");
 
     m_read_offset += count;
 

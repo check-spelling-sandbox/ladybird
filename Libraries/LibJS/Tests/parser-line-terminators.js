@@ -1,6 +1,6 @@
 /*
 These tests deliberately produce syntax errors to check what line the parser thinks we're on.
-Note that line numbers are higher than you might expect as the parsed code is:
+Note that line numbers are greater than you might expect as the parsed code is:
 
 function anonymous(
 ) {

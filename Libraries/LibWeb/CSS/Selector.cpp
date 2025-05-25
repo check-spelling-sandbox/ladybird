@@ -273,7 +273,7 @@ u32 Selector::specificity() const
     }
 
     // Due to storage limitations, implementations may have limitations on the size of A, B, or C.
-    // If so, values higher than the limit must be clamped to that limit, and not overflow.
+    // If so, values greater than the limit must be clamped to that limit, and not overflow.
     m_specificity = (min(ids, 0xff) << ids_shift)
         + (min(classes, 0xff) << classes_shift)
         + (min(tag_names, 0xff) << tag_names_shift);

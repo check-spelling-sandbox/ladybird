@@ -224,7 +224,7 @@ void HTMLMeterElement::update_meter_value_element()
         else
             m_cached_value_state = ValueState::EvenLessGood;
     }
-    // Finally, if the optimum point is higher than the high boundary, then the situation is reversed; the region between the high boundary and the maximum value must be treated as the optimum region, the region from the high boundary down to the low boundary must be treated as a suboptimal region, and the remaining region must be treated as an even less good region.
+    // Finally, if the optimum point is greater than the high boundary, then the situation is reversed; the region between the high boundary and the maximum value must be treated as the optimum region, the region from the high boundary down to the low boundary must be treated as a suboptimal region, and the remaining region must be treated as an even less good region.
     else {
         if (value >= high && value <= max)
             m_cached_value_state = ValueState::Optimal;
