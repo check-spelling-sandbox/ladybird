@@ -201,7 +201,7 @@ void NodeIterator::run_pre_removing_steps_with_node_pointer(Node& to_be_removed_
     //       as it's a known issue that the spec doesn't match how major browsers behave.
     //       Spec bug: https://github.com/whatwg/dom/issues/907
 
-    if (!to_be_removed_node.is_descendant_of(root()))
+    if (!to_be_removed_node.is_descendent_of(root()))
         return;
 
     if (!to_be_removed_node.is_inclusive_ancestor_of(pointer.node))
@@ -209,7 +209,7 @@ void NodeIterator::run_pre_removing_steps_with_node_pointer(Node& to_be_removed_
 
     if (pointer.is_before_node) {
         if (auto* node = to_be_removed_node.next_in_pre_order(root())) {
-            while (node && node->is_descendant_of(to_be_removed_node))
+            while (node && node->is_descendent_of(to_be_removed_node))
                 node = node->next_in_pre_order(root());
             if (node)
                 pointer.node = *node;
@@ -217,7 +217,7 @@ void NodeIterator::run_pre_removing_steps_with_node_pointer(Node& to_be_removed_
         }
         if (auto* node = to_be_removed_node.previous_in_pre_order()) {
             if (to_be_removed_node.is_ancestor_of(pointer.node)) {
-                while (node && node->is_descendant_of(to_be_removed_node))
+                while (node && node->is_descendent_of(to_be_removed_node))
                     node = node->previous_in_pre_order();
             }
             if (node) {
@@ -232,7 +232,7 @@ void NodeIterator::run_pre_removing_steps_with_node_pointer(Node& to_be_removed_
 
     if (auto* node = to_be_removed_node.previous_in_pre_order()) {
         if (to_be_removed_node.is_ancestor_of(pointer.node)) {
-            while (node && node->is_descendant_of(to_be_removed_node))
+            while (node && node->is_descendent_of(to_be_removed_node))
                 node = node->previous_in_pre_order();
         }
         if (node)
@@ -241,7 +241,7 @@ void NodeIterator::run_pre_removing_steps_with_node_pointer(Node& to_be_removed_
     }
     auto* node = to_be_removed_node.next_in_pre_order(root());
     if (to_be_removed_node.is_ancestor_of(pointer.node)) {
-        while (node && node->is_descendant_of(to_be_removed_node))
+        while (node && node->is_descendent_of(to_be_removed_node))
             node = node->previous_in_pre_order();
     }
     if (node)

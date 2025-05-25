@@ -302,7 +302,7 @@ static void set_user_selection(GC::Ptr<DOM::Node> anchor_node, unsigned anchor_o
         // https://drafts.csswg.org/css-ui/#valdef-user-select-all
 
         // The content of the element must be selected atomically: If a selection would contain part of the element,
-        // then the selection must contain the entire element including all its descendants. If the element is selected
+        // then the selection must contain the entire element including all its descendents. If the element is selected
         // and the used value of 'user-select' on its parent is 'all', then the parent must be included in the selection,
         // recursively.
         while (focus_node->parent() && focus_node->parent()->layout_node()->user_select_used_value() == CSS::UserSelect::All) {

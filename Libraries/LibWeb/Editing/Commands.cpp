@@ -87,8 +87,8 @@ bool command_create_link_action(DOM::Document& document, String const& value)
             return IterationDecision::Continue;
         });
     };
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        set_value_for_ancestor_anchors(descendant);
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        set_value_for_ancestor_anchors(descendent);
         return TraversalDecision::Continue;
     });
 
@@ -176,9 +176,9 @@ bool command_delete_action(DOM::Document& document, String const&)
         }
 
         // 4. Otherwise, if node has a child with index offset − 1 and that child is an editable a,
-        //    remove that child from node, preserving its descendants. Then return true.
+        //    remove that child from node, preserving its descendents. Then return true.
         if (is<HTML::HTMLAnchorElement>(offset_minus_one_child.ptr()) && offset_minus_one_child->is_editable()) {
-            remove_node_preserving_its_descendants(*offset_minus_one_child);
+            remove_node_preserving_its_descendents(*offset_minus_one_child);
             return true;
         }
 
@@ -325,7 +325,7 @@ bool command_delete_action(DOM::Document& document, String const&)
 
             // 3. For each node current node contained in new range, append current node to node list if
             //    the last member of node list (if any) is not an ancestor of current node, and current
-            //    node is editable but has no editable descendants.
+            //    node is editable but has no editable descendents.
             new_range->for_each_contained([&node_list](GC::Ref<DOM::Node> current_node) {
                 if (!node_list.is_empty() && node_list.last()->is_ancestor_of(current_node))
                     return IterationDecision::Continue;
@@ -333,15 +333,15 @@ bool command_delete_action(DOM::Document& document, String const&)
                 if (!current_node->is_editable())
                     return IterationDecision::Continue;
 
-                bool has_editable_descendant = false;
-                current_node->for_each_in_subtree([&](DOM::Node const& descendant) {
-                    if (descendant.is_editable()) {
-                        has_editable_descendant = true;
+                bool has_editable_descendent = false;
+                current_node->for_each_in_subtree([&](DOM::Node const& descendent) {
+                    if (descendent.is_editable()) {
+                        has_editable_descendent = true;
                         return TraversalDecision::Break;
                     }
                     return TraversalDecision::Continue;
                 });
-                if (!has_editable_descendant)
+                if (!has_editable_descendent)
                     node_list.append(current_node);
 
                 return IterationDecision::Continue;
@@ -644,8 +644,8 @@ bool command_format_block_action(DOM::Document& document, String const& value)
     //    allowed child of "p" or a dd or dt, and node is not the ancestor of a prohibited paragraph child.
     auto is_ancestor_of_prohibited_paragraph_child = [](GC::Ref<DOM::Node> node) {
         bool result = false;
-        node->for_each_in_subtree([&result](GC::Ref<DOM::Node> descendant) {
-            if (is_prohibited_paragraph_child(descendant)) {
+        node->for_each_in_subtree([&result](GC::Ref<DOM::Node> descendent) {
+            if (is_prohibited_paragraph_child(descendent)) {
                 result = true;
                 return TraversalDecision::Break;
             }
@@ -667,22 +667,22 @@ bool command_format_block_action(DOM::Document& document, String const& value)
     // 7. Record the values of node list, and let values be the result.
     auto values = record_the_values_of_nodes(node_list);
 
-    // 8. For each node in node list, while node is the descendant of an editable HTML element in the same editing host,
+    // 8. For each node in node list, while node is the descendent of an editable HTML element in the same editing host,
     //    whose local name is a formattable block name, and which is not the ancestor of a prohibited paragraph child,
     //    split the parent of the one-node list consisting of node.
     for (auto node : node_list) {
         while (true) {
-            bool is_matching_descendant = false;
+            bool is_matching_descendent = false;
             node->for_each_ancestor([&](GC::Ref<DOM::Node> ancestor) {
                 if (ancestor->is_editable() && is<HTML::HTMLElement>(*ancestor) && is_in_same_editing_host(node, ancestor)
                     && is_formattable_block_name(static_cast<DOM::Element&>(*ancestor).local_name())
                     && !is_ancestor_of_prohibited_paragraph_child(ancestor)) {
-                    is_matching_descendant = true;
+                    is_matching_descendent = true;
                     return IterationDecision::Break;
                 }
                 return IterationDecision::Continue;
             });
-            if (!is_matching_descendant)
+            if (!is_matching_descendent)
                 break;
 
             split_the_parent_of_nodes({ node });
@@ -715,8 +715,8 @@ bool command_format_block_action(DOM::Document& document, String const& value)
             // 2. Record the values of sublist, and let values be the result.
             auto values = record_the_values_of_nodes(sublist);
 
-            // 3. Remove the first member of node list from its parent, preserving its descendants.
-            remove_node_preserving_its_descendants(node_list.first());
+            // 3. Remove the first member of node list from its parent, preserving its descendents.
+            remove_node_preserving_its_descendents(node_list.first());
 
             // 4. Restore the values from values.
             restore_the_values_of_nodes(values);
@@ -854,8 +854,8 @@ String command_format_block_value(DOM::Document const& document)
     if (auto const* html_element = as_if<HTML::HTMLElement>(*node); node->is_editable() && html_element
         && is_formattable_block_name(html_element->local_name())) {
         bool is_ancestor_of_prohibited_paragraph_child = false;
-        node->for_each_in_subtree([&is_ancestor_of_prohibited_paragraph_child](GC::Ref<DOM::Node> descendant) {
-            if (is_prohibited_paragraph_child(descendant)) {
+        node->for_each_in_subtree([&is_ancestor_of_prohibited_paragraph_child](GC::Ref<DOM::Node> descendent) {
+            if (is_prohibited_paragraph_child(descendent)) {
                 is_ancestor_of_prohibited_paragraph_child = true;
                 return TraversalDecision::Break;
             }
@@ -1230,10 +1230,10 @@ bool command_insert_html_action(DOM::Document& document, String const& value)
     if (!last_child)
         return true;
 
-    // 7. Let descendants be all descendants of frag.
-    Vector<GC::Ref<DOM::Node>> descendants;
-    frag->for_each_in_subtree([&descendants](GC::Ref<DOM::Node> descendant) {
-        descendants.append(descendant);
+    // 7. Let descendents be all descendents of frag.
+    Vector<GC::Ref<DOM::Node>> descendents;
+    frag->for_each_in_subtree([&descendents](GC::Ref<DOM::Node> descendent) {
+        descendents.append(descendent);
         return TraversalDecision::Continue;
     });
 
@@ -1268,8 +1268,8 @@ bool command_insert_html_action(DOM::Document& document, String const& value)
     //     plus its index as the second.
     MUST(selection.collapse(last_child->parent(), last_child->index() + 1));
 
-    // 12. Fix disallowed ancestors of each member of descendants.
-    for (auto member : descendants)
+    // 12. Fix disallowed ancestors of each member of descendents.
+    for (auto member : descendents)
         fix_disallowed_ancestors_of_node(member);
 
     // 13. Return true.
@@ -1571,12 +1571,12 @@ bool command_insert_paragraph_action(DOM::Document& document, String const&)
         MUST(selection.collapse(node, offset + 1));
         active_range = *selection.range();
 
-        // 4. If br is the last descendant of container, let br be the result of calling createElement("br") on the
+        // 4. If br is the last descendent of container, let br be the result of calling createElement("br") on the
         //    context object, then call insertNode(br) on the active range.
-        GC::Ptr<DOM::Node> last_descendant = container->last_child();
-        while (last_descendant->has_children())
-            last_descendant = last_descendant->last_child();
-        if (br == last_descendant) {
+        GC::Ptr<DOM::Node> last_descendent = container->last_child();
+        while (last_descendent->has_children())
+            last_descendent = last_descendent->last_child();
+        if (br == last_descendent) {
             br = MUST(DOM::create_element(document, HTML::TagNames::br, Namespace::HTML));
             MUST(active_range->insert_node(br));
         }
@@ -1692,10 +1692,10 @@ bool command_insert_paragraph_action(DOM::Document& document, String const&)
     // 27. Let frag be the result of calling extractContents() on new line range.
     auto frag = MUST(new_line_range->extract_contents());
 
-    // 28. Unset the id attribute (if any) of each Element descendant of frag that is not in contained nodes.
-    frag->for_each_in_subtree_of_type<DOM::Element>([&contained_nodes](GC::Ref<DOM::Element> descendant) {
-        if (!contained_nodes.contains_slow(descendant))
-            descendant->remove_attribute(HTML::AttributeNames::id);
+    // 28. Unset the id attribute (if any) of each Element descendent of frag that is not in contained nodes.
+    frag->for_each_in_subtree_of_type<DOM::Element>([&contained_nodes](GC::Ref<DOM::Element> descendent) {
+        if (!contained_nodes.contains_slow(descendent))
+            descendent->remove_attribute(HTML::AttributeNames::id);
         return TraversalDecision::Continue;
     });
 
@@ -2092,16 +2092,16 @@ bool command_outdent_action(DOM::Document& document, String const&)
     Vector<GC::Ref<DOM::Node>> node_list;
 
     // 5. For each node node contained in new range, append node to node list if the last member of node list (if any)
-    //    is not an ancestor of node; node is editable; and either node has no editable descendants, or is an ol or ul,
+    //    is not an ancestor of node; node is editable; and either node has no editable descendents, or is an ol or ul,
     //    or is an li whose parent is an ol or ul.
     auto is_ol_or_ul = [](GC::Ptr<DOM::Node> node) {
         return is<HTML::HTMLOListElement>(node.ptr()) || is<HTML::HTMLUListElement>(node.ptr());
     };
     new_range->for_each_contained([&](GC::Ref<DOM::Node> node) {
-        bool has_editable_descendants = false;
-        node->for_each_in_subtree([&has_editable_descendants](GC::Ref<DOM::Node> descendant) {
-            if (descendant->is_editable()) {
-                has_editable_descendants = true;
+        bool has_editable_descendents = false;
+        node->for_each_in_subtree([&has_editable_descendents](GC::Ref<DOM::Node> descendent) {
+            if (descendent->is_editable()) {
+                has_editable_descendents = true;
                 return TraversalDecision::Break;
             }
             return TraversalDecision::Continue;
@@ -2109,7 +2109,7 @@ bool command_outdent_action(DOM::Document& document, String const&)
 
         if ((node_list.is_empty() || !node_list.last()->is_ancestor_of(node))
             && node->is_editable()
-            && (!has_editable_descendants || is_ol_or_ul(node)
+            && (!has_editable_descendents || is_ol_or_ul(node)
                 || (is<HTML::HTMLLIElement>(*node) && is_ol_or_ul(node->parent()))))
             node_list.append(node);
 
@@ -2161,9 +2161,9 @@ bool command_remove_format_action(DOM::Document& document, String const&)
 {
     // 1. Let elements to remove be a list of every removeFormat candidate effectively contained in the active range.
     Vector<GC::Ref<DOM::Element>> elements_to_remove;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (is_remove_format_candidate(descendant))
-            elements_to_remove.append(static_cast<DOM::Element&>(*descendant));
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (is_remove_format_candidate(descendent))
+            elements_to_remove.append(static_cast<DOM::Element&>(*descendent));
         return TraversalDecision::Continue;
     });
 
@@ -2197,9 +2197,9 @@ bool command_remove_format_action(DOM::Document& document, String const&)
 
     // 5. Let node list consist of all editable nodes effectively contained in the active range.
     Vector<GC::Ref<DOM::Node>> node_list;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (descendant->is_editable())
-            node_list.append(descendant);
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (descendent->is_editable())
+            node_list.append(descendent);
         return TraversalDecision::Continue;
     });
 
@@ -2318,11 +2318,11 @@ bool command_subscript_indeterminate(DOM::Document const& document)
     bool has_subscript_value = false;
     bool has_other_value = false;
     bool has_mixed_value = false;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (!is_formattable_node(descendant))
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (!is_formattable_node(descendent))
             return TraversalDecision::Continue;
 
-        auto node_value = effective_command_value(descendant, CommandNames::subscript);
+        auto node_value = effective_command_value(descendent, CommandNames::subscript);
         if (!node_value.has_value())
             return TraversalDecision::Continue;
 
@@ -2371,11 +2371,11 @@ bool command_superscript_indeterminate(DOM::Document const& document)
     bool has_superscript_value = false;
     bool has_other_value = false;
     bool has_mixed_value = false;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (!is_formattable_node(descendant))
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (!is_formattable_node(descendent))
             return TraversalDecision::Continue;
 
-        auto node_value = effective_command_value(descendant, CommandNames::superscript);
+        auto node_value = effective_command_value(descendent, CommandNames::superscript);
         if (!node_value.has_value())
             return TraversalDecision::Continue;
 

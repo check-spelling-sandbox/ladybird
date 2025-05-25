@@ -107,7 +107,7 @@ void SVGSVGPaintable::paint_svg_box(PaintContext& context, PaintableBox const& s
         svg_box.paint(context, PaintPhase::Foreground);
         svg_box.after_paint(context, PaintPhase::Foreground);
 
-        paint_descendants(context, svg_box, phase);
+        paint_descendents(context, svg_box, phase);
     }
 
     if (compositing_and_blending_operator != Gfx::CompositingAndBlendingOperator::Normal) {
@@ -127,7 +127,7 @@ void SVGSVGPaintable::paint_svg_box(PaintContext& context, PaintableBox const& s
     }
 }
 
-void SVGSVGPaintable::paint_descendants(PaintContext& context, PaintableBox const& paintable, PaintPhase phase)
+void SVGSVGPaintable::paint_descendents(PaintContext& context, PaintableBox const& paintable, PaintPhase phase)
 {
     if (phase != PaintPhase::Foreground)
         return;

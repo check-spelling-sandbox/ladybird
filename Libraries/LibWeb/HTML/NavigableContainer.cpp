@@ -280,7 +280,7 @@ void NavigableContainer::destroy_the_child_navigable()
 
     // Not in the spec:
     // Setting container's content navigable makes document *not* be "fully active".
-    // Therefore, it is moved to run in afterAllDestruction callback of "destroy a document and its descendants"
+    // Therefore, it is moved to run in afterAllDestruction callback of "destroy a document and its descendents"
     // when all queued tasks are done.
     // "Has been destroyed" flag is used instead to check whether navigable is already destroyed.
     if (navigable->has_been_destroyed())
@@ -290,8 +290,8 @@ void NavigableContainer::destroy_the_child_navigable()
     // 4. Inform the navigation API about child navigable destruction given navigable.
     navigable->inform_the_navigation_api_about_child_navigable_destruction();
 
-    // 5. Destroy a document and its descendants given navigable's active document.
-    navigable->active_document()->destroy_a_document_and_its_descendants(GC::create_function(heap(), [this, navigable] {
+    // 5. Destroy a document and its descendents given navigable's active document.
+    navigable->active_document()->destroy_a_document_and_its_descendents(GC::create_function(heap(), [this, navigable] {
         // 3. Set container's content navigable to null.
         m_content_navigable = nullptr;
 

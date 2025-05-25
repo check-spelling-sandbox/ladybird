@@ -171,9 +171,9 @@ static void build_invalidation_sets_for_simple_selector(Selector::SimpleSelector
 static void add_invalidation_sets_to_cover_scope_leakage_of_relative_selector_in_has_pseudo_class(Selector const& selector, StyleInvalidationData& style_invalidation_data)
 {
     // Normally, :has() invalidation scope is limited to ancestors and ancestor siblings, however it could require
-    // descendants invalidation when :is() with complex selector is used inside :has() relative selector.
+    // descendents invalidation when :is() with complex selector is used inside :has() relative selector.
     // For example ".a:has(:is(.b .c))" requires invalidation whenever "b" class is added or removed.
-    // To cover this case, we add descendant invalidation set that requires whole subtree invalidation for each
+    // To cover this case, we add descendent invalidation set that requires whole subtree invalidation for each
     // property used in non-subject part of complex selector.
 
     auto invalidate_whole_subtree_for_invalidation_properties_in_non_subject_part_of_complex_selector = [&](Selector const& selector) {
@@ -188,8 +188,8 @@ static void add_invalidation_sets_to_cover_scope_leakage_of_relative_selector_in
             }
 
             invalidation_set.for_each_property([&](auto const& invalidation_property) {
-                auto& descendant_invalidation_set = style_invalidation_data.descendant_invalidation_sets.ensure(invalidation_property, [] { return InvalidationSet {}; });
-                descendant_invalidation_set.set_needs_invalidate_whole_subtree();
+                auto& descendent_invalidation_set = style_invalidation_data.descendent_invalidation_sets.ensure(invalidation_property, [] { return InvalidationSet {}; });
+                descendent_invalidation_set.set_needs_invalidate_whole_subtree();
                 return IterationDecision::Continue;
             });
         });
@@ -219,7 +219,7 @@ static InvalidationSet build_invalidation_sets_for_selector_impl(StyleInvalidati
     Selector::Combinator previous_compound_combinator = Selector::Combinator::None;
     for_each_consecutive_simple_selector_group(selector, [&](Vector<Selector::SimpleSelector const&> const& simple_selectors, Selector::Combinator combinator, bool is_rightmost) {
         // Collect properties used in :has() so we can decide if only specific properties
-        // trigger descendant invalidation or if the entire document must be invalidated.
+        // trigger descendent invalidation or if the entire document must be invalidated.
         for (auto const& simple_selector : simple_selectors) {
             bool in_has = false;
             if (simple_selector.type == Selector::SimpleSelector::Type::PseudoClass) {
@@ -243,12 +243,12 @@ static InvalidationSet build_invalidation_sets_for_selector_impl(StyleInvalidati
                 InvalidationSet s;
                 build_invalidation_sets_for_simple_selector(simple_selector, s, ExcludePropertiesNestedInNotPseudoClass::No, style_invalidation_data, inside_nth_child_pseudo_class);
                 s.for_each_property([&](auto const& invalidation_property) {
-                    auto& descendant_invalidation_set = style_invalidation_data.descendant_invalidation_sets.ensure(invalidation_property, [] { return InvalidationSet {}; });
-                    descendant_invalidation_set.set_needs_invalidate_self();
+                    auto& descendent_invalidation_set = style_invalidation_data.descendent_invalidation_sets.ensure(invalidation_property, [] { return InvalidationSet {}; });
+                    descendent_invalidation_set.set_needs_invalidate_self();
                     if (inside_nth_child_pseudo_class == InsideNthChildPseudoClass::Yes) {
                         // When invalidation property is nested in nth-child selector like p:nth-child(even of #t1, #t2, #t3)
                         // we need to make all siblings are invalidated.
-                        descendant_invalidation_set.set_needs_invalidate_whole_subtree();
+                        descendent_invalidation_set.set_needs_invalidate_whole_subtree();
                     }
                     return IterationDecision::Continue;
                 });
@@ -263,7 +263,7 @@ static InvalidationSet build_invalidation_sets_for_selector_impl(StyleInvalidati
                 InvalidationSet s;
                 build_invalidation_sets_for_simple_selector(simple_selector, s, ExcludePropertiesNestedInNotPseudoClass::No, style_invalidation_data, inside_nth_child_pseudo_class);
                 s.for_each_property([&](auto const& invalidation_property) {
-                    auto& descendant_invalidation_set = style_invalidation_data.descendant_invalidation_sets.ensure(invalidation_property, [] {
+                    auto& descendent_invalidation_set = style_invalidation_data.descendent_invalidation_sets.ensure(invalidation_property, [] {
                         return InvalidationSet {};
                     });
                     // If the rightmost selector's invalidation set is empty, it means there's no
@@ -271,11 +271,11 @@ static InvalidationSet build_invalidation_sets_for_selector_impl(StyleInvalidati
                     // If combinator to the right of current compound selector is NextSibling or SubsequentSibling,
                     // we also need to invalidate the whole subtree, because we don't support sibling invalidation sets.
                     if (AK::first_is_one_of(previous_compound_combinator, Selector::Combinator::NextSibling, Selector::Combinator::SubsequentSibling)) {
-                        descendant_invalidation_set.set_needs_invalidate_whole_subtree();
+                        descendent_invalidation_set.set_needs_invalidate_whole_subtree();
                     } else if (invalidation_set_for_rightmost_selector.is_empty()) {
-                        descendant_invalidation_set.set_needs_invalidate_whole_subtree();
+                        descendent_invalidation_set.set_needs_invalidate_whole_subtree();
                     } else {
-                        descendant_invalidation_set.include_all_from(invalidation_set_for_rightmost_selector);
+                        descendent_invalidation_set.include_all_from(invalidation_set_for_rightmost_selector);
                     }
 
                     return IterationDecision::Continue;

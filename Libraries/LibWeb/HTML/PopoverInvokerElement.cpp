@@ -46,9 +46,9 @@ void PopoverInvokerElement::popover_target_activation_behaviour(GC::Ref<DOM::Nod
     if (!popover)
         return;
 
-    // 3. If eventTarget is a shadow-including inclusive descendant of popover and popover is a shadow-including descendant of node, then return.
-    if (event_target->is_shadow_including_inclusive_descendant_of(*popover)
-        && popover->is_shadow_including_descendant_of(node))
+    // 3. If eventTarget is a shadow-including inclusive descendent of popover and popover is a shadow-including descendent of node, then return.
+    if (event_target->is_shadow_including_inclusive_descendent_of(*popover)
+        && popover->is_shadow_including_descendent_of(node))
         return;
 
     // 4. If node's popovertargetaction attribute is in the show state and popover's popover visibility state is showing, then return.

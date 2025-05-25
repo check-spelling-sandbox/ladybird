@@ -47,7 +47,7 @@ private:
     Optional<ToggleTaskTracker> m_details_toggle_task_tracker;
 
     GC::Ptr<HTML::HTMLSlotElement> m_summary_slot;
-    GC::Ptr<HTML::HTMLSlotElement> m_descendants_slot;
+    GC::Ptr<HTML::HTMLSlotElement> m_descendents_slot;
 };
 
 }

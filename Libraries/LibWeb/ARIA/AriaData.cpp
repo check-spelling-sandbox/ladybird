@@ -12,7 +12,7 @@ namespace Web::ARIA {
 
 AriaData::AriaData(Web::ARIA::ARIAMixin const& source)
 {
-    m_aria_active_descendant = source.aria_active_descendant();
+    m_aria_active_descendent = source.aria_active_descendent();
     m_aria_atomic = AriaData::parse_optional_true_false(source.aria_atomic());
     m_aria_auto_complete = AriaData::parse_aria_autocomplete(source.aria_auto_complete());
     m_aria_braille_label = source.aria_braille_label().value_or(String {});
@@ -114,9 +114,9 @@ Optional<f64> AriaData::parse_number(Optional<String> const& value)
     return value->to_number<double>(TrimWhitespace::Yes);
 }
 
-Optional<String> AriaData::aria_active_descendant_or_default() const
+Optional<String> AriaData::aria_active_descendent_or_default() const
 {
-    return m_aria_active_descendant;
+    return m_aria_active_descendent;
 }
 
 bool AriaData::aria_atomic_or_default(bool default_value) const

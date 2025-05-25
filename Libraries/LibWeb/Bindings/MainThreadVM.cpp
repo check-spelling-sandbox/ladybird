@@ -533,8 +533,8 @@ void initialize_main_thread_vm(AgentType type)
         // 10. Let settingsObject be moduleMapRealm's principal realm's settings object.
         auto& settings_object = HTML::principal_realm_settings_object(HTML::principal_realm(*module_map_realm));
 
-        // 11. Let fetchOptions be the result of getting the descendant script fetch options given originalFetchOptions, url, and settingsObject.
-        auto fetch_options = HTML::get_descendant_script_fetch_options(original_fetch_options, url.value(), settings_object);
+        // 11. Let fetchOptions be the result of getting the descendent script fetch options given originalFetchOptions, url, and settingsObject.
+        auto fetch_options = HTML::get_descendent_script_fetch_options(original_fetch_options, url.value(), settings_object);
 
         // 12. Let destination be "script".
         auto destination = Fetch::Infrastructure::Request::Destination::Script;

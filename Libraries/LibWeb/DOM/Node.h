@@ -258,7 +258,7 @@ public:
 
     virtual Optional<String> alternative_text() const;
 
-    String descendant_text_content() const;
+    String descendent_text_content() const;
     Optional<String> text_content() const;
     void set_text_content(Optional<String> const&);
 
@@ -381,8 +381,8 @@ public:
     // Used for dumping the DOM Tree
     void serialize_tree_as_json(JsonObjectSerializer<StringBuilder>&) const;
 
-    bool is_shadow_including_descendant_of(Node const&) const;
-    bool is_shadow_including_inclusive_descendant_of(Node const&) const;
+    bool is_shadow_including_descendent_of(Node const&) const;
+    bool is_shadow_including_inclusive_descendent_of(Node const&) const;
     bool is_shadow_including_ancestor_of(Node const&) const;
     bool is_shadow_including_inclusive_ancestor_of(Node const&) const;
 
@@ -414,13 +414,13 @@ public:
 
     void queue_mutation_record(FlyString const& type, Optional<FlyString> const& attribute_name, Optional<FlyString> const& attribute_namespace, Optional<String> const& old_value, Vector<GC::Root<Node>> added_nodes, Vector<GC::Root<Node>> removed_nodes, Node* previous_sibling, Node* next_sibling);
 
-    // https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant
+    // https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendent
     template<typename Callback>
-    TraversalDecision for_each_shadow_including_inclusive_descendant(Callback);
+    TraversalDecision for_each_shadow_including_inclusive_descendent(Callback);
 
-    // https://dom.spec.whatwg.org/#concept-shadow-including-descendant
+    // https://dom.spec.whatwg.org/#concept-shadow-including-descendent
     template<typename Callback>
-    TraversalDecision for_each_shadow_including_descendant(Callback);
+    TraversalDecision for_each_shadow_including_descendent(Callback);
 
     Slottable as_slottable();
 
@@ -448,8 +448,8 @@ public:
         return const_cast<Node*>(this)->child_at_index(index);
     }
 
-    bool is_descendant_of(Node const&) const;
-    bool is_inclusive_descendant_of(Node const&) const;
+    bool is_descendent_of(Node const&) const;
+    bool is_inclusive_descendent_of(Node const&) const;
 
     bool is_following(Node const&) const;
 

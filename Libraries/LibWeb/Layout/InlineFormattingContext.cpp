@@ -182,7 +182,7 @@ void InlineFormattingContext::dimension_box_on_line(Box const& box, LayoutMode l
     auto independent_formatting_context = layout_inside(box, layout_mode, box_state.available_inner_space_or_constraints_from(*m_available_space));
 
     if (should_treat_height_as_auto(box, *m_available_space)) {
-        // FIXME: (10.6.6) If 'height' is 'auto', the height depends on the element's descendants per 10.6.7.
+        // FIXME: (10.6.6) If 'height' is 'auto', the height depends on the element's descendents per 10.6.7.
         parent().resolve_used_height_if_treated_as_auto(box, *m_available_space);
     } else {
         parent().resolve_used_height_if_not_treated_as_auto(box, *m_available_space);

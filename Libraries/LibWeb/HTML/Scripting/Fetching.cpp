@@ -294,8 +294,8 @@ static void set_up_module_script_request(Fetch::Infrastructure::Request& request
     request.set_priority(options.fetch_priority);
 }
 
-// https://html.spec.whatwg.org/multipage/webappapis.html#get-the-descendant-script-fetch-options
-ScriptFetchOptions get_descendant_script_fetch_options(ScriptFetchOptions const& original_options, URL::URL const& url, EnvironmentSettingsObject& settings_object)
+// https://html.spec.whatwg.org/multipage/webappapis.html#get-the-descendent-script-fetch-options
+ScriptFetchOptions get_descendent_script_fetch_options(ScriptFetchOptions const& original_options, URL::URL const& url, EnvironmentSettingsObject& settings_object)
 {
     // 1. Let newOptions be a copy of originalOptions.
     auto new_options = original_options;
@@ -582,8 +582,8 @@ WebIDL::ExceptionOr<void> fetch_worklet_module_worker_script_graph(URL::URL cons
             return;
         }
 
-        // 2. Fetch the descendants of and link result given fetchClient, destination, and onComplete. If performFetch was given, pass it along as well.
-        fetch_descendants_of_and_link_a_module_script(realm, as<JavaScriptModuleScript>(*result), fetch_client, destination, move(perform_fetch), on_complete);
+        // 2. Fetch the descendents of and link result given fetchClient, destination, and onComplete. If performFetch was given, pass it along as well.
+        fetch_descendents_of_and_link_a_module_script(realm, as<JavaScriptModuleScript>(*result), fetch_client, destination, move(perform_fetch), on_complete);
     });
 
     // 2. Fetch a single module script given url, fetchClient, destination, options, settingsObject's realm, "client", true,
@@ -743,9 +743,9 @@ void fetch_external_module_script_graph(JS::Realm& realm, URL::URL const& url, E
             return;
         }
 
-        // 2. Fetch the descendants of and link result given settingsObject, "script", and onComplete.
+        // 2. Fetch the descendents of and link result given settingsObject, "script", and onComplete.
         auto& module_script = as<JavaScriptModuleScript>(*result);
-        fetch_descendants_of_and_link_a_module_script(realm, module_script, settings_object, Fetch::Infrastructure::Request::Destination::Script, nullptr, on_complete);
+        fetch_descendents_of_and_link_a_module_script(realm, module_script, settings_object, Fetch::Infrastructure::Request::Destination::Script, nullptr, on_complete);
     });
 
     // 1. Fetch a single module script given url, settingsObject, "script", options, settingsObject's realm, "client", true, and with the following steps given result:
@@ -758,8 +758,8 @@ void fetch_inline_module_script_graph(JS::Realm& realm, ByteString const& filena
     // 1. Let script be the result of creating a JavaScript module script using sourceText, settingsObject's realm, baseURL, and options.
     auto script = JavaScriptModuleScript::create(filename, source_text.view(), settings_object.realm(), base_url).release_value_but_fixme_should_propagate_errors();
 
-    // 2. Fetch the descendants of and link script, given settingsObject, "script", and onComplete.
-    fetch_descendants_of_and_link_a_module_script(realm, *script, settings_object, Fetch::Infrastructure::Request::Destination::Script, nullptr, on_complete);
+    // 2. Fetch the descendents of and link script, given settingsObject, "script", and onComplete.
+    fetch_descendents_of_and_link_a_module_script(realm, *script, settings_object, Fetch::Infrastructure::Request::Destination::Script, nullptr, on_complete);
 }
 
 // https://html.spec.whatwg.org/multipage/webappapis.html#fetch-a-single-imported-module-script
@@ -794,8 +794,8 @@ void fetch_single_imported_module_script(JS::Realm& realm,
     fetch_single_module_script(realm, url, fetch_client, destination, options, module_map_realm, referrer, module_request, TopLevelModule::No, perform_fetch, on_complete);
 }
 
-// https://html.spec.whatwg.org/multipage/webappapis.html#fetch-the-descendants-of-and-link-a-module-script
-void fetch_descendants_of_and_link_a_module_script(JS::Realm& realm,
+// https://html.spec.whatwg.org/multipage/webappapis.html#fetch-the-descendents-of-and-link-a-module-script
+void fetch_descendents_of_and_link_a_module_script(JS::Realm& realm,
     JavaScriptModuleScript& module_script,
     EnvironmentSettingsObject& fetch_client,
     Fetch::Infrastructure::Request::Destination destination,

@@ -35,7 +35,7 @@ namespace Web::SelectorEngine {
 
 static inline bool matches(CSS::Selector const& selector, int component_list_index, DOM::Element const& element, GC::Ptr<DOM::Element const> shadow_host, MatchContext& context, GC::Ptr<DOM::ParentNode const> scope, SelectorKind selector_kind, GC::Ptr<DOM::Element const> anchor = nullptr);
 
-// Upward traversal for descendant (' ') and immediate child combinator ('>')
+// Upward traversal for descendent (' ') and immediate child combinator ('>')
 // If we're starting inside a shadow tree, traversal stops at the nearest shadow host.
 // This is an implementation detail of the :host selector. Otherwise we would just traverse up to the document root.
 static inline GC::Ptr<DOM::Node const> traverse_up(GC::Ptr<DOM::Node const> node, GC::Ptr<DOM::Element const> shadow_host)
@@ -150,11 +150,11 @@ static inline bool matches_relative_selector(CSS::Selector const& selector, size
         VERIFY_NOT_REACHED();
     case CSS::Selector::Combinator::Descendant: {
         bool has = false;
-        element.for_each_in_subtree([&](auto const& descendant) {
-            if (!descendant.is_element())
+        element.for_each_in_subtree([&](auto const& descendent) {
+            if (!descendent.is_element())
                 return TraversalDecision::Continue;
-            auto const& descendant_element = static_cast<DOM::Element const&>(descendant);
-            if (matches(selector, descendant_element, shadow_host, context, {}, {}, SelectorKind::Relative, anchor)) {
+            auto const& descendent_element = static_cast<DOM::Element const&>(descendent);
+            if (matches(selector, descendent_element, shadow_host, context, {}, {}, SelectorKind::Relative, anchor)) {
                 has = true;
                 return TraversalDecision::Break;
             }
@@ -885,7 +885,7 @@ static inline bool matches_pseudo_class(CSS::Selector::SimpleSelector::PseudoCla
                 return true;
         }
 
-        // - fieldset elements that have no descendant elements that themselves are candidates for constraint validation but do not satisfy their constraints
+        // - fieldset elements that have no descendent elements that themselves are candidates for constraint validation but do not satisfy their constraints
         if (is<Web::HTML::HTMLFieldSetElement>(element)) {
             bool has_invalid_children = false;
             element.for_each_in_subtree([&](auto& node) {
@@ -928,7 +928,7 @@ static inline bool matches_pseudo_class(CSS::Selector::SimpleSelector::PseudoCla
                 return true;
         }
 
-        // - fieldset elements that have of one or more descendant elements that themselves are candidates for constraint validation but do not satisfy their constraints
+        // - fieldset elements that have of one or more descendent elements that themselves are candidates for constraint validation but do not satisfy their constraints
         if (is<Web::HTML::HTMLFieldSetElement>(element)) {
             bool has_invalid_children = false;
             element.for_each_in_subtree([&](auto& node) {
@@ -1280,7 +1280,7 @@ bool fast_matches(CSS::Selector const& selector, DOM::Element const& element_to_
         return false;
 
     // NOTE: If we fail after following a child combinator, we may need to backtrack
-    //       to the last matched descendant. We store the state here.
+    //       to the last matched descendent. We store the state here.
     struct {
         GC::Ptr<DOM::Element const> element;
         ssize_t compound_selector_index = 0;

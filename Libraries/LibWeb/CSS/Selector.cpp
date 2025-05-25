@@ -801,7 +801,7 @@ SelectorList adapt_nested_relative_selector_list(SelectorList const& selectors)
             || !selector->contains_the_nesting_selector()) {
             new_list.append(selector->relative_to(CSS::Selector::SimpleSelector { .type = CSS::Selector::SimpleSelector::Type::Nesting }));
         } else if (first_combinator == CSS::Selector::Combinator::Descendant) {
-            // Replace leading descendant combinator (whitespace) with none, because we're not actually relative.
+            // Replace leading descendent combinator (whitespace) with none, because we're not actually relative.
             auto copied_compound_selectors = selector->compound_selectors();
             copied_compound_selectors.first().combinator = CSS::Selector::Combinator::None;
             new_list.append(CSS::Selector::create(move(copied_compound_selectors)));

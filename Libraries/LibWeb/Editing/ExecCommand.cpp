@@ -252,11 +252,11 @@ WebIDL::ExceptionOr<bool> Document::query_command_indeterm(FlyString const& comm
             Optional<String> first_node_value;
             auto range = Editing::active_range(*this);
             bool has_distinct_values = false;
-            Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendant) {
-                if (!Editing::is_formattable_node(descendant))
+            Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendent) {
+                if (!Editing::is_formattable_node(descendent))
                     return TraversalDecision::Continue;
 
-                auto node_value = Editing::effective_command_value(descendant, command);
+                auto node_value = Editing::effective_command_value(descendent, command);
                 if (!node_value.has_value())
                     return TraversalDecision::Continue;
 
@@ -280,11 +280,11 @@ WebIDL::ExceptionOr<bool> Document::query_command_indeterm(FlyString const& comm
             auto range = Editing::active_range(*this);
             bool has_at_least_one_match = false;
             bool has_at_least_one_mismatch = false;
-            Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendant) {
-                if (!Editing::is_formattable_node(descendant))
+            Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendent) {
+                if (!Editing::is_formattable_node(descendent))
                     return TraversalDecision::Continue;
 
-                auto node_value = Editing::effective_command_value(descendant, command);
+                auto node_value = Editing::effective_command_value(descendent, command);
                 if (!node_value.has_value())
                     return TraversalDecision::Continue;
 
@@ -330,9 +330,9 @@ WebIDL::ExceptionOr<bool> Document::query_command_state(FlyString const& command
             return false;
         auto range = Editing::active_range(*this);
         Vector<GC::Ref<Node>> formattable_nodes;
-        Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendant) {
-            if (Editing::is_formattable_node(descendant))
-                formattable_nodes.append(descendant);
+        Editing::for_each_node_effectively_contained_in_range(range, [&](GC::Ref<Node> descendent) {
+            if (Editing::is_formattable_node(descendent))
+                formattable_nodes.append(descendent);
             return TraversalDecision::Continue;
         });
         if (formattable_nodes.is_empty())

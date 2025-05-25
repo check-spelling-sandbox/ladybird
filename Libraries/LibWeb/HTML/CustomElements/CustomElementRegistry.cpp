@@ -292,19 +292,19 @@ JS::ThrowCompletionOr<void> CustomElementRegistry::define(String const& name, We
     // 17. Let document be this's relevant global object's associated Document.
     auto& document = as<HTML::Window>(relevant_global_object(*this)).associated_document();
 
-    // 18. Let upgradeCandidates be all elements that are shadow-including descendants of document, whose namespace is the HTML namespace
+    // 18. Let upgradeCandidates be all elements that are shadow-including descendents of document, whose namespace is the HTML namespace
     //     and whose local name is localName, in shadow-including tree order.
     //     Additionally, if extends is non-null, only include elements whose is value is equal to name.
     Vector<GC::Root<DOM::Element>> upgrade_candidates;
 
-    document.for_each_shadow_including_descendant([&](DOM::Node& inclusive_descendant) {
-        if (!is<DOM::Element>(inclusive_descendant))
+    document.for_each_shadow_including_descendent([&](DOM::Node& inclusive_descendent) {
+        if (!is<DOM::Element>(inclusive_descendent))
             return TraversalDecision::Continue;
 
-        auto& inclusive_descendant_element = static_cast<DOM::Element&>(inclusive_descendant);
+        auto& inclusive_descendent_element = static_cast<DOM::Element&>(inclusive_descendent);
 
-        if (inclusive_descendant_element.namespace_uri() == Namespace::HTML && inclusive_descendant_element.local_name() == local_name && (!extends.has_value() || inclusive_descendant_element.is_value() == name))
-            upgrade_candidates.append(GC::make_root(inclusive_descendant_element));
+        if (inclusive_descendent_element.namespace_uri() == Namespace::HTML && inclusive_descendent_element.local_name() == local_name && (!extends.has_value() || inclusive_descendent_element.is_value() == name))
+            upgrade_candidates.append(GC::make_root(inclusive_descendent_element));
 
         return TraversalDecision::Continue;
     });
@@ -391,15 +391,15 @@ WebIDL::ExceptionOr<GC::Ref<WebIDL::Promise>> CustomElementRegistry::when_define
 // https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-upgrade
 void CustomElementRegistry::upgrade(GC::Ref<DOM::Node> root) const
 {
-    // 1. Let candidates be a list of all of root's shadow-including inclusive descendant elements, in shadow-including tree order.
+    // 1. Let candidates be a list of all of root's shadow-including inclusive descendent elements, in shadow-including tree order.
     Vector<GC::Root<DOM::Element>> candidates;
 
-    root->for_each_shadow_including_inclusive_descendant([&](DOM::Node& inclusive_descendant) {
-        if (!is<DOM::Element>(inclusive_descendant))
+    root->for_each_shadow_including_inclusive_descendent([&](DOM::Node& inclusive_descendent) {
+        if (!is<DOM::Element>(inclusive_descendent))
             return TraversalDecision::Continue;
 
-        auto& inclusive_descendant_element = static_cast<DOM::Element&>(inclusive_descendant);
-        candidates.append(GC::make_root(inclusive_descendant_element));
+        auto& inclusive_descendent_element = static_cast<DOM::Element&>(inclusive_descendent);
+        candidates.append(GC::make_root(inclusive_descendent_element));
 
         return TraversalDecision::Continue;
     });

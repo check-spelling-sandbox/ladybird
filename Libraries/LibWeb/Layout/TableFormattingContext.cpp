@@ -1858,7 +1858,7 @@ CSSPixels TableFormattingContext::border_spacing_vertical() const
 
 StaticPositionRect TableFormattingContext::calculate_static_position_rect(Box const&) const
 {
-    // FIXME: Implement static position calculation for table descendants instead of always returning a rectangle with zero position and size.
+    // FIXME: Implement static position calculation for table descendents instead of always returning a rectangle with zero position and size.
     StaticPositionRect static_position;
     static_position.rect = { { 0, 0 }, { 0, 0 } };
     return static_position;

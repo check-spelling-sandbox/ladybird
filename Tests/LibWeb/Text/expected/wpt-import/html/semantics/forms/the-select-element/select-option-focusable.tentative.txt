@@ -8,4 +8,4 @@ Found 1 tests
 
 1 Fail
 Details
-Result	Test Name	MessageFail	Validate <option> is focusable when is a descendant of <select>	
+Result	Test Name	MessageFail	Validate <option> is focusable when is a descendent of <select>	

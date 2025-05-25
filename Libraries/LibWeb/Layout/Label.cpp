@@ -113,8 +113,8 @@ Label const* Label::label_for_control_node(LabelableNode const& control)
             return label;
     }
 
-    // If the for attribute is not specified, but the label element has a labelable element descendant,
-    // then the first such descendant in tree order is the label element's labeled control.
+    // If the for attribute is not specified, but the label element has a labelable element descendent,
+    // then the first such descendent in tree order is the label element's labeled control.
     return control.first_ancestor_of_type<Label>();
 }
 

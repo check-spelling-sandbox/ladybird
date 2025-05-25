@@ -563,8 +563,8 @@ void Window::consume_history_action_user_activation()
     // 2. Let top be W's navigable's top-level traversable.
     auto top = navigable->top_level_traversable();
 
-    // 3. Let navigables be the inclusive descendant navigables of top's active document.
-    auto navigables = top->active_document()->inclusive_descendant_navigables();
+    // 3. Let navigables be the inclusive descendent navigables of top's active document.
+    auto navigables = top->active_document()->inclusive_descendent_navigables();
 
     // 4. Let windows be the list of Window objects constructed by taking the active window of each item in navigables.
     GC::RootVector<GC::Ptr<Window>> windows(heap());
@@ -588,8 +588,8 @@ void Window::consume_user_activation()
     // 2. Let top be W's navigable's top-level traversable.
     auto top = navigable->top_level_traversable();
 
-    // 3. Let navigables be the inclusive descendant navigables of top's active document.
-    auto navigables = top->active_document()->inclusive_descendant_navigables();
+    // 3. Let navigables be the inclusive descendent navigables of top's active document.
+    auto navigables = top->active_document()->inclusive_descendent_navigables();
 
     // 4. Let windows be the list of Window objects constructed by taking the active window of each item in navigables.
     GC::RootVector<GC::Ptr<Window>> windows(heap());
@@ -1825,7 +1825,7 @@ JS::Value Window::named_item_value(FlyString const& name) const
 
     // 2. If objects contains a navigable, then:
     if (!objects.navigables.is_empty()) {
-        // 1. Let container be the first navigable container in window's associated Document's descendants whose content navigable is in objects.
+        // 1. Let container be the first navigable container in window's associated Document's descendents whose content navigable is in objects.
         GC::Ptr<NavigableContainer> container = nullptr;
         mutable_this.associated_document().for_each_in_subtree_of_type<HTML::NavigableContainer>([&](HTML::NavigableContainer& navigable_container) {
             if (!navigable_container.content_navigable())

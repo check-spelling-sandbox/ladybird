@@ -28,7 +28,7 @@ void PathFontProvider::load_all_fonts_from_uri(StringView uri)
     }
     auto root = root_or_error.release_value();
 
-    root->for_each_descendant_file([this](Core::Resource const& resource) -> IterationDecision {
+    root->for_each_descendent_file([this](Core::Resource const& resource) -> IterationDecision {
         auto uri = resource.uri();
         auto path = LexicalPath(uri.bytes_as_string_view());
         if (path.has_extension(".ttf"sv) || path.has_extension(".ttc"sv)) {

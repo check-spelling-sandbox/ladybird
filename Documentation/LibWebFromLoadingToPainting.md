@@ -159,7 +159,7 @@ Stacking contexts are a 3-dimensional model of layers (stacking contexts) that p
 
 The set of rules for what becomes a stacking context are somewhat intricate, but the important thing is that we create a new tree: the stacking context tree.
 
-The stacking context tree is rooted at the ICB, and can have zero or more descendants. Each descendant stacking context has a corresponding layout that it's attached to.
+The stacking context tree is rooted at the ICB, and can have zero or more descendents. Each descendent stacking context has a corresponding layout that it's attached to.
 
 ### Painting
 

@@ -46,9 +46,9 @@ void ViewportPaintable::build_stacking_context_tree()
         auto* parent_context = const_cast<PaintableBox&>(paintable_box).enclosing_stacking_context();
         auto establishes_stacking_context = paintable_box.layout_node().establishes_stacking_context();
         if ((paintable_box.is_positioned() || establishes_stacking_context) && paintable_box.computed_values().z_index().value_or(0) == 0)
-            parent_context->m_positioned_descendants_and_stacking_contexts_with_stack_level_0.append(paintable_box);
+            parent_context->m_positioned_descendents_and_stacking_contexts_with_stack_level_0.append(paintable_box);
         if (!paintable_box.is_positioned() && paintable_box.is_floating())
-            parent_context->m_non_positioned_floating_descendants.append(paintable_box);
+            parent_context->m_non_positioned_floating_descendents.append(paintable_box);
         if (!establishes_stacking_context) {
             VERIFY(!paintable_box.stacking_context());
             return TraversalDecision::Continue;
@@ -378,7 +378,7 @@ void ViewportPaintable::recompute_selection_states(DOM::Range& range)
     }
 
     // 5. Mark the nodes between start node and end node (in tree order) as Full.
-    for (auto* node = start_container->next_in_pre_order(); node && (node->is_before(end_container) || node->is_descendant_of(end_container)); node = node->next_in_pre_order()) {
+    for (auto* node = start_container->next_in_pre_order(); node && (node->is_before(end_container) || node->is_descendent_of(end_container)); node = node->next_in_pre_order()) {
         if (node->is_inert())
             continue;
         if (auto* paintable = node->paintable())

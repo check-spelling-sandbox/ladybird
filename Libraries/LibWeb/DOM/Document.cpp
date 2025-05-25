@@ -732,7 +732,7 @@ WebIDL::ExceptionOr<Document*> Document::open(Optional<String> const&, Optional<
 
     // FIXME: 8. If document's browsing context is non-null and there is an existing attempt to navigate document's browsing context, then stop document loading given document.
 
-    // FIXME: 9. For each shadow-including inclusive descendant node of document, erase all event listeners and handlers given node.
+    // FIXME: 9. For each shadow-including inclusive descendent node of document, erase all event listeners and handlers given node.
 
     // FIXME 10. If document is the associated Document of document's relevant global object, then erase all event listeners and handlers given document's relevant global object.
 
@@ -1497,7 +1497,7 @@ void Document::update_layout(UpdateLayoutReason reason)
 }
 
 // This function makes a full pass over the entire DOM and converts "entire subtree needs style update"
-// into "needs style update" for each inclusive descendant where it's found.
+// into "needs style update" for each inclusive descendent where it's found.
 static void perform_pending_style_invalidations(Node& node, bool invalidate_entire_subtree)
 {
     invalidate_entire_subtree |= node.entire_subtree_needs_style_update();
@@ -1785,7 +1785,7 @@ void Document::invalidate_style_of_elements_affected_by_has()
                 return;
 
             // If any ancestor's sibling was tested against selectors like ".a:has(+ .b)" or ".a:has(~ .b)"
-            // its style might be affected by the change in descendant node.
+            // its style might be affected by the change in descendent node.
             parent->for_each_child_of_type<Element>([&](auto& ancestor_sibling_element) {
                 if (ancestor_sibling_element.affected_by_has_pseudo_class_with_relative_selector_that_has_sibling_combinator())
                     ancestor_sibling_element.invalidate_style_if_affected_by_has();
@@ -1905,7 +1905,7 @@ void Document::set_hovered_node(GC::Ptr<Node> node)
     }
 
     // https://w3c.github.io/uievents/#mouseleave
-    if (old_hovered_node && (!m_hovered_node || !m_hovered_node->is_descendant_of(*old_hovered_node))) {
+    if (old_hovered_node && (!m_hovered_node || !m_hovered_node->is_descendent_of(*old_hovered_node))) {
         // FIXME: Check if we need to dispatch these events in a specific order.
         for (auto target = old_hovered_node; target && target.ptr() != common_ancestor; target = target->parent()) {
             // FIXME: Populate the event with mouse coordinates, etc.
@@ -2343,24 +2343,24 @@ void Document::adopt_node(Node& node)
 
     // 3. If document is not oldDocument, then:
     if (&old_document != this) {
-        // 1. For each inclusiveDescendant in node’s shadow-including inclusive descendants:
-        node.for_each_shadow_including_inclusive_descendant([&](DOM::Node& inclusive_descendant) {
+        // 1. For each inclusiveDescendant in node’s shadow-including inclusive descendents:
+        node.for_each_shadow_including_inclusive_descendent([&](DOM::Node& inclusive_descendent) {
             // 1. Set inclusiveDescendant’s node document to document.
-            inclusive_descendant.set_document(Badge<Document> {}, *this);
+            inclusive_descendent.set_document(Badge<Document> {}, *this);
 
             // FIXME: 2. If inclusiveDescendant is an element, then set the node document of each attribute in inclusiveDescendant’s
             //           attribute list to document.
             return TraversalDecision::Continue;
         });
 
-        // 2. For each inclusiveDescendant in node’s shadow-including inclusive descendants that is custom,
+        // 2. For each inclusiveDescendant in node’s shadow-including inclusive descendents that is custom,
         //    enqueue a custom element callback reaction with inclusiveDescendant, callback name "adoptedCallback",
         //    and an argument list containing oldDocument and document.
-        node.for_each_shadow_including_inclusive_descendant([&](DOM::Node& inclusive_descendant) {
-            if (!is<DOM::Element>(inclusive_descendant))
+        node.for_each_shadow_including_inclusive_descendent([&](DOM::Node& inclusive_descendent) {
+            if (!is<DOM::Element>(inclusive_descendent))
                 return TraversalDecision::Continue;
 
-            auto& element = static_cast<DOM::Element&>(inclusive_descendant);
+            auto& element = static_cast<DOM::Element&>(inclusive_descendent);
             if (element.is_custom()) {
                 auto& vm = this->vm();
 
@@ -2374,10 +2374,10 @@ void Document::adopt_node(Node& node)
             return TraversalDecision::Continue;
         });
 
-        // 3. For each inclusiveDescendant in node’s shadow-including inclusive descendants, in shadow-including tree order,
+        // 3. For each inclusiveDescendant in node’s shadow-including inclusive descendents, in shadow-including tree order,
         //    run the adopting steps with inclusiveDescendant and oldDocument.
-        node.for_each_shadow_including_inclusive_descendant([&](auto& inclusive_descendant) {
-            inclusive_descendant.adopted_from(old_document);
+        node.for_each_shadow_including_inclusive_descendent([&](auto& inclusive_descendent) {
+            inclusive_descendent.adopted_from(old_document);
             return TraversalDecision::Continue;
         });
 
@@ -3694,7 +3694,7 @@ bool Document::anything_is_delaying_the_load_event() const
     if (m_number_of_things_delaying_the_load_event > 0)
         return true;
 
-    for (auto& navigable : descendant_navigables()) {
+    for (auto& navigable : descendent_navigables()) {
         if (navigable->container()->currently_delays_the_load_event())
             return true;
     }
@@ -3908,27 +3908,27 @@ GC::Ref<HTML::SourceSnapshotParams> Document::snapshot_source_snapshot_params() 
         policy_container()->clone(heap()));
 }
 
-// https://html.spec.whatwg.org/multipage/document-sequences.html#descendant-navigables
-Vector<GC::Root<HTML::Navigable>> Document::descendant_navigables()
+// https://html.spec.whatwg.org/multipage/document-sequences.html#descendent-navigables
+Vector<GC::Root<HTML::Navigable>> Document::descendent_navigables()
 {
     // 1. Let navigables be new list.
     Vector<GC::Root<HTML::Navigable>> navigables;
 
-    // 2. Let navigableContainers be a list of all shadow-including descendants of document that are navigable containers, in shadow-including tree order.
+    // 2. Let navigableContainers be a list of all shadow-including descendents of document that are navigable containers, in shadow-including tree order.
     // 3. For each navigableContainer of navigableContainers:
-    for_each_shadow_including_descendant([&](DOM::Node& node) {
+    for_each_shadow_including_descendent([&](DOM::Node& node) {
         if (is<HTML::NavigableContainer>(node)) {
             auto& navigable_container = static_cast<HTML::NavigableContainer&>(node);
             // 1. If navigableContainer's content navigable is null, then continue.
             if (!navigable_container.content_navigable())
                 return TraversalDecision::Continue;
 
-            // 2. Extend navigables with navigableContainer's content navigable's active document's inclusive descendant navigables.
+            // 2. Extend navigables with navigableContainer's content navigable's active document's inclusive descendent navigables.
             auto document = navigable_container.content_navigable()->active_document();
-            // AD-HOC: If the descendant navigable doesn't have an active document, just skip over it.
+            // AD-HOC: If the descendent navigable doesn't have an active document, just skip over it.
             if (!document)
                 return TraversalDecision::Continue;
-            navigables.extend(document->inclusive_descendant_navigables());
+            navigables.extend(document->inclusive_descendent_navigables());
         }
         return TraversalDecision::Continue;
     });
@@ -3937,20 +3937,20 @@ Vector<GC::Root<HTML::Navigable>> Document::descendant_navigables()
     return navigables;
 }
 
-Vector<GC::Root<HTML::Navigable>> const Document::descendant_navigables() const
+Vector<GC::Root<HTML::Navigable>> const Document::descendent_navigables() const
 {
-    return const_cast<Document&>(*this).descendant_navigables();
+    return const_cast<Document&>(*this).descendent_navigables();
 }
 
-// https://html.spec.whatwg.org/multipage/document-sequences.html#inclusive-descendant-navigables
-Vector<GC::Root<HTML::Navigable>> Document::inclusive_descendant_navigables()
+// https://html.spec.whatwg.org/multipage/document-sequences.html#inclusive-descendent-navigables
+Vector<GC::Root<HTML::Navigable>> Document::inclusive_descendent_navigables()
 {
     // 1. Let navigables be « document's node navigable ».
     Vector<GC::Root<HTML::Navigable>> navigables;
     navigables.append(*navigable());
 
-    // 2. Extend navigables with document's descendant navigables.
-    navigables.extend(descendant_navigables());
+    // 2. Extend navigables with document's descendent navigables.
+    navigables.extend(descendent_navigables());
 
     // 3. Return navigables.
     return navigables;
@@ -4011,7 +4011,7 @@ Vector<GC::Root<HTML::Navigable>> Document::document_tree_child_navigables()
     // 2. Let navigables be new list.
     Vector<GC::Root<HTML::Navigable>> navigables;
 
-    // 3. Let navigableContainers be a list of all descendants of document that are navigable containers, in tree order.
+    // 3. Let navigableContainers be a list of all descendents of document that are navigable containers, in tree order.
     // 4. For each navigableContainer of navigableContainers:
     for_each_in_subtree_of_type<HTML::NavigableContainer>([&](HTML::NavigableContainer& navigable_container) {
         // 1. If navigableContainer's content navigable is null, then continue.
@@ -4120,8 +4120,8 @@ void Document::make_unsalvageable([[maybe_unused]] String reason)
     set_salvageable(false);
 }
 
-// https://html.spec.whatwg.org/multipage/document-lifecycle.html#destroy-a-document-and-its-descendants
-void Document::destroy_a_document_and_its_descendants(GC::Ptr<GC::Function<void()>> after_all_destruction)
+// https://html.spec.whatwg.org/multipage/document-lifecycle.html#destroy-a-document-and-its-descendents
+void Document::destroy_a_document_and_its_descendents(GC::Ptr<GC::Function<void()>> after_all_destruction)
 {
     // 1. If document is not fully active, then:
     if (!is_fully_active()) {
@@ -4129,7 +4129,7 @@ void Document::destroy_a_document_and_its_descendants(GC::Ptr<GC::Function<void(
         make_unsalvageable("masked"_string);
 
         // FIXME: 2. If document's node navigable is a top-level traversable,
-        //           build not restored reasons for a top-level traversable and its descendants given document's node navigable.
+        //           build not restored reasons for a top-level traversable and its descendents given document's node navigable.
     }
 
     // 2. Let childNavigables be document's child navigables.
@@ -4145,8 +4145,8 @@ void Document::destroy_a_document_and_its_descendants(GC::Ptr<GC::Function<void(
             // 1. Let incrementDestroyed be an algorithm step which increments numberDestroyed.
             auto increment_destroyed = GC::create_function(heap, [&number_destroyed] { ++number_destroyed; });
 
-            // 2. Destroy a document and its descendants given childNavigable's active document and incrementDestroyed.
-            child_navigable->active_document()->destroy_a_document_and_its_descendants(move(increment_destroyed));
+            // 2. Destroy a document and its descendents given childNavigable's active document and incrementDestroyed.
+            child_navigable->active_document()->destroy_a_document_and_its_descendents(move(increment_destroyed));
         }));
     }
 
@@ -4200,26 +4200,26 @@ void Document::abort()
     }
 }
 
-// https://html.spec.whatwg.org/multipage/document-lifecycle.html#abort-a-document-and-its-descendants
-void Document::abort_a_document_and_its_descendants()
+// https://html.spec.whatwg.org/multipage/document-lifecycle.html#abort-a-document-and-its-descendents
+void Document::abort_a_document_and_its_descendents()
 {
     // FIXME 1. Assert: this is running as part of a task queued on document's relevant agent's event loop.
 
-    // 2. Let descendantNavigables be document's descendant navigables.
-    auto descendant_navigables = this->descendant_navigables();
+    // 2. Let descendentNavigables be document's descendent navigables.
+    auto descendent_navigables = this->descendent_navigables();
 
-    // 3. For each descendantNavigable of descendantNavigables, queue a global task on the navigation and traversal task source given descendantNavigable's active window to perform the following steps:
-    for (auto& descendant_navigable : descendant_navigables) {
-        HTML::queue_global_task(HTML::Task::Source::NavigationAndTraversal, *descendant_navigable->active_window(), GC::create_function(heap(), [this, descendant_navigable = descendant_navigable.ptr()] {
-            // NOTE: This is not in the spec but we need to abort ongoing navigations in all descendant navigables.
+    // 3. For each descendentNavigable of descendentNavigables, queue a global task on the navigation and traversal task source given descendentNavigable's active window to perform the following steps:
+    for (auto& descendent_navigable : descendent_navigables) {
+        HTML::queue_global_task(HTML::Task::Source::NavigationAndTraversal, *descendent_navigable->active_window(), GC::create_function(heap(), [this, descendent_navigable = descendent_navigable.ptr()] {
+            // NOTE: This is not in the spec but we need to abort ongoing navigations in all descendent navigables.
             //       See https://github.com/whatwg/html/issues/9711
-            descendant_navigable->set_ongoing_navigation({});
+            descendent_navigable->set_ongoing_navigation({});
 
-            // 1. Abort descendantNavigable's active document.
-            descendant_navigable->active_document()->abort();
+            // 1. Abort descendentNavigable's active document.
+            descendent_navigable->active_document()->abort();
 
-            // 2. If descendantNavigable's active document's salvageable is false, then set document's salvageable to false.
-            if (!descendant_navigable->active_document()->m_salvageable)
+            // 2. If descendentNavigable's active document's salvageable is false, then set document's salvageable to false.
+            if (!descendent_navigable->active_document()->m_salvageable)
                 m_salvageable = false;
         }));
     }
@@ -4314,7 +4314,7 @@ void Document::unload(GC::Ptr<Document>)
 
     // 19. If oldDocument's salvageable state is false, then destroy oldDocument.
     if (!m_salvageable) {
-        // NOTE: Document is destroyed from Document::unload_a_document_and_its_descendants()
+        // NOTE: Document is destroyed from Document::unload_a_document_and_its_descendents()
     }
 
     // 20. Decrease oldDocument's unload counter by 1.
@@ -4326,11 +4326,11 @@ void Document::unload(GC::Ptr<Document>)
     did_stop_being_active_document_in_navigable();
 }
 
-// https://html.spec.whatwg.org/multipage/document-lifecycle.html#unload-a-document-and-its-descendants
-void Document::unload_a_document_and_its_descendants(GC::Ptr<Document> new_document, GC::Ptr<GC::Function<void()>> after_all_unloads)
+// https://html.spec.whatwg.org/multipage/document-lifecycle.html#unload-a-document-and-its-descendents
+void Document::unload_a_document_and_its_descendents(GC::Ptr<Document> new_document, GC::Ptr<GC::Function<void()>> after_all_unloads)
 {
     // Specification defines this algorithm in the following steps:
-    // 1. Recursively unload (and destroy) documents in descendant navigables
+    // 1. Recursively unload (and destroy) documents in descendent navigables
     // 2. Unload (and destroy) this document.
     //
     // Implementation of the spec will fail in the following scenario:
@@ -4343,9 +4343,9 @@ void Document::unload_a_document_and_its_descendants(GC::Ptr<Document> new_docum
     //             2.2.1.1. Fail to access iframe's navigable active document because it was destroyed on step 1.1
     //
     // We change the algorithm to:
-    // 1. Unload all descendant documents without destroying them
+    // 1. Unload all descendent documents without destroying them
     // 2. Unload this document
-    // 3. Destroy all descendant documents
+    // 3. Destroy all descendent documents
     // 4. Destroy this document
     //
     // This way we maintain the invariant that all navigable containers present in the DOM tree
@@ -4355,22 +4355,22 @@ void Document::unload_a_document_and_its_descendants(GC::Ptr<Document> new_docum
 
     auto navigable = this->navigable();
 
-    Vector<GC::Root<HTML::Navigable>> descendant_navigables;
+    Vector<GC::Root<HTML::Navigable>> descendent_navigables;
     for (auto& other_navigable : HTML::all_navigables()) {
         if (navigable->is_ancestor_of(*other_navigable))
-            descendant_navigables.append(other_navigable);
+            descendent_navigables.append(other_navigable);
     }
 
-    IGNORE_USE_IN_ESCAPING_LAMBDA auto unloaded_documents_count = descendant_navigables.size() + 1;
+    IGNORE_USE_IN_ESCAPING_LAMBDA auto unloaded_documents_count = descendent_navigables.size() + 1;
 
     HTML::queue_global_task(HTML::Task::Source::NavigationAndTraversal, HTML::relevant_global_object(*this), GC::create_function(heap(), [&number_unloaded, this, new_document] {
         unload(new_document);
         ++number_unloaded;
     }));
 
-    for (auto& descendant_navigable : descendant_navigables) {
-        HTML::queue_global_task(HTML::Task::Source::NavigationAndTraversal, *descendant_navigable->active_window(), GC::create_function(heap(), [&number_unloaded, descendant_navigable = descendant_navigable.ptr()] {
-            descendant_navigable->active_document()->unload();
+    for (auto& descendent_navigable : descendent_navigables) {
+        HTML::queue_global_task(HTML::Task::Source::NavigationAndTraversal, *descendent_navigable->active_window(), GC::create_function(heap(), [&number_unloaded, descendent_navigable = descendent_navigable.ptr()] {
+            descendent_navigable->active_document()->unload();
             ++number_unloaded;
         }));
     }
@@ -4379,7 +4379,7 @@ void Document::unload_a_document_and_its_descendants(GC::Ptr<Document> new_docum
         return number_unloaded == unloaded_documents_count;
     }));
 
-    destroy_a_document_and_its_descendants(move(after_all_unloads));
+    destroy_a_document_and_its_descendents(move(after_all_unloads));
 }
 
 // https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use
@@ -4740,14 +4740,14 @@ void Document::run_the_update_intersection_observations_steps(HighResolutionTime
             double intersection_ratio = 0.0;
 
             // 2. If the intersection root is not the implicit root, and target is not in the same document as the intersection root, skip to step 11.
-            // 3. If the intersection root is an Element, and target is not a descendant of the intersection root in the containing block chain, skip to step 11.
+            // 3. If the intersection root is an Element, and target is not a descendent of the intersection root in the containing block chain, skip to step 11.
             // FIXME: Actually use the containing block chain.
             auto intersection_root = observer->intersection_root();
             auto intersection_root_document = intersection_root.visit([](auto& node) -> GC::Ref<Document> {
                 return node->document();
             });
             // NOTE: Check if target has a layout node is not in the spec but required to match other browsers.
-            if (target->layout_node() && (!(observer->root().has<Empty>() && &target->document() == intersection_root_document.ptr()) || !(intersection_root.has<GC::Root<DOM::Element>>() && !target->is_descendant_of(*intersection_root.get<GC::Root<DOM::Element>>())))) {
+            if (target->layout_node() && (!(observer->root().has<Empty>() && &target->document() == intersection_root_document.ptr()) || !(intersection_root.has<GC::Root<DOM::Element>>() && !target->is_descendent_of(*intersection_root.get<GC::Root<DOM::Element>>())))) {
                 // 4. Set targetRect to the DOMRectReadOnly obtained by getting the bounding box for target.
                 target_rect = target->get_bounding_client_rect();
 
@@ -5307,7 +5307,7 @@ void Document::update_animations_and_send_events(Optional<double> const& timesta
 void Document::remove_replaced_animations()
 {
     // When asked to remove replaced animations for a Document, doc, then for every animation, animation, that:
-    // - has an associated animation effect whose effect target is a descendant of doc, and
+    // - has an associated animation effect whose effect target is a descendent of doc, and
     // - is replaceable, and
     // - has a replace state of active, and
     // - for which there exists for each target property of every animation effect associated with animation, an
@@ -5573,7 +5573,7 @@ Element const* Document::element_from_point(double x, double y)
     update_layout(UpdateLayoutReason::DocumentElementFromPoint);
 
     // 2. If there is a box in the viewport that would be a target for hit testing at coordinates x,y, when applying the transforms
-    //    that apply to the descendants of the viewport, return the associated element and terminate these steps.
+    //    that apply to the descendents of the viewport, return the associated element and terminate these steps.
     Optional<Painting::HitTestResult> hit_test_result;
     if (auto const* paintable_box = this->paintable_box(); paintable_box) {
         (void)paintable_box->hit_test(position, Painting::HitTestType::Exact, [&](Painting::HitTestResult result) {
@@ -5616,7 +5616,7 @@ GC::RootVector<GC::Ref<Element>> Document::elements_from_point(double x, double 
 
     // 3. For each box in the viewport, in paint order, starting with the topmost box, that would be a target for
     //    hit testing at coordinates x,y even if nothing would be overlapping it, when applying the transforms that
-    //    apply to the descendants of the viewport, append the associated element to sequence.
+    //    apply to the descendents of the viewport, append the associated element to sequence.
     if (auto const* paintable_box = this->paintable_box(); paintable_box) {
         (void)paintable_box->hit_test(position, Painting::HitTestType::Exact, [&](Painting::HitTestResult result) {
             auto* dom_node = result.dom_node();
@@ -5663,7 +5663,7 @@ static bool is_exposed(Element const& element)
     VERIFY(is<HTML::HTMLEmbedElement>(element) || is<HTML::HTMLObjectElement>(element));
 
     // FIXME: An embed or object element is said to be exposed if it has no exposed object ancestor, and,
-    //        for object elements, is additionally either not showing its fallback content or has no object or embed descendants.
+    //        for object elements, is additionally either not showing its fallback content or has no object or embed descendents.
     return true;
 }
 

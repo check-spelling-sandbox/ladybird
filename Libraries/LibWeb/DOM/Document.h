@@ -630,9 +630,9 @@ public:
     GC::Ref<HTML::PolicyContainer> policy_container() const;
     void set_policy_container(GC::Ref<HTML::PolicyContainer>);
 
-    Vector<GC::Root<HTML::Navigable>> descendant_navigables();
-    Vector<GC::Root<HTML::Navigable>> const descendant_navigables() const;
-    Vector<GC::Root<HTML::Navigable>> inclusive_descendant_navigables();
+    Vector<GC::Root<HTML::Navigable>> descendent_navigables();
+    Vector<GC::Root<HTML::Navigable>> const descendent_navigables() const;
+    Vector<GC::Root<HTML::Navigable>> inclusive_descendent_navigables();
     Vector<GC::Root<HTML::Navigable>> ancestor_navigables();
     Vector<GC::Root<HTML::Navigable>> const ancestor_navigables() const;
     Vector<GC::Root<HTML::Navigable>> inclusive_ancestor_navigables();
@@ -642,18 +642,18 @@ public:
 
     // https://html.spec.whatwg.org/multipage/document-lifecycle.html#destroy-a-document
     void destroy();
-    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#destroy-a-document-and-its-descendants
-    void destroy_a_document_and_its_descendants(GC::Ptr<GC::Function<void()>> after_all_destruction = {});
+    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#destroy-a-document-and-its-descendents
+    void destroy_a_document_and_its_descendents(GC::Ptr<GC::Function<void()>> after_all_destruction = {});
 
     // https://html.spec.whatwg.org/multipage/browsing-the-web.html#abort-a-document
     void abort();
-    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#abort-a-document-and-its-descendants
-    void abort_a_document_and_its_descendants();
+    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#abort-a-document-and-its-descendents
+    void abort_a_document_and_its_descendents();
 
     // https://html.spec.whatwg.org/multipage/document-lifecycle.html#unload-a-document
     void unload(GC::Ptr<Document> new_document = nullptr);
-    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#unload-a-document-and-its-descendants
-    void unload_a_document_and_its_descendants(GC::Ptr<Document> new_document, GC::Ptr<GC::Function<void()>> after_all_unloads = {});
+    // https://html.spec.whatwg.org/multipage/document-lifecycle.html#unload-a-document-and-its-descendents
+    void unload_a_document_and_its_descendents(GC::Ptr<Document> new_document, GC::Ptr<GC::Function<void()>> after_all_unloads = {});
 
     // https://html.spec.whatwg.org/multipage/dom.html#active-parser
     GC::Ptr<HTML::HTMLParser> active_parser();

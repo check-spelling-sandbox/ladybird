@@ -73,7 +73,7 @@ GC::Ptr<HTML::HTMLSlotElement> find_a_slot(Slottable const& slottable, OpenFlag 
     if (open_flag == OpenFlag::Set && shadow->mode() != Bindings::ShadowRootMode::Open)
         return nullptr;
 
-    // 5. If shadow’s slot assignment is "manual", then return the slot in shadow’s descendants whose manually assigned
+    // 5. If shadow’s slot assignment is "manual", then return the slot in shadow’s descendents whose manually assigned
     //    nodes contains slottable, if any; otherwise null.
     if (shadow->slot_assignment() == Bindings::SlotAssignmentMode::Manual) {
         GC::Ptr<HTML::HTMLSlotElement> slot;
@@ -89,7 +89,7 @@ GC::Ptr<HTML::HTMLSlotElement> find_a_slot(Slottable const& slottable, OpenFlag 
         return slot;
     }
 
-    // 6. Return the first slot in tree order in shadow’s descendants whose name is slottable’s name, if any; otherwise null.
+    // 6. Return the first slot in tree order in shadow’s descendents whose name is slottable’s name, if any; otherwise null.
     auto const& slottable_name = slottable.visit([](auto const& node) { return node->slottable_name(); });
     GC::Ptr<HTML::HTMLSlotElement> slot;
 
@@ -235,7 +235,7 @@ void assign_slottables_for_a_tree(GC::Ref<Node> root)
         return;
 
     // To assign slottables for a tree, given a node root, run assign slottables for each slot slot in root’s inclusive
-    // descendants, in tree order.
+    // descendents, in tree order.
     root->for_each_in_inclusive_subtree_of_type<HTML::HTMLSlotElement>([](auto& slot) {
         assign_slottables(slot);
         return TraversalDecision::Continue;

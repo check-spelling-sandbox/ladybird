@@ -385,10 +385,10 @@ CSSPixels FormattingContext::compute_auto_height_for_block_formatting_context_ro
         });
     }
 
-    // In addition, if the element has any floating descendants
+    // In addition, if the element has any floating descendents
     // whose bottom margin edge is below the element's bottom content edge,
     // then the height is increased to include those edges.
-    for (auto floating_box : m_state.get(root).floating_descendants()) {
+    for (auto floating_box : m_state.get(root).floating_descendents()) {
         // NOTE: Floating box coordinates are relative to their own containing block,
         //       which may or may not be the BFC root.
         auto margin_box = margin_box_rect_in_ancestor_coordinate_space(*floating_box, root);

@@ -403,8 +403,8 @@ Pass	Document.querySelectorAll: Universal selector, matching all grandchildren o
 Pass	Document.querySelector: Universal selector, matching all grandchildren of element with specified ID: #universal>*>*
 Pass	Document.querySelectorAll: Universal selector, matching all children of empty element with specified ID: #empty>*
 Pass	Document.querySelector: Universal selector, matching all children of empty element with specified ID: #empty>*
-Pass	Document.querySelectorAll: Universal selector, matching all descendants of element with specified ID: #universal *
-Pass	Document.querySelector: Universal selector, matching all descendants of element with specified ID: #universal *
+Pass	Document.querySelectorAll: Universal selector, matching all descendents of element with specified ID: #universal *
+Pass	Document.querySelector: Universal selector, matching all descendents of element with specified ID: #universal *
 Pass	Document.querySelectorAll: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Document.querySelector: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Document.querySelectorAll: Attribute presence selector, matching align attribute with empty value: .attr-presence-div2[align]
@@ -671,8 +671,8 @@ Pass	Document.querySelectorAll: ID selector, chained, matching element with spec
 Pass	Document.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Document.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Document.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Document.querySelectorAll: ID selector, not matching non-existent descendant: #id #none
-Pass	Document.querySelector: ID selector, not matching non-existent descendant: #id #none
+Pass	Document.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
+Pass	Document.querySelector: ID selector, not matching non-existent descendent: #id #none
 Pass	Document.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Document.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Document.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
@@ -693,24 +693,24 @@ Pass	Document.querySelectorAll: Namespace selector, matching div elements in no 
 Pass	Document.querySelector: Namespace selector, matching div elements in no namespace only: #no-namespace |div
 Pass	Document.querySelectorAll: Namespace selector, matching any elements in no namespace only: #no-namespace |*
 Pass	Document.querySelector: Namespace selector, matching any elements in no namespace only: #no-namespace |*
-Pass	Document.querySelectorAll: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Document.querySelector: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: body #descendant-div1
-Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendant of an element: body #descendant-div1
-Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Document.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Document.querySelector: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Document.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Document.querySelector: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Document.querySelectorAll: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Document.querySelector: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Document.querySelectorAll: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
-Pass	Document.querySelector: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
+Pass	Document.querySelectorAll: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Document.querySelector: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: body #descendent-div1
+Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendent of an element: body #descendent-div1
+Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Document.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Document.querySelector: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Document.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Document.querySelector: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Document.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Document.querySelector: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Document.querySelectorAll: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Document.querySelector: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Document.querySelectorAll: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
+Pass	Document.querySelector: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
 Pass	Document.querySelectorAll: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Document.querySelector: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Document.querySelectorAll: Child combinator, matching element with id that is a child of an element: div>#child-div1
@@ -803,11 +803,15 @@ Pass	Document.querySelector: General sibling combinator, whitespace before: #sib
 ~#sibling-p3
 Pass	Document.querySelectorAll: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
 Pass	Document.querySelector: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
-Pass	Document.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Document.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
-Pass	Document.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Document.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
 Pass	Document.querySelectorAll: Syntax, group of selectors separator, whitespace after: #group em,	
 #group strong
@@ -833,8 +837,8 @@ Pass	Detached Element.querySelectorAll: Universal selector, matching all grandch
 Pass	Detached Element.querySelector: Universal selector, matching all grandchildren of element with specified ID: #universal>*>*
 Pass	Detached Element.querySelectorAll: Universal selector, matching all children of empty element with specified ID: #empty>*
 Pass	Detached Element.querySelector: Universal selector, matching all children of empty element with specified ID: #empty>*
-Pass	Detached Element.querySelectorAll: Universal selector, matching all descendants of element with specified ID: #universal *
-Pass	Detached Element.querySelector: Universal selector, matching all descendants of element with specified ID: #universal *
+Pass	Detached Element.querySelectorAll: Universal selector, matching all descendents of element with specified ID: #universal *
+Pass	Detached Element.querySelector: Universal selector, matching all descendents of element with specified ID: #universal *
 Pass	Detached Element.querySelectorAll: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Detached Element.querySelector: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Detached Element.querySelectorAll: Attribute presence selector, matching align attribute with empty value: .attr-presence-div2[align]
@@ -1103,8 +1107,8 @@ Pass	Detached Element.querySelectorAll: ID selector, chained, matching element w
 Pass	Detached Element.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Detached Element.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Detached Element.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Detached Element.querySelectorAll: ID selector, not matching non-existent descendant: #id #none
-Pass	Detached Element.querySelector: ID selector, not matching non-existent descendant: #id #none
+Pass	Detached Element.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
+Pass	Detached Element.querySelector: ID selector, not matching non-existent descendent: #id #none
 Pass	Detached Element.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Detached Element.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Detached Element.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
@@ -1125,22 +1129,22 @@ Pass	Detached Element.querySelectorAll: Namespace selector, matching div element
 Pass	Detached Element.querySelector: Namespace selector, matching div elements in no namespace only: #no-namespace |div
 Pass	Detached Element.querySelectorAll: Namespace selector, matching any elements in no namespace only: #no-namespace |*
 Pass	Detached Element.querySelector: Namespace selector, matching any elements in no namespace only: #no-namespace |*
-Pass	Detached Element.querySelectorAll: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Detached Element.querySelector: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Detached Element.querySelector: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Detached Element.querySelector: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Detached Element.querySelector: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Detached Element.querySelector: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Detached Element.querySelectorAll: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Detached Element.querySelector: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Detached Element.querySelectorAll: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
-Pass	Detached Element.querySelector: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
+Pass	Detached Element.querySelectorAll: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Detached Element.querySelector: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Detached Element.querySelector: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Detached Element.querySelector: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Detached Element.querySelector: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Detached Element.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Detached Element.querySelector: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Detached Element.querySelectorAll: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Detached Element.querySelector: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Detached Element.querySelectorAll: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
+Pass	Detached Element.querySelector: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
 Pass	Detached Element.querySelectorAll: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Detached Element.querySelector: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Detached Element.querySelectorAll: Child combinator, matching element with id that is a child of an element: div>#child-div1
@@ -1233,11 +1237,15 @@ Pass	Detached Element.querySelector: General sibling combinator, whitespace befo
 ~#sibling-p3
 Pass	Detached Element.querySelectorAll: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
 Pass	Detached Element.querySelector: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
-Pass	Detached Element.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Detached Element.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
-Pass	Detached Element.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Detached Element.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
 Pass	Detached Element.querySelectorAll: Syntax, group of selectors separator, whitespace after: #group em,	
 #group strong
@@ -1263,8 +1271,8 @@ Pass	Fragment.querySelectorAll: Universal selector, matching all grandchildren o
 Pass	Fragment.querySelector: Universal selector, matching all grandchildren of element with specified ID: #universal>*>*
 Pass	Fragment.querySelectorAll: Universal selector, matching all children of empty element with specified ID: #empty>*
 Pass	Fragment.querySelector: Universal selector, matching all children of empty element with specified ID: #empty>*
-Pass	Fragment.querySelectorAll: Universal selector, matching all descendants of element with specified ID: #universal *
-Pass	Fragment.querySelector: Universal selector, matching all descendants of element with specified ID: #universal *
+Pass	Fragment.querySelectorAll: Universal selector, matching all descendents of element with specified ID: #universal *
+Pass	Fragment.querySelector: Universal selector, matching all descendents of element with specified ID: #universal *
 Pass	Fragment.querySelectorAll: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Fragment.querySelector: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	Fragment.querySelectorAll: Attribute presence selector, matching align attribute with empty value: .attr-presence-div2[align]
@@ -1533,8 +1541,8 @@ Pass	Fragment.querySelectorAll: ID selector, chained, matching element with spec
 Pass	Fragment.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Fragment.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Fragment.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Fragment.querySelectorAll: ID selector, not matching non-existent descendant: #id #none
-Pass	Fragment.querySelector: ID selector, not matching non-existent descendant: #id #none
+Pass	Fragment.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
+Pass	Fragment.querySelector: ID selector, not matching non-existent descendent: #id #none
 Pass	Fragment.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Fragment.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	Fragment.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
@@ -1555,22 +1563,22 @@ Pass	Fragment.querySelectorAll: Namespace selector, matching div elements in no 
 Pass	Fragment.querySelector: Namespace selector, matching div elements in no namespace only: #no-namespace |div
 Pass	Fragment.querySelectorAll: Namespace selector, matching any elements in no namespace only: #no-namespace |*
 Pass	Fragment.querySelector: Namespace selector, matching any elements in no namespace only: #no-namespace |*
-Pass	Fragment.querySelectorAll: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Fragment.querySelector: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	Fragment.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Fragment.querySelector: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	Fragment.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Fragment.querySelector: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	Fragment.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Fragment.querySelector: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	Fragment.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Fragment.querySelector: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	Fragment.querySelectorAll: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Fragment.querySelector: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	Fragment.querySelectorAll: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
-Pass	Fragment.querySelector: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
+Pass	Fragment.querySelectorAll: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Fragment.querySelector: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	Fragment.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Fragment.querySelector: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	Fragment.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Fragment.querySelector: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	Fragment.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Fragment.querySelector: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	Fragment.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Fragment.querySelector: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	Fragment.querySelectorAll: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Fragment.querySelector: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	Fragment.querySelectorAll: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
+Pass	Fragment.querySelector: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
 Pass	Fragment.querySelectorAll: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Fragment.querySelector: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	Fragment.querySelectorAll: Child combinator, matching element with id that is a child of an element: div>#child-div1
@@ -1663,11 +1671,15 @@ Pass	Fragment.querySelector: General sibling combinator, whitespace before: #sib
 ~#sibling-p3
 Pass	Fragment.querySelectorAll: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
 Pass	Fragment.querySelector: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
-Pass	Fragment.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Fragment.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
-Pass	Fragment.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	Fragment.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
 Pass	Fragment.querySelectorAll: Syntax, group of selectors separator, whitespace after: #group em,	
 #group strong
@@ -1693,8 +1705,8 @@ Pass	In-document Element.querySelectorAll: Universal selector, matching all gran
 Pass	In-document Element.querySelector: Universal selector, matching all grandchildren of element with specified ID: #universal>*>*
 Pass	In-document Element.querySelectorAll: Universal selector, matching all children of empty element with specified ID: #empty>*
 Pass	In-document Element.querySelector: Universal selector, matching all children of empty element with specified ID: #empty>*
-Pass	In-document Element.querySelectorAll: Universal selector, matching all descendants of element with specified ID: #universal *
-Pass	In-document Element.querySelector: Universal selector, matching all descendants of element with specified ID: #universal *
+Pass	In-document Element.querySelectorAll: Universal selector, matching all descendents of element with specified ID: #universal *
+Pass	In-document Element.querySelector: Universal selector, matching all descendents of element with specified ID: #universal *
 Pass	In-document Element.querySelectorAll: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	In-document Element.querySelector: Attribute presence selector, matching align attribute with value: .attr-presence-div1[align]
 Pass	In-document Element.querySelectorAll: Attribute presence selector, matching align attribute with empty value: .attr-presence-div2[align]
@@ -1963,8 +1975,8 @@ Pass	In-document Element.querySelectorAll: ID selector, chained, matching elemen
 Pass	In-document Element.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	In-document Element.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	In-document Element.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	In-document Element.querySelectorAll: ID selector, not matching non-existent descendant: #id #none
-Pass	In-document Element.querySelector: ID selector, not matching non-existent descendant: #id #none
+Pass	In-document Element.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
+Pass	In-document Element.querySelector: ID selector, not matching non-existent descendent: #id #none
 Pass	In-document Element.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	In-document Element.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
 Pass	In-document Element.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
@@ -1985,24 +1997,24 @@ Pass	In-document Element.querySelectorAll: Namespace selector, matching div elem
 Pass	In-document Element.querySelector: Namespace selector, matching div elements in no namespace only: #no-namespace |div
 Pass	In-document Element.querySelectorAll: Namespace selector, matching any elements in no namespace only: #no-namespace |*
 Pass	In-document Element.querySelector: Namespace selector, matching any elements in no namespace only: #no-namespace |*
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	In-document Element.querySelector: Descendant combinator, matching element that is a descendant of an element with id: #descendant div
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: body #descendant-div1
-Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendant of an element: body #descendant-div1
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendant of an element: div #descendant-div1
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendant of an element with id: #descendant #descendant-div2
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	In-document Element.querySelector: Descendant combinator, matching element with class that is a descendant of an element with id: #descendant .descendant-div2
-Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	In-document Element.querySelector: Descendant combinator, matching element with class that is a descendant of an element with class: .descendant-div1 .descendant-div3
-Pass	In-document Element.querySelectorAll: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	In-document Element.querySelector: Descendant combinator, not matching element with id that is not a descendant of an element with id: #descendant-div1 #descendant-div4
-Pass	In-document Element.querySelectorAll: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
-Pass	In-document Element.querySelector: Descendant combinator, whitespace characters: #descendant	
-#descendant-div2
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	In-document Element.querySelector: Descendant combinator, matching element that is a descendent of an element with id: #descendent div
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: body #descendent-div1
+Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendent of an element: body #descendent-div1
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendent of an element: div #descendent-div1
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	In-document Element.querySelector: Descendant combinator, matching element with id that is a descendent of an element with id: #descendent #descendent-div2
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	In-document Element.querySelector: Descendant combinator, matching element with class that is a descendent of an element with id: #descendent .descendent-div2
+Pass	In-document Element.querySelectorAll: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	In-document Element.querySelector: Descendant combinator, matching element with class that is a descendent of an element with class: .descendent-div1 .descendent-div3
+Pass	In-document Element.querySelectorAll: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	In-document Element.querySelector: Descendant combinator, not matching element with id that is not a descendent of an element with id: #descendent-div1 #descendent-div4
+Pass	In-document Element.querySelectorAll: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
+Pass	In-document Element.querySelector: Descendant combinator, whitespace characters: #descendent	
+#descendent-div2
 Pass	In-document Element.querySelectorAll: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	In-document Element.querySelector: Child combinator, matching element that is a child of an element with id: #child>div
 Pass	In-document Element.querySelectorAll: Child combinator, matching element with id that is a child of an element: div>#child-div1
@@ -2095,11 +2107,15 @@ Pass	In-document Element.querySelector: General sibling combinator, whitespace b
 ~#sibling-p3
 Pass	In-document Element.querySelectorAll: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
 Pass	In-document Element.querySelector: General sibling combinator, no whitespace: #sibling-p2~#sibling-p3
-Pass	In-document Element.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	In-document Element.querySelectorAll: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
-Pass	In-document Element.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	 
-,	 
+Pass	In-document Element.querySelector: Syntax, group of selectors separator, surrounded by whitespace: #group em	
+ 
+,	
+ 
 #group strong
 Pass	In-document Element.querySelectorAll: Syntax, group of selectors separator, whitespace after: #group em,	
 #group strong

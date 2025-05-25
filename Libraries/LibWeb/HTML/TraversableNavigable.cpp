@@ -395,15 +395,15 @@ static void deactivate_a_document_for_cross_document_navigation(GC::Ref<DOM::Doc
         // 2. Set the ongoing navigation for navigable to null.
         navigable->set_ongoing_navigation({});
 
-        // 3. Unload a document and its descendants given displayedDocument, targetEntry's document, afterPotentialUnloads, and firePageSwapBeforeUnload.
-        displayed_document->unload_a_document_and_its_descendants(target_entry->document(), after_potential_unloads);
+        // 3. Unload a document and its descendents given displayedDocument, targetEntry's document, afterPotentialUnloads, and firePageSwapBeforeUnload.
+        displayed_document->unload_a_document_and_its_descendents(target_entry->document(), after_potential_unloads);
     }
     // FIXME: 6. Otherwise, queue a global task on the navigation and traversal task source given navigable's active window to run the steps:
     else {
         // FIXME: 1. Let proceedWithNavigationAfterViewTransitionCapture be the following step:
         //            1. Append the following session history traversal steps to navigable's traversable navigable:
         //               1. Set the ongoing navigation for navigable to null.
-        //               2. Unload a document and its descendants given displayedDocument, targetEntry's document, and afterPotentialUnloads.
+        //               2. Unload a document and its descendents given displayedDocument, targetEntry's document, and afterPotentialUnloads.
 
         // FIXME: 2. Let viewTransition be the result of setting up a cross-document view-transition given displayedDocument,
         //           targetEntry's document, navigationType, and proceedWithNavigationAfterViewTransitionCapture.
@@ -1233,8 +1233,8 @@ void TraversableNavigable::definitely_close_top_level_traversable()
 {
     VERIFY(is_top_level_traversable());
 
-    // 1. Let toUnload be traversable's active document's inclusive descendant navigables.
-    auto to_unload = active_document()->inclusive_descendant_navigables();
+    // 1. Let toUnload be traversable's active document's inclusive descendent navigables.
+    auto to_unload = active_document()->inclusive_descendent_navigables();
 
     // 2. If the result of checking if unloading is canceled for toUnload is true, then return.
     if (check_if_unloading_is_canceled(to_unload) != CheckIfUnloadingIsCanceledResult::Continue)
@@ -1247,8 +1247,8 @@ void TraversableNavigable::definitely_close_top_level_traversable()
             destroy_top_level_traversable();
         });
 
-        // 2. Unload a document and its descendants given traversable's active document, null, and afterAllUnloads.
-        active_document()->unload_a_document_and_its_descendants({}, after_all_unloads);
+        // 2. Unload a document and its descendents given traversable's active document, null, and afterAllUnloads.
+        active_document()->unload_a_document_and_its_descendents({}, after_all_unloads);
     }));
 }
 
@@ -1349,8 +1349,8 @@ void TraversableNavigable::set_system_visibility_state(VisibilityState visibilit
     // When a user-agent determines that the system visibility state for
     // traversable navigable traversable has changed to newState, it must run the following steps:
 
-    // 1. Let navigables be the inclusive descendant navigables of traversable's active document.
-    auto navigables = active_document()->inclusive_descendant_navigables();
+    // 1. Let navigables be the inclusive descendent navigables of traversable's active document.
+    auto navigables = active_document()->inclusive_descendent_navigables();
 
     // 2. For each navigable of navigables:
     for (auto& navigable : navigables) {

@@ -428,19 +428,19 @@ BrowsingContext const* BrowsingContext::the_one_permitted_sandboxed_navigator() 
 }
 
 // https://html.spec.whatwg.org/multipage/document-sequences.html#ancestor-browsing-context
-bool BrowsingContext::is_ancestor_of(BrowsingContext const& potential_descendant) const
+bool BrowsingContext::is_ancestor_of(BrowsingContext const& potential_descendent) const
 {
     // A browsing context potentialDescendant is said to be an ancestor of a browsing context potentialAncestor if the following algorithm returns true:
 
     // 1. Let potentialDescendantDocument be potentialDescendant's active document.
-    auto const* potential_descendant_document = potential_descendant.active_document();
+    auto const* potential_descendent_document = potential_descendent.active_document();
 
     // 2. If potentialDescendantDocument is not fully active, then return false.
-    if (!potential_descendant_document->is_fully_active())
+    if (!potential_descendent_document->is_fully_active())
         return false;
 
     // 3. Let ancestorBCs be the list obtained by taking the browsing context of the active document of each member of potentialDescendantDocument's ancestor navigables.
-    for (auto const& ancestor : potential_descendant_document->ancestor_navigables()) {
+    for (auto const& ancestor : potential_descendent_document->ancestor_navigables()) {
         auto ancestor_browsing_context = ancestor->active_browsing_context();
 
         // 4. If ancestorBCs contains potentialAncestor, then return true.

@@ -51,7 +51,7 @@ function run_test_for_all_reflecting_properties(setup_function, test_function, t
   for(let referencing_element_type of element_types) {
     for(let referenced_element_type of element_types) {
       test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-controls", "ariaControlsElements", Behavior.ReflectsHostInArray);
-      test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-activedescendant", "ariaActiveDescendantElement", Behavior.ReflectsHost);
+      test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-activedescendent", "ariaActiveDescendantElement", Behavior.ReflectsHost);
       test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-describedby", "ariaDescribedByElements", Behavior.ReflectsHostInArray);
       test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-details", "ariaDetailsElements", Behavior.ReflectsHostInArray);
       test_function(setup_function, test_name_suffix, referencing_element_type, referenced_element_type, "aria-errormessage", "ariaErrorMessageElements", Behavior.ReflectsHostInArray);

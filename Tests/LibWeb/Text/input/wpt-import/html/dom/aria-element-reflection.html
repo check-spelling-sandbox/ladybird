@@ -2,58 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Element Reflection for aria-activedescendant and aria-errormessage</title>
+    <title>Element Reflection for aria-activedescendent and aria-errormessage</title>
     <link rel=help href="https://whatpr.org/html/3917/common-dom-interfaces.html#reflecting-content-attributes-in-idl-attributes:element">
     <link rel="author" title="Meredith Lane" href="meredithl@chromium.org">
     <script src="../../resources/testharness.js"></script>
     <script src="../../resources/testharnessreport.js"></script>
   </head>
 
-  <div id="activedescendant" aria-activedescendant="x"></div>
+  <div id="activedescendent" aria-activedescendent="x"></div>
 
-  <div id="parentListbox" role="listbox" aria-activedescendant="i1">
+  <div id="parentListbox" role="listbox" aria-activedescendent="i1">
     <div role="option" id="i1">Item 1</div>
     <div role="option" id="i2">Item 2</div>
   </div>
 
   <script>
   test(function(t) {
-    assert_equals(activedescendant.ariaActiveDescendantElement, null,
+    assert_equals(activedescendent.ariaActiveDescendantElement, null,
                   "invalid ID for relationship returns null");
 
     // Element reference should be set if the content attribute was included.
-    assert_equals(parentListbox.getAttribute("aria-activedescendant"), "i1", "check content attribute after parsing.");
+    assert_equals(parentListbox.getAttribute("aria-activedescendent"), "i1", "check content attribute after parsing.");
     assert_equals(parentListbox.ariaActiveDescendantElement, i1, "check idl attribute after parsing.");
     assert_equals(parentListbox.ariaActiveDescendantElement, parentListbox.ariaActiveDescendantElement, "check idl attribute caching after parsing.");
 
     // If we set the content attribute, the element reference should reflect this.
-    parentListbox.setAttribute("aria-activedescendant", "i2");
+    parentListbox.setAttribute("aria-activedescendent", "i2");
     assert_equals(parentListbox.ariaActiveDescendantElement, i2, "setting the content attribute updates the element reference.");
     assert_equals(parentListbox.ariaActiveDescendantElement, parentListbox.ariaActiveDescendantElement, "check idl attribute caching after update.");
 
     // Setting the element reference should set the empty string in the content attribute.
     parentListbox.ariaActiveDescendantElement = i1;
     assert_equals(parentListbox.ariaActiveDescendantElement, i1, "getter should return the right element reference.");
-    assert_equals(parentListbox.getAttribute("aria-activedescendant"), "", "content attribute should be empty.");
+    assert_equals(parentListbox.getAttribute("aria-activedescendent"), "", "content attribute should be empty.");
 
     // Both content and IDL attribute should be nullable.
     parentListbox.ariaActiveDescendantElement = null;
     assert_equals(parentListbox.ariaActiveDescendantElement, null);
-    assert_false(parentListbox.hasAttribute("aria-activedescendant"));
-    assert_equals(parentListbox.getAttribute("aria-activedescendant"), null, "nullifying the idl attribute removes the content attribute.");
+    assert_false(parentListbox.hasAttribute("aria-activedescendent"));
+    assert_equals(parentListbox.getAttribute("aria-activedescendent"), null, "nullifying the idl attribute removes the content attribute.");
 
     // Setting content attribute to non-existent or non compatible element should nullify the IDL attribute.
     // Reset the element to an existant one.
-    parentListbox.setAttribute("aria-activedescendant", "i1");
+    parentListbox.setAttribute("aria-activedescendent", "i1");
     assert_equals(parentListbox.ariaActiveDescendantElement, i1, "reset attribute.");
 
-    parentListbox.setAttribute("aria-activedescendant", "non-existent-element");
-    assert_equals(parentListbox.getAttribute("aria-activedescendant"), "non-existent-element");
+    parentListbox.setAttribute("aria-activedescendent", "non-existent-element");
+    assert_equals(parentListbox.getAttribute("aria-activedescendent"), "non-existent-element");
     assert_equals(parentListbox.ariaActiveDescendantElement, null,"non-DOM content attribute should null the element reference");
-  }, "aria-activedescendant element reflection");
+  }, "aria-activedescendent element reflection");
   </script>
 
-  <div id="parentListbox2" role="listbox" aria-activedescendant="option1">
+  <div id="parentListbox2" role="listbox" aria-activedescendent="option1">
     <div role="option" id="option1">Item 1</div>
     <div role="option" id="option2">Item 2</div>
   </div>
@@ -69,7 +69,7 @@
     assert_equals(option2, option2Duplicate);
 
     assert_equals(parentListbox2.ariaActiveDescendantElement, option2);
-  }, "aria-activedescendant If the content attribute is set directly, the IDL attribute getter always returns the first element whose ID matches the content attribute.");
+  }, "aria-activedescendent If the content attribute is set directly, the IDL attribute getter always returns the first element whose ID matches the content attribute.");
   </script>
 
   <div id="blankIdParent" role="listbox">
@@ -83,10 +83,10 @@
     // as it will not be the first child of the parent with that ID, which should
     // result in an empty string for the content attribute.
     blankIdParent.ariaActiveDescendantElement = blankIdParent.children[1];
-    assert_true(blankIdParent.hasAttribute("aria-activedescendant"));
-    assert_equals(blankIdParent.getAttribute("aria-activedescendant"), "");
+    assert_true(blankIdParent.hasAttribute("aria-activedescendent"));
+    assert_equals(blankIdParent.getAttribute("aria-activedescendent"), "");
     assert_equals(blankIdParent.ariaActiveDescendantElement, blankIdParent.children[1]);
-  }, "aria-activedescendant Setting the IDL attribute to an element which is not the first element in DOM order with its ID causes the content attribute to be an empty string");
+  }, "aria-activedescendent Setting the IDL attribute to an element which is not the first element in DOM order with its ID causes the content attribute to be an empty string");
   </script>
 
   <div id="outerContainer">
@@ -113,8 +113,8 @@
     // should reflect the empty string.
     link.ariaActiveDescendantElement = lightParagraph;
     assert_equals(link.ariaActiveDescendantElement, lightParagraph);
-    assert_equals(link.getAttribute("aria-activedescendant"), "");
-  }, "aria-activedescendant Setting an element reference that crosses into a shadow tree is disallowed, but setting one that is in a shadow inclusive ancestor is allowed.");
+    assert_equals(link.getAttribute("aria-activedescendent"), "");
+  }, "aria-activedescendent Setting an element reference that crosses into a shadow tree is disallowed, but setting one that is in a shadow inclusive ancestor is allowed.");
   </script>
 
   <input id="startTime" ></input>
@@ -165,7 +165,7 @@
   }, "aria-details");
   </script>
 
-  <div id="deletionParent" role="listbox" aria-activedescendant="contentAttrElement">
+  <div id="deletionParent" role="listbox" aria-activedescendent="contentAttrElement">
     <div role="option" id="contentAttrElement">Item 1</div>
     <div role="option" id="idlAttrElement">Item 2</div>
   </div>
@@ -176,30 +176,30 @@
     const contentAttrElement = document.getElementById("contentAttrElement");
     const idlAttrElement = document.getElementById("idlAttrElement");
 
-    assert_equals(deletionParent.getAttribute("aria-activedescendant"), "contentAttrElement");
+    assert_equals(deletionParent.getAttribute("aria-activedescendent"), "contentAttrElement");
     assert_equals(deletionParent.ariaActiveDescendantElement, contentAttrElement);
 
     // Deleting an element set via the content attribute.
     deletionParent.removeChild(contentAttrElement);
-    assert_equals(deletionParent.getAttribute("aria-activedescendant"), "contentAttrElement");
+    assert_equals(deletionParent.getAttribute("aria-activedescendent"), "contentAttrElement");
 
     // As it was not explitly set, the attr-associated-element is computed from the content attribute,
-    // and since descendant1 has been removed from the DOM, it is not valid.
+    // and since descendent1 has been removed from the DOM, it is not valid.
     assert_equals(deletionParent.ariaActiveDescendantElement, null);
 
     // Deleting an element set via the IDL attribute.
     deletionParent.ariaActiveDescendantElement = idlAttrElement;
-    assert_equals(deletionParent.getAttribute("aria-activedescendant"), "");
+    assert_equals(deletionParent.getAttribute("aria-activedescendent"), "");
 
     deletionParent.removeChild(idlAttrElement);
     assert_equals(deletionParent.ariaActiveDescendantElement, null);
 
     // The content attribute is still empty.
-    assert_equals(deletionParent.getAttribute("aria-activedescendant"), "");
-  }, "aria-activedescendant Deleting a reflected element should return null for the IDL attribute and the content attribute will be empty.");
+    assert_equals(deletionParent.getAttribute("aria-activedescendent"), "");
+  }, "aria-activedescendent Deleting a reflected element should return null for the IDL attribute and the content attribute will be empty.");
   </script>
 
-  <div id="parentNode" role="listbox" aria-activedescendant="changingIdElement">
+  <div id="parentNode" role="listbox" aria-activedescendent="changingIdElement">
     <div role="option" id="changingIdElement">Item 1</div>
     <div role="option" id="persistantIDElement">Item 2</div>
   </div>
@@ -214,11 +214,11 @@
 
     // The content attribute still reflects the old id, and we expect the
     // Element reference to be null as there is no DOM node with id "original"
-    assert_equals(parentNode.getAttribute("aria-activedescendant"), "changingIdElement");
+    assert_equals(parentNode.getAttribute("aria-activedescendent"), "changingIdElement");
     assert_equals(parentNode.ariaActiveDescendantElement, null, "Element set via content attribute with a changed id will return null on getting");
 
     parentNode.ariaActiveDescendantElement = changingIdElement;
-    assert_equals(parentNode.getAttribute("aria-activedescendant"), "");
+    assert_equals(parentNode.getAttribute("aria-activedescendent"), "");
     assert_equals(parentNode.ariaActiveDescendantElement, changingIdElement);
 
     // The explicitly set element takes precendance over the content attribute.
@@ -226,8 +226,8 @@
     // content attribute is empty.
     changingIdElement.setAttribute("id", "newer-id");
     assert_equals(parentNode.ariaActiveDescendantElement, changingIdElement, "explicitly set element is still present even after the id has been changed");
-    assert_equals(parentNode.getAttribute("aria-activedescendant"), "", "content attribute is empty.");
-  }, "aria-activedescendant Changing the ID of an element doesn't lose the reference.");
+    assert_equals(parentNode.getAttribute("aria-activedescendent"), "", "content attribute is empty.");
+  }, "aria-activedescendent Changing the ID of an element doesn't lose the reference.");
   </script>
 
   <!-- TODO(chrishall): change naming scheme to inner/outer -->
@@ -242,11 +242,11 @@
     const shadowRoot = shadowHostElement.attachShadow({mode: "open"});
 
     assert_equals(lightParent.ariaActiveDescendantElement, null, 'null before');
-    assert_equals(lightParent.getAttribute('aria-activedescendant'), null, 'null before');
+    assert_equals(lightParent.getAttribute('aria-activedescendent'), null, 'null before');
 
     lightParent.ariaActiveDescendantElement = lightElement;
     assert_equals(lightParent.ariaActiveDescendantElement, lightElement);
-    assert_equals(lightParent.getAttribute('aria-activedescendant'), "");
+    assert_equals(lightParent.getAttribute('aria-activedescendent'), "");
 
     // Move the referenced element into shadow DOM.
     // This will cause the computed attr-associated element to be null as the
@@ -256,7 +256,7 @@
     // then reflect
     shadowRoot.appendChild(lightElement);
     assert_equals(lightParent.ariaActiveDescendantElement, null, "computed attr-assoc element should be null as referenced element is in an invalid scope");
-    assert_equals(lightParent.getAttribute("aria-activedescendant"), "");
+    assert_equals(lightParent.getAttribute("aria-activedescendent"), "");
 
     // Move the referenced element back into light DOM.
     // Since the underlying reference was kept intact, after moving the
@@ -264,8 +264,8 @@
     // computed attr-associated element.
     lightParent.appendChild(lightElement);
     assert_equals(lightParent.ariaActiveDescendantElement, lightElement, "computed attr-assoc element should be restored as referenced element is back in a valid scope");
-    assert_equals(lightParent.getAttribute("aria-activedescendant"), "");
-  }, "aria-activedescendant Reparenting an element into a descendant shadow scope hides the element reference.");
+    assert_equals(lightParent.getAttribute("aria-activedescendent"), "");
+  }, "aria-activedescendent Reparenting an element into a descendent shadow scope hides the element reference.");
   </script>
 
   <div id='fruitbowl' role='listbox'>
@@ -282,13 +282,13 @@
 
     fruitbowl.ariaActiveDescendantElement = apple;
     assert_equals(fruitbowl.ariaActiveDescendantElement, apple);
-    assert_equals(fruitbowl.getAttribute("aria-activedescendant"), "");
+    assert_equals(fruitbowl.getAttribute("aria-activedescendent"), "");
 
     // Move the referenced element into shadow DOM.
     shadowRoot.appendChild(apple);
     assert_equals(fruitbowl.ariaActiveDescendantElement, null, "computed attr-assoc element should be null as referenced element is in an invalid scope");
     // The content attribute is still empty.
-    assert_equals(fruitbowl.getAttribute("aria-activedescendant"), "");
+    assert_equals(fruitbowl.getAttribute("aria-activedescendent"), "");
 
     // let us rename our banana to an apple
     banana.setAttribute("id", "apple");
@@ -300,13 +300,13 @@
     // checked and found to be in an invalid scope.
     assert_equals(fruitbowl.ariaActiveDescendantElement, null);
     // our content attribute is empty.
-    assert_equals(fruitbowl.getAttribute("aria-activedescendant"), "");
+    assert_equals(fruitbowl.getAttribute("aria-activedescendent"), "");
 
     // when we remove our IDL attribute, the content attribute is also thankfully cleared.
     fruitbowl.ariaActiveDescendantElement = null;
     assert_equals(fruitbowl.ariaActiveDescendantElement, null);
-    assert_equals(fruitbowl.getAttribute("aria-activedescendant"), null);
-  }, "aria-activedescendant Reparenting referenced element cannot cause retargeting of reference.");
+    assert_equals(fruitbowl.getAttribute("aria-activedescendent"), null);
+  }, "aria-activedescendent Reparenting referenced element cannot cause retargeting of reference.");
   </script>
 
   <div id='toaster' role='listbox'></div>
@@ -324,14 +324,14 @@
     // Prepare my toast for toasting
     toaster.ariaActiveDescendantElement = toast;
     assert_equals(toaster.ariaActiveDescendantElement, null);
-    assert_equals(toaster.getAttribute("aria-activedescendant"), "");
+    assert_equals(toaster.getAttribute("aria-activedescendent"), "");
 
     // Time to make some toast
     toaster.appendChild(toast);
     assert_equals(toaster.ariaActiveDescendantElement, toast);
     // Current spec behaviour:
-    assert_equals(toaster.getAttribute("aria-activedescendant"), "");
-  }, "aria-activedescendant Element reference set in invalid scope remains intact throughout move to valid scope.");
+    assert_equals(toaster.getAttribute("aria-activedescendent"), "");
+  }, "aria-activedescendent Element reference set in invalid scope remains intact throughout move to valid scope.");
   </script>
 
   <div id="billingElementContainer">
@@ -681,7 +681,7 @@
       first.parentElement.appendChild(first);
 
       assert_equals(input.ariaActiveDescendantElement, first);
-    }, "aria-activedescendant Reparenting.");
+    }, "aria-activedescendent Reparenting.");
   </script>
 
   <div id='fromDiv'></div>
@@ -693,13 +693,13 @@
       fromDiv.ariaActiveDescendantElement = toSpan;
 
       assert_equals(fromDiv.ariaActiveDescendantElement, null, "Referenced element not inserted into document, so is in an invalid scope.");
-      assert_equals(fromDiv.getAttribute("aria-activedescendant"), "", "Invalid scope, so content attribute not set.");
+      assert_equals(fromDiv.getAttribute("aria-activedescendent"), "", "Invalid scope, so content attribute not set.");
 
       fromDiv.appendChild(toSpan);
       assert_equals(fromDiv.ariaActiveDescendantElement, toSpan, "Referenced element now inserted into the document.");
-      assert_equals(fromDiv.getAttribute("aria-activedescendant"), "", "Content attribute remains empty, as it is only updated at set time.");
+      assert_equals(fromDiv.getAttribute("aria-activedescendent"), "", "Content attribute remains empty, as it is only updated at set time.");
 
-    }, "aria-activedescendant Attaching element reference before it's inserted into the DOM.");
+    }, "aria-activedescendent Attaching element reference before it's inserted into the DOM.");
   </script>
 
   <div id='originalDocumentDiv'></div>
@@ -714,15 +714,15 @@
       originalDocumentDiv.ariaActiveDescendantElement = newDocSpan;
 
       assert_equals(originalDocumentDiv.ariaActiveDescendantElement, null, "Cross-document is an invalid scope, so reference will not be visible.");
-      assert_equals(fromDiv.getAttribute("aria-activedescendant"), "", "Invalid scope when set, so content attribute not set.");
+      assert_equals(fromDiv.getAttribute("aria-activedescendent"), "", "Invalid scope when set, so content attribute not set.");
 
       // "Move" span to first document.
       originalDocumentDiv.appendChild(newDocSpan);
 
       // Implementation defined: moving object into same document from other document may cause reference to become visible.
       assert_equals(originalDocumentDiv.ariaActiveDescendantElement, newDocSpan, "Implementation defined: moving object back *may* make reference visible.");
-      assert_equals(fromDiv.getAttribute("aria-activedescendant"), "", "Invalid scope when set, so content attribute not set.");
-    }, "aria-activedescendant Cross-document references and moves.");
+      assert_equals(fromDiv.getAttribute("aria-activedescendent"), "", "Invalid scope when set, so content attribute not set.");
+    }, "aria-activedescendent Cross-document references and moves.");
   </script>
 
 
@@ -740,7 +740,7 @@
       // Adopt element from other oducment.
       document.body.appendChild(document.adoptNode(otherDocDiv));
       assert_equals(otherDocDiv.ariaActiveDescendantElement, otherDocSpan, "Reference should be kept on the new document too.");
-    }, "aria-activedescendant Adopting element keeps references.");
+    }, "aria-activedescendent Adopting element keeps references.");
   </script>
 
   <div id="cachingInvariantMain"></div>

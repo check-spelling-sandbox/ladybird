@@ -368,10 +368,10 @@ public:
 
                     auto local_scope = last_function_scope();
                     if (!local_scope) {
-                        // NOTE: If there is no function scope, we are in a *descendant* of the global program scope.
+                        // NOTE: If there is no function scope, we are in a *descendent* of the global program scope.
                         //       While we cannot make `let` and `const` into locals in the topmost program scope,
                         //       as that would break expected web behavior where subsequent <script> elements should see
-                        //       lexical bindings created by earlier <script> elements, we *can* promote them in descendant scopes.
+                        //       lexical bindings created by earlier <script> elements, we *can* promote them in descendent scopes.
                         //       Of course, global `var` bindings can never be made into locals, as they get hoisted to the topmost program scope.
                         if (identifier_group.declaration_kind == DeclarationKind::Var)
                             continue;

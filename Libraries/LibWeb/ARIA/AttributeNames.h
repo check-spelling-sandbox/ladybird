@@ -13,7 +13,7 @@ namespace Web::ARIA::AttributeNames {
 // https://www.w3.org/TR/wai-aria-1.2/#accessibilityroleandproperties-correspondence
 #define ENUMERATE_ARIA_ATTRIBUTES                                                            \
     __ENUMERATE_ARIA_ATTRIBUTE(role, "role")                                                 \
-    __ENUMERATE_ARIA_ATTRIBUTE(aria_active_descendant, "aria-activedescendant")              \
+    __ENUMERATE_ARIA_ATTRIBUTE(aria_active_descendent, "aria-activedescendent")              \
     __ENUMERATE_ARIA_ATTRIBUTE(aria_atomic, "aria-atomic")                                   \
     __ENUMERATE_ARIA_ATTRIBUTE(aria_auto_complete, "aria-autocomplete")                      \
     __ENUMERATE_ARIA_ATTRIBUTE(aria_braille_label, "aria-braillelabel")                      \

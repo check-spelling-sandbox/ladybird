@@ -110,8 +110,8 @@ Vector<RecordedNodeValue> record_the_values_of_nodes(Vector<GC::Ref<DOM::Node>> 
 void remove_extraneous_line_breaks_at_the_end_of_node(GC::Ref<DOM::Node>);
 void remove_extraneous_line_breaks_before_node(GC::Ref<DOM::Node>);
 void remove_extraneous_line_breaks_from_a_node(GC::Ref<DOM::Node>);
-void remove_node_preserving_its_descendants(GC::Ref<DOM::Node>);
-void reorder_modifiable_descendants(GC::Ref<DOM::Node>, FlyString const&, Optional<String>);
+void remove_node_preserving_its_descendents(GC::Ref<DOM::Node>);
+void reorder_modifiable_descendents(GC::Ref<DOM::Node>, FlyString const&, Optional<String>);
 void restore_states_and_values(DOM::Document&, Vector<RecordedOverride> const&);
 void restore_the_values_of_nodes(Vector<RecordedNodeValue> const&);
 SelectionsListState selections_list_state(DOM::Document const&);

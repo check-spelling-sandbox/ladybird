@@ -848,7 +848,7 @@ bool EventTarget::dispatch_event(Event& event)
     // FIXME: 1. Assert: document is fully active.
     // FIXME: 2. Let windows be « document's relevant global object ».
     // FIXME: 3. Extend windows with the active window of each of document's ancestor navigables.
-    // FIXME: 4. Extend windows with the active window of each of document's descendant navigables,
+    // FIXME: 4. Extend windows with the active window of each of document's descendent navigables,
     //           filtered to include only those navigables whose active document's origin is same origin with document's origin.
     // FIXME: 5. For each window in windows:
     // FIXME: 5.1 Set window's last activation timestamp to the current high resolution time.

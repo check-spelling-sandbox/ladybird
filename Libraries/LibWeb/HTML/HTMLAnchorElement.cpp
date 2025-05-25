@@ -166,8 +166,8 @@ GC::Ref<DOM::DOMTokenList> HTMLAnchorElement::rel_list()
 // https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-a-text
 String HTMLAnchorElement::text() const
 {
-    // The text attribute's getter must return this element's descendant text content.
-    return descendant_text_content();
+    // The text attribute's getter must return this element's descendent text content.
+    return descendent_text_content();
 }
 
 // https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-a-text

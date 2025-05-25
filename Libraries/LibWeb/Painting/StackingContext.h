@@ -32,7 +32,7 @@ public:
     };
 
     static void paint_node_as_stacking_context(Paintable const&, PaintContext&);
-    static void paint_descendants(PaintContext&, Paintable const&, StackingContextPaintPhase);
+    static void paint_descendents(PaintContext&, Paintable const&, StackingContextPaintPhase);
     static void paint_svg(PaintContext&, PaintableBox const&, PaintPhase);
     void paint(PaintContext&) const;
 
@@ -53,8 +53,8 @@ private:
     size_t m_index_in_tree_order { 0 };
     Optional<u64> m_last_paint_generation_id;
 
-    Vector<GC::Ref<PaintableBox const>> m_positioned_descendants_and_stacking_contexts_with_stack_level_0;
-    Vector<GC::Ref<PaintableBox const>> m_non_positioned_floating_descendants;
+    Vector<GC::Ref<PaintableBox const>> m_positioned_descendents_and_stacking_contexts_with_stack_level_0;
+    Vector<GC::Ref<PaintableBox const>> m_non_positioned_floating_descendents;
 
     static void paint_child(PaintContext&, StackingContext const&);
     void paint_internal(PaintContext&) const;

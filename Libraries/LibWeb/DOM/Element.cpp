@@ -452,7 +452,7 @@ GC::Ptr<DOM::Element> Element::get_the_attribute_associated_element(FlyString co
 
     // 3. If reflectedTarget's explicitly set attr-element is not null:
     if (explicitly_set_attribute_element) {
-        // 1. If reflectedTarget's explicitly set attr-element is a descendant of any of element's shadow-including
+        // 1. If reflectedTarget's explicitly set attr-element is a descendent of any of element's shadow-including
         //    ancestors, then return reflectedTarget's explicitly set attr-element.
         if (&explicitly_set_attribute_element->root() == &element.shadow_including_root())
             return *explicitly_set_attribute_element;
@@ -487,7 +487,7 @@ Optional<GC::RootVector<GC::Ref<DOM::Element>>> Element::get_the_attribute_assoc
     if (explicitly_set_attribute_elements.has_value()) {
         // 1. For each attrElement in reflectedTarget's explicitly set attr-elements:
         for (auto const& attribute_element : *explicitly_set_attribute_elements) {
-            // 1. If attrElement is not a descendant of any of element's shadow-including ancestors, then continue.
+            // 1. If attrElement is not a descendent of any of element's shadow-including ancestors, then continue.
             if (!attribute_element || &attribute_element->root() != &element.shadow_including_root())
                 continue;
 
@@ -661,7 +661,7 @@ CSS::RequiredInvalidationAfterStyleChange Element::recompute_style()
     set_computed_properties(move(new_computed_properties));
 
     if (old_display_is_none != new_display_is_none) {
-        for_each_shadow_including_inclusive_descendant([&](auto& node) {
+        for_each_shadow_including_inclusive_descendent([&](auto& node) {
             if (!node.is_element())
                 return TraversalDecision::Continue;
             auto& element = static_cast<Element&>(node);
@@ -2463,15 +2463,15 @@ bool Element::exclude_from_accessibility_tree() const
     if (!layout_node())
         return true;
 
-    // Elements with none or presentation as the first role in the role attribute. However, their exclusion is conditional. In addition, the element's descendants and text content are generally included. These exceptions and conditions are documented in the presentation (role) section.
+    // Elements with none or presentation as the first role in the role attribute. However, their exclusion is conditional. In addition, the element's descendents and text content are generally included. These exceptions and conditions are documented in the presentation (role) section.
     // FIXME: Handle exceptions to excluding presentation role
     auto role = role_or_default();
     if (role == ARIA::Role::none || role == ARIA::Role::presentation)
         return true;
 
     // TODO: If not already excluded from the accessibility tree per the above rules, user agents SHOULD NOT include the following elements in the accessibility tree:
-    //    Elements, including their descendants, that have aria-hidden set to true. In other words, aria-hidden="true" on a parent overrides aria-hidden="false" on descendants.
-    //    Any descendants of elements that have the characteristic "Children Presentational: True" unless the descendant is not allowed to be presentational because it meets one of the conditions for exception described in Presentational Roles Conflict Resolution. However, the text content of any excluded descendants is included.
+    //    Elements, including their descendents, that have aria-hidden set to true. In other words, aria-hidden="true" on a parent overrides aria-hidden="false" on descendents.
+    //    Any descendents of elements that have the characteristic "Children Presentational: True" unless the descendent is not allowed to be presentational because it meets one of the conditions for exception described in Presentational Roles Conflict Resolution. However, the text content of any excluded descendents is included.
     //    Elements with the following roles have the characteristic "Children Presentational: True":
     //      button
     //      checkbox
@@ -2500,7 +2500,7 @@ bool Element::include_in_accessibility_tree() const
     // Elements that are currently focused, even if the element or one of its ancestor elements has its aria-hidden attribute set to true.
     if (is_focused())
         return true;
-    // TODO: Elements that are a valid target of an aria-activedescendant attribute.
+    // TODO: Elements that are a valid target of an aria-activedescendent attribute.
 
     // Elements that have an explicit role or a global WAI-ARIA attribute and do not have aria-hidden set to true. (See Excluding Elements in the Accessibility Tree for additional guidance on aria-hidden.)
     // NOTE: The spec says only explicit roles count, but playing around in other browsers, this does not seem to be true in practice (for example button elements are always exposed with their implicit role if none is set)
@@ -3168,7 +3168,7 @@ bool Element::is_relevant_to_the_user()
     if (is_in_top_layer)
         return true;
 
-    // FIXME: The element has a flat tree descendant that is captured in a view transition.
+    // FIXME: The element has a flat tree descendent that is captured in a view transition.
 
     // NOTE: none of the above conditions are true, so the element is not relevant to the user.
     return false;
@@ -3495,12 +3495,12 @@ Optional<Element::Directionality> Element::contained_text_auto_directionality(bo
 {
     // To compute the contained text auto directionality of an element element with a boolean canExcludeRoot:
 
-    // 1. For each node descendant of element's descendants, in tree order:
+    // 1. For each node descendent of element's descendents, in tree order:
     Optional<Directionality> result;
-    for_each_in_subtree([&](auto& descendant) {
+    for_each_in_subtree([&](auto& descendent) {
         // 1. If any of
-        //    - descendant
-        //    - any ancestor element of descendant that is a descendant of element
+        //    - descendent
+        //    - any ancestor element of descendent that is a descendent of element
         //    - if canExcludeRoot is true, element
         //    is one of
         //    - FIXME: a bdi element
@@ -3509,21 +3509,21 @@ Optional<Element::Directionality> Element::contained_text_auto_directionality(bo
         //    - a textarea element
         //    - an element whose dir attribute is not in the undefined state
         //    then continue.
-        // NOTE: "any ancestor element of descendant that is a descendant of element" will be iterated already.
-        auto is_one_of_the_filtered_elements = [](auto& descendant) -> bool {
-            return is<HTML::HTMLScriptElement>(descendant)
-                || is<HTML::HTMLStyleElement>(descendant)
-                || is<HTML::HTMLTextAreaElement>(descendant)
-                || (is<Element>(descendant) && static_cast<Element const&>(descendant).dir().has_value());
+        // NOTE: "any ancestor element of descendent that is a descendent of element" will be iterated already.
+        auto is_one_of_the_filtered_elements = [](auto& descendent) -> bool {
+            return is<HTML::HTMLScriptElement>(descendent)
+                || is<HTML::HTMLStyleElement>(descendent)
+                || is<HTML::HTMLTextAreaElement>(descendent)
+                || (is<Element>(descendent) && static_cast<Element const&>(descendent).dir().has_value());
         };
-        if (is_one_of_the_filtered_elements(descendant)
+        if (is_one_of_the_filtered_elements(descendent)
             || (can_exclude_root && is_one_of_the_filtered_elements(*this))) {
             return TraversalDecision::SkipChildrenAndContinue;
         }
 
-        // 2. If descendant is a slot element whose root is a shadow root, then return the directionality of that shadow root's host.
-        if (is<HTML::HTMLSlotElement>(descendant)) {
-            auto const& root = static_cast<HTML::HTMLSlotElement const&>(descendant).root();
+        // 2. If descendent is a slot element whose root is a shadow root, then return the directionality of that shadow root's host.
+        if (is<HTML::HTMLSlotElement>(descendent)) {
+            auto const& root = static_cast<HTML::HTMLSlotElement const&>(descendent).root();
             if (root.is_shadow_root()) {
                 auto const& host = static_cast<ShadowRoot const&>(root).host();
                 VERIFY(host);
@@ -3532,12 +3532,12 @@ Optional<Element::Directionality> Element::contained_text_auto_directionality(bo
             }
         }
 
-        // 3. If descendant is not a Text node, then continue.
-        if (!descendant.is_text())
+        // 3. If descendent is not a Text node, then continue.
+        if (!descendent.is_text())
             return TraversalDecision::Continue;
 
-        // 4. Let result be the text node directionality of descendant.
-        result = static_cast<Text const&>(descendant).directionality();
+        // 4. Let result be the text node directionality of descendent.
+        result = static_cast<Text const&>(descendent).directionality();
 
         // 5. If result is not null, then return result.
         if (result.has_value())
@@ -3957,9 +3957,9 @@ void Element::play_or_cancel_animations_after_display_property_change()
         return;
 
     // https://www.w3.org/TR/css-animations-1/#animations
-    // Setting the display property to none will terminate any running animation applied to the element and its descendants.
+    // Setting the display property to none will terminate any running animation applied to the element and its descendents.
     // If an element has a display of none, updating display to a value other than none will start all animations applied to
-    // the element by the animation-name property, as well as all animations applied to descendants with display other than none.
+    // the element by the animation-name property, as well as all animations applied to descendents with display other than none.
 
     auto has_display_none_inclusive_ancestor = this->has_inclusive_ancestor_with_display_none();
 

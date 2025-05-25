@@ -378,8 +378,8 @@ bool is_element_in_view(ReadonlySpan<GC::Ref<Web::DOM::Element>> paint_tree, Web
 bool is_element_obscured(ReadonlySpan<GC::Ref<Web::DOM::Element>> paint_tree, Web::DOM::Element& element)
 {
     // An element is obscured if the pointer-interactable paint tree at its center point is empty, or the first element
-    // in this tree is not an inclusive descendant of itself.
-    return paint_tree.is_empty() || !paint_tree.first()->is_shadow_including_inclusive_descendant_of(element);
+    // in this tree is not an inclusive descendent of itself.
+    return paint_tree.is_empty() || !paint_tree.first()->is_shadow_including_inclusive_descendent_of(element);
 }
 
 // https://w3c.github.io/webdriver/#dfn-pointer-interactable-paint-tree

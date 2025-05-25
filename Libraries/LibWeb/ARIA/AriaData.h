@@ -129,7 +129,7 @@ enum class AriaRelevant {
     All,
     // Text content, a text alternative, or an element node within the live region is removed from the accessibility tree.
     Removals,
-    // Text content or a text alternative is added to any descendant in the accessibility tree of the live region.
+    // Text content or a text alternative is added to any descendent in the accessibility tree of the live region.
     Text
 };
 
@@ -151,7 +151,7 @@ public:
 
     static ErrorOr<NonnullOwnPtr<AriaData>> build_data(ARIAMixin const& mixin) { return adopt_nonnull_own_or_enomem(new (nothrow) AriaData(mixin)); }
 
-    Optional<String> aria_active_descendant_or_default() const;
+    Optional<String> aria_active_descendent_or_default() const;
     bool aria_atomic_or_default(bool default_value = false) const;
     AriaAutocomplete aria_auto_complete_or_default() const;
     String aria_braille_label_or_default() const;
@@ -237,7 +237,7 @@ private:
     static AriaSort parse_aria_sort(Optional<String> const&);
     static Optional<bool> parse_optional_true_false(Optional<String> const&);
 
-    Optional<String> m_aria_active_descendant;
+    Optional<String> m_aria_active_descendent;
     Optional<bool> m_aria_atomic;
     AriaAutocomplete m_aria_auto_complete;
     String m_aria_braille_label;

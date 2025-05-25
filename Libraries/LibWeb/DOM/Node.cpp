@@ -163,8 +163,8 @@ Optional<String> Node::alternative_text() const
     return {};
 }
 
-// https://dom.spec.whatwg.org/#concept-descendant-text-content
-String Node::descendant_text_content() const
+// https://dom.spec.whatwg.org/#concept-descendent-text-content
+String Node::descendent_text_content() const
 {
     StringBuilder builder;
     for_each_in_subtree_of_type<Text>([&](auto& text_node) {
@@ -179,9 +179,9 @@ Optional<String> Node::text_content() const
 {
     // The textContent getter steps are to return the following, switching on the interface this implements:
 
-    // If DocumentFragment or Element, return the descendant text content of this.
+    // If DocumentFragment or Element, return the descendent text content of this.
     if (is<DocumentFragment>(this) || is<Element>(this))
-        return descendant_text_content();
+        return descendent_text_content();
 
     // If CharacterData, return this’s data.
     if (is<CharacterData>(this))
@@ -265,16 +265,16 @@ WebIDL::ExceptionOr<void> Node::normalize()
         return nodes;
     };
 
-    // The normalize() method steps are to run these steps for each descendant exclusive Text node node of this
-    Vector<Text&> descendant_exclusive_text_nodes;
+    // The normalize() method steps are to run these steps for each descendent exclusive Text node node of this
+    Vector<Text&> descendent_exclusive_text_nodes;
     for_each_in_inclusive_subtree_of_type<Text>([&](Text const& node) {
         if (!node.is_cdata_section())
-            descendant_exclusive_text_nodes.append(const_cast<Text&>(node));
+            descendent_exclusive_text_nodes.append(const_cast<Text&>(node));
 
         return TraversalDecision::Continue;
     });
 
-    for (auto& node : descendant_exclusive_text_nodes) {
+    for (auto& node : descendent_exclusive_text_nodes) {
         // 1. Let length be node’s length.
         auto& character_data = static_cast<CharacterData&>(node);
         auto length = character_data.length_in_utf16_code_units();
@@ -459,9 +459,9 @@ void Node::invalidate_style(StyleInvalidationReason reason)
 
     // When invalidating style for a node, we actually invalidate:
     // - the node itself
-    // - all of its descendants
-    // - all of its preceding siblings and their descendants (only on DOM insert/remove)
-    // - all of its subsequent siblings and their descendants
+    // - all of its descendents
+    // - all of its preceding siblings and their descendents (only on DOM insert/remove)
+    // - all of its subsequent siblings and their descendents
     // FIXME: This is a lot of invalidation and we should implement more sophisticated invalidation to do less work!
 
     set_entire_subtree_needs_style_update(true);
@@ -526,7 +526,7 @@ void Node::invalidate_style(StyleInvalidationReason reason, Vector<CSS::Invalida
     }
 
     auto invalidate_entire_subtree = [&](Node& subtree_root) {
-        subtree_root.for_each_shadow_including_inclusive_descendant([&](Node& node) {
+        subtree_root.for_each_shadow_including_inclusive_descendent([&](Node& node) {
             if (!node.is_element())
                 return TraversalDecision::Continue;
             auto& element = static_cast<Element&>(node);
@@ -750,14 +750,14 @@ void Node::insert_before(GC::Ref<Node> node, GC::Ptr<Node> child, bool suppress_
 
         node_to_insert->invalidate_style(StyleInvalidationReason::NodeInsertBefore);
 
-        // 7. For each shadow-including inclusive descendant inclusiveDescendant of node, in shadow-including tree order:
-        node_to_insert->for_each_shadow_including_inclusive_descendant([&](Node& inclusive_descendant) {
+        // 7. For each shadow-including inclusive descendent inclusiveDescendant of node, in shadow-including tree order:
+        node_to_insert->for_each_shadow_including_inclusive_descendent([&](Node& inclusive_descendent) {
             // 1. Run the insertion steps with inclusiveDescendant.
-            inclusive_descendant.inserted();
+            inclusive_descendent.inserted();
 
             // 2. If inclusiveDescendant is connected, then:
             // NOTE: This is not specified here in the spec, but these steps can only be performed on an element.
-            if (auto* element = as_if<DOM::Element>(inclusive_descendant); element && inclusive_descendant.is_connected()) {
+            if (auto* element = as_if<DOM::Element>(inclusive_descendent); element && inclusive_descendent.is_connected()) {
                 // 1. If inclusiveDescendant is custom, then enqueue a custom element callback reaction with inclusiveDescendant,
                 //    callback name "connectedCallback", and an empty argument list.
                 if (element->is_custom()) {
@@ -795,10 +795,10 @@ void Node::insert_before(GC::Ref<Node> node, GC::Ptr<Node> child, bool suppress_
 
     // 11. For each node of nodes, in tree order:
     for (auto& node : nodes) {
-        // 1. For each shadow-including inclusive descendant inclusiveDescendant of node, in shadow-including tree
+        // 1. For each shadow-including inclusive descendent inclusiveDescendant of node, in shadow-including tree
         //    order, append inclusiveDescendant to staticNodeList.
-        node->for_each_shadow_including_inclusive_descendant([&static_node_list](Node& inclusive_descendant) {
-            static_node_list.append(inclusive_descendant);
+        node->for_each_shadow_including_inclusive_descendent([&static_node_list](Node& inclusive_descendent) {
+            static_node_list.append(inclusive_descendent);
             return TraversalDecision::Continue;
         });
     }
@@ -879,15 +879,15 @@ void Node::live_range_pre_remove()
     // 3. Let index be node’s index.
     auto index = this->index();
 
-    // 4. For each live range whose start node is an inclusive descendant of node, set its start to (parent, index).
+    // 4. For each live range whose start node is an inclusive descendent of node, set its start to (parent, index).
     for (auto* range : Range::live_ranges()) {
-        if (range->start_container()->is_inclusive_descendant_of(*this))
+        if (range->start_container()->is_inclusive_descendent_of(*this))
             MUST(range->set_start(*parent, index));
     }
 
-    // 5. For each live range whose end node is an inclusive descendant of node, set its end to (parent, index).
+    // 5. For each live range whose end node is an inclusive descendent of node, set its end to (parent, index).
     for (auto* range : Range::live_ranges()) {
-        if (range->end_container()->is_inclusive_descendant_of(*this))
+        if (range->end_container()->is_inclusive_descendent_of(*this))
             MUST(range->set_end(*parent, index));
     }
 
@@ -955,7 +955,7 @@ void Node::remove(bool suppress_observers)
             signal_a_slot_change(*parent_slot_element);
     }
 
-    // 10. If node has an inclusive descendant that is a slot, then:
+    // 10. If node has an inclusive descendent that is a slot, then:
     auto has_descendent_slot = false;
 
     for_each_in_inclusive_subtree_of_type<HTML::HTMLSlotElement>([&](auto const&) {
@@ -988,14 +988,14 @@ void Node::remove(bool suppress_observers)
         }
     }
 
-    // 14. For each shadow-including descendant descendant of node, in shadow-including tree order, then:
-    for_each_shadow_including_descendant([&](Node& descendant) {
-        // 1. Run the removing steps with descendant
-        descendant.removed_from(nullptr, parent_root);
+    // 14. For each shadow-including descendent descendent of node, in shadow-including tree order, then:
+    for_each_shadow_including_descendent([&](Node& descendent) {
+        // 1. Run the removing steps with descendent
+        descendent.removed_from(nullptr, parent_root);
 
-        // 2. If descendant is custom and isParentConnected is true, then enqueue a custom element callback reaction with descendant,
+        // 2. If descendent is custom and isParentConnected is true, then enqueue a custom element callback reaction with descendent,
         //    callback name "disconnectedCallback", and an empty argument list.
-        if (auto* element = as_if<DOM::Element>(descendant)) {
+        if (auto* element = as_if<DOM::Element>(descendent)) {
             if (element->is_custom() && is_parent_connected) {
                 GC::RootVector<JS::Value> empty_arguments { vm().heap() };
                 element->enqueue_a_custom_element_callback_reaction(HTML::CustomElementReactionNames::disconnectedCallback, move(empty_arguments));
@@ -1256,7 +1256,7 @@ WebIDL::ExceptionOr<void> Node::move_node(Node& new_parent, Node* child)
             signal_a_slot_change(*old_parent_slot_element);
     }
 
-    // 16. If node has an inclusive descendant that is a slot:
+    // 16. If node has an inclusive descendent that is a slot:
     auto has_descendent_slot = false;
 
     for_each_in_inclusive_subtree_of_type<HTML::HTMLSlotElement>([&](auto const&) {
@@ -1327,21 +1327,21 @@ WebIDL::ExceptionOr<void> Node::move_node(Node& new_parent, Node* child)
     // 23. Run assign slottables for a tree with node’s root.
     assign_slottables_for_a_tree(root());
 
-    // 24. For each shadow-including inclusive descendant inclusiveDescendant of node, in shadow-including tree order:
-    for_each_shadow_including_inclusive_descendant([this, &new_parent, old_parent](Node& inclusive_descendant) {
+    // 24. For each shadow-including inclusive descendent inclusiveDescendant of node, in shadow-including tree order:
+    for_each_shadow_including_inclusive_descendent([this, &new_parent, old_parent](Node& inclusive_descendent) {
         // 1. If inclusiveDescendant is node, then run the moving steps with inclusiveDescendant and oldParent. Otherwise, run the moving
         //    steps with inclusiveDescendant and null.
-        if (&inclusive_descendant == this)
-            inclusive_descendant.moved_from(*old_parent);
+        if (&inclusive_descendent == this)
+            inclusive_descendent.moved_from(*old_parent);
         else
-            inclusive_descendant.moved_from(nullptr);
+            inclusive_descendent.moved_from(nullptr);
 
         // NOTE: Because the move algorithm is a separate primitive from insert and remove, it does not invoke the traditional insertion steps or
         //       removing steps for inclusiveDescendant.
 
         // 2. If inclusiveDescendant is custom and newParent is connected, then enqueue a custom element callback reaction with inclusiveDescendant,
         //    callback name "connectedMoveCallback", and « ».
-        if (auto* element = as_if<DOM::Element>(inclusive_descendant)) {
+        if (auto* element = as_if<DOM::Element>(inclusive_descendent)) {
             if (element->is_custom() && new_parent.is_connected()) {
                 GC::RootVector<JS::Value> empty_arguments { vm().heap() };
                 element->enqueue_a_custom_element_callback_reaction(HTML::CustomElementReactionNames::connectedMoveCallback, move(empty_arguments));
@@ -1804,13 +1804,13 @@ u16 Node::compare_document_position(GC::Ptr<Node> other)
 
     // NOTE: If nodes in ancestors chains are the same but one chain is longer, then one node is ancestor of another.
     //       The node with shorter ancestors chain is the ancestor.
-    //       The node with longer ancestors chain is the descendant.
+    //       The node with longer ancestors chain is the descendent.
 
     // 7. If node1 is an ancestor of node2 and attr1 is null, or node1 is node2 and attr2 is non-null, then return the result of adding DOCUMENT_POSITION_CONTAINS to DOCUMENT_POSITION_PRECEDING.
     if ((node1_ancestors.size() < node2_ancestors.size() && !attr1) || (node1 == node2 && attr2))
         return DOCUMENT_POSITION_CONTAINS | DOCUMENT_POSITION_PRECEDING;
 
-    // 8. If node1 is a descendant of node2 and attr2 is null, or node1 is node2 and attr1 is non-null, then return the result of adding DOCUMENT_POSITION_CONTAINED_BY to DOCUMENT_POSITION_FOLLOWING.
+    // 8. If node1 is a descendent of node2 and attr2 is null, or node1 is node2 and attr1 is non-null, then return the result of adding DOCUMENT_POSITION_CONTAINED_BY to DOCUMENT_POSITION_FOLLOWING.
     if ((node1_ancestors.size() > node2_ancestors.size() && !attr2) || (node1 == node2 && attr1))
         return DOCUMENT_POSITION_CONTAINED_BY | DOCUMENT_POSITION_FOLLOWING;
 
@@ -1969,46 +1969,46 @@ bool Node::is_scripting_disabled() const
 // https://dom.spec.whatwg.org/#dom-node-contains
 bool Node::contains(GC::Ptr<Node> other) const
 {
-    // The contains(other) method steps are to return true if other is an inclusive descendant of this; otherwise false (including when other is null).
-    return other && other->is_inclusive_descendant_of(*this);
+    // The contains(other) method steps are to return true if other is an inclusive descendent of this; otherwise false (including when other is null).
+    return other && other->is_inclusive_descendent_of(*this);
 }
 
-// https://dom.spec.whatwg.org/#concept-shadow-including-descendant
-bool Node::is_shadow_including_descendant_of(Node const& other) const
+// https://dom.spec.whatwg.org/#concept-shadow-including-descendent
+bool Node::is_shadow_including_descendent_of(Node const& other) const
 {
-    // An object A is a shadow-including descendant of an object B,
-    // if A is a descendant of B,
-    if (is_descendant_of(other))
+    // An object A is a shadow-including descendent of an object B,
+    // if A is a descendent of B,
+    if (is_descendent_of(other))
         return true;
 
     // or A’s root is a shadow root
     if (!is<ShadowRoot>(root()))
         return false;
 
-    // and A’s root’s host is a shadow-including inclusive descendant of B.
+    // and A’s root’s host is a shadow-including inclusive descendent of B.
     auto& shadow_root = as<ShadowRoot>(root());
-    return shadow_root.host() && shadow_root.host()->is_shadow_including_inclusive_descendant_of(other);
+    return shadow_root.host() && shadow_root.host()->is_shadow_including_inclusive_descendent_of(other);
 }
 
-// https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendant
-bool Node::is_shadow_including_inclusive_descendant_of(Node const& other) const
+// https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-descendent
+bool Node::is_shadow_including_inclusive_descendent_of(Node const& other) const
 {
-    // A shadow-including inclusive descendant is an object or one of its shadow-including descendants.
-    return &other == this || is_shadow_including_descendant_of(other);
+    // A shadow-including inclusive descendent is an object or one of its shadow-including descendents.
+    return &other == this || is_shadow_including_descendent_of(other);
 }
 
 // https://dom.spec.whatwg.org/#concept-shadow-including-ancestor
 bool Node::is_shadow_including_ancestor_of(Node const& other) const
 {
-    // An object A is a shadow-including ancestor of an object B, if and only if B is a shadow-including descendant of A.
-    return other.is_shadow_including_descendant_of(*this);
+    // An object A is a shadow-including ancestor of an object B, if and only if B is a shadow-including descendent of A.
+    return other.is_shadow_including_descendent_of(*this);
 }
 
 // https://dom.spec.whatwg.org/#concept-shadow-including-inclusive-ancestor
 bool Node::is_shadow_including_inclusive_ancestor_of(Node const& other) const
 {
     // A shadow-including inclusive ancestor is an object or one of its shadow-including ancestors.
-    return other.is_shadow_including_inclusive_descendant_of(*this);
+    return other.is_shadow_including_inclusive_descendent_of(*this);
 }
 
 // https://dom.spec.whatwg.org/#concept-node-replace-all
@@ -2577,12 +2577,12 @@ void Node::remove_child_impl(GC::Ref<Node> node)
     TreeNode::remove_child(node);
 }
 
-bool Node::is_descendant_of(Node const& other) const
+bool Node::is_descendent_of(Node const& other) const
 {
     return other.is_ancestor_of(*this);
 }
 
-bool Node::is_inclusive_descendant_of(Node const& other) const
+bool Node::is_inclusive_descendent_of(Node const& other) const
 {
     return other.is_inclusive_ancestor_of(*this);
 }
@@ -2648,7 +2648,7 @@ void Node::build_accessibility_tree(AccessibilityTreeNode& parent)
 }
 
 // https://www.w3.org/TR/accname-1.2/#mapping_additional_nd_te
-ErrorOr<String> Node::name_or_description(NameOrDescription target, Document const& document, HashTable<UniqueNodeID>& visited_nodes, IsDescendant is_descendant, ShouldComputeRole should_compute_role) const
+ErrorOr<String> Node::name_or_description(NameOrDescription target, Document const& document, HashTable<UniqueNodeID>& visited_nodes, IsDescendant is_descendent, ShouldComputeRole should_compute_role) const
 {
     // The text alternative for a given element is computed as follows:
     // 1. Set the root node to the given element, the current node to the root node, and the total accumulated text to the
@@ -2694,7 +2694,7 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
         // AD-HOC: We don’t implement this step here — because strictly implementing this would cause us to return early
         // whenever encountering a node (element, actually) that “is hidden and is not directly referenced by
         // aria-labelledby or aria-describedby”, without traversing down through that element’s subtree to see if it has
-        // (1) any descendant elements that are directly referenced and/or (2) any un-hidden nodes. So we instead (in
+        // (1) any descendent elements that are directly referenced and/or (2) any un-hidden nodes. So we instead (in
         // substep G below) traverse upward through ancestor nodes of every text node, and check in that way to do the
         // equivalent of what this step seems to have been intended to do.
         // https://github.com/w3c/aria/issues/2387
@@ -2934,8 +2934,8 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
 
         // F. Name From Content: Otherwise, if the current node's role allows name from content, or if the current node
         //    is referenced by aria-labelledby, aria-describedby, or is a native host language text alternative element
-        //    (e.g. label in HTML), or is a descendant of a native host language text alternative element:
-        if ((role.has_value() && ARIA::allows_name_from_content(role.value())) || element->is_referenced() || is_descendant == IsDescendant::Yes) {
+        //    (e.g. label in HTML), or is a descendent of a native host language text alternative element:
+        if ((role.has_value() && ARIA::allows_name_from_content(role.value())) || element->is_referenced() || is_descendent == IsDescendant::Yes) {
             // i. Set the accumulated text to the empty string.
             total_accumulated_text.clear();
 
@@ -3014,8 +3014,8 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
             if (!total_accumulated_text.is_empty())
                 return total_accumulated_text.to_string();
 
-            // Important: Each node in the subtree is consulted only once. If text has been collected from a descendant,
-            // but is referenced by another IDREF in some descendant node, then that second, or subsequent, reference is
+            // Important: Each node in the subtree is consulted only once. If text has been collected from a descendent,
+            // but is referenced by another IDREF in some descendent node, then that second, or subsequent, reference is
             // not followed. This is done to avoid infinite loops.
         }
     }
@@ -3025,7 +3025,7 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
     // AD-HOC: The spec doesn’t require ascending through the parent node and ancestor nodes of every text node we
     // reach — the way we’re doing there. But we implement it this way because the spec algorithm as written doesn’t
     // appear to achieve what it seems to be intended to achieve. Specifically, the spec algorithm as written doesn’t
-    // cause traversal through element subtrees in way that’s necessary to check for descendants that are referenced by
+    // cause traversal through element subtrees in way that’s necessary to check for descendents that are referenced by
     // aria-labelledby or aria-describedby and/or un-hidden. See the comment for substep A above.
     if (is_text() && (!parent_element() || (parent_element()->is_referenced() || !parent_element()->is_hidden() || !parent_element()->has_hidden_ancestor() || parent_element()->has_referenced_and_hidden_ancestor()))) {
         if (layout_node() && layout_node()->is_text_node())
@@ -3033,8 +3033,8 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
         return text_content().release_value();
     }
 
-    // H. Otherwise, if the current node is a descendant of an element whose Accessible Name or Accessible Description
-    //    is being computed, and contains descendants, proceed to 2F.i.
+    // H. Otherwise, if the current node is a descendent of an element whose Accessible Name or Accessible Description
+    //    is being computed, and contains descendents, proceed to 2F.i.
     //
     // AD-HOC: We don’t implement this step here — because is essentially unreachable code in the spec algorithm.
     // We could never get here without descending through every subtree of an element whose Accessible Name or

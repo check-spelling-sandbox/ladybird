@@ -34,7 +34,7 @@ void HTMLDetailsElement::visit_edges(Cell::Visitor& visitor)
 {
     Base::visit_edges(visitor);
     visitor.visit(m_summary_slot);
-    visitor.visit(m_descendants_slot);
+    visitor.visit(m_descendents_slot);
 }
 
 void HTMLDetailsElement::initialize(JS::Realm& realm)
@@ -236,10 +236,10 @@ WebIDL::ExceptionOr<void> HTMLDetailsElement::create_shadow_tree_if_needed()
     auto summary_slot = TRY(DOM::create_element(document(), HTML::TagNames::slot, Namespace::HTML));
     MUST(shadow_root->append_child(summary_slot));
 
-    // The second child element is a slot that is expected to take the details element's remaining descendants, if any.
-    auto descendants_slot = TRY(DOM::create_element(document(), HTML::TagNames::slot, Namespace::HTML));
-    descendants_slot->set_use_pseudo_element(CSS::PseudoElement::DetailsContent);
-    MUST(shadow_root->append_child(descendants_slot));
+    // The second child element is a slot that is expected to take the details element's remaining descendents, if any.
+    auto descendents_slot = TRY(DOM::create_element(document(), HTML::TagNames::slot, Namespace::HTML));
+    descendents_slot->set_use_pseudo_element(CSS::PseudoElement::DetailsContent);
+    MUST(shadow_root->append_child(descendents_slot));
 
     // The third child element is either a link or style element with the following styles for the default summary:
     auto style = TRY(DOM::create_element(document(), HTML::TagNames::style, Namespace::HTML));
@@ -256,7 +256,7 @@ WebIDL::ExceptionOr<void> HTMLDetailsElement::create_shadow_tree_if_needed()
     MUST(shadow_root->append_child(style));
 
     m_summary_slot = static_cast<HTML::HTMLSlotElement&>(*summary_slot);
-    m_descendants_slot = static_cast<HTML::HTMLSlotElement&>(*descendants_slot);
+    m_descendents_slot = static_cast<HTML::HTMLSlotElement&>(*descendents_slot);
     set_shadow_root(shadow_root);
 
     return {};
@@ -268,7 +268,7 @@ void HTMLDetailsElement::update_shadow_tree_slots()
         return;
 
     Vector<HTMLSlotElement::SlottableHandle> summary_assignment;
-    Vector<HTMLSlotElement::SlottableHandle> descendants_assignment;
+    Vector<HTMLSlotElement::SlottableHandle> descendents_assignment;
 
     auto* summary = first_child_of_type<HTMLSummaryElement>();
     if (summary != nullptr)
@@ -281,14 +281,14 @@ void HTMLDetailsElement::update_shadow_tree_slots()
             return TraversalDecision::Continue;
 
         child.as_slottable().visit([&](auto& node) {
-            descendants_assignment.append(GC::make_root(node));
+            descendents_assignment.append(GC::make_root(node));
         });
 
         return TraversalDecision::Continue;
     });
 
     m_summary_slot->assign(move(summary_assignment));
-    m_descendants_slot->assign(move(descendants_assignment));
+    m_descendents_slot->assign(move(descendents_assignment));
 
     update_shadow_tree_style();
 }
@@ -300,11 +300,11 @@ void HTMLDetailsElement::update_shadow_tree_style()
         return;
 
     if (has_attribute(HTML::AttributeNames::open)) {
-        MUST(m_descendants_slot->set_attribute(HTML::AttributeNames::style, R"~~~(
+        MUST(m_descendents_slot->set_attribute(HTML::AttributeNames::style, R"~~~(
             display: block;
         )~~~"_string));
     } else {
-        MUST(m_descendants_slot->set_attribute(HTML::AttributeNames::style, R"~~~(
+        MUST(m_descendents_slot->set_attribute(HTML::AttributeNames::style, R"~~~(
             display: block;
             content-visibility: hidden;
         )~~~"_string));

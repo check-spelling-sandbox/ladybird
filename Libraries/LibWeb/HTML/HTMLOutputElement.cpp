@@ -56,8 +56,8 @@ String HTMLOutputElement::default_value() const
     if (m_default_value_override.has_value())
         return *m_default_value_override;
 
-    // 2. Return this element's descendant text content.
-    return descendant_text_content();
+    // 2. Return this element's descendent text content.
+    return descendent_text_content();
 }
 
 // https://html.spec.whatwg.org/multipage/form-elements.html#dom-output-defaultvalue
@@ -76,8 +76,8 @@ void HTMLOutputElement::set_default_value(String const& default_value)
 // https://html.spec.whatwg.org/multipage/form-elements.html#dom-output-value
 String HTMLOutputElement::value() const
 {
-    // The value getter steps are to return this's descendant text content.
-    return descendant_text_content();
+    // The value getter steps are to return this's descendent text content.
+    return descendent_text_content();
 }
 
 // https://html.spec.whatwg.org/multipage/form-elements.html#dom-output-value

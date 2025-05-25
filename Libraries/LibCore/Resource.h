@@ -41,10 +41,10 @@ public:
     [[nodiscard]] Vector<String> children() const;
     // Depth-first
     template<IteratorFunction<Resource const&> Callback>
-    IterationDecision for_each_descendant(Callback&&) const;
+    IterationDecision for_each_descendent(Callback&&) const;
 
     template<IteratorFunction<Resource const&> Callback>
-    void for_each_descendant_file(Callback&&) const;
+    void for_each_descendent_file(Callback&&) const;
 
     struct DirectoryTag { };
 
@@ -68,14 +68,14 @@ private:
 };
 
 template<IteratorFunction<Resource const&> Callback>
-IterationDecision Resource::for_each_descendant(Callback&& callback) const
+IterationDecision Resource::for_each_descendent(Callback&& callback) const
 {
     auto children = this->children();
     for (auto const& child : children) {
         if (auto child_resource = load_from_uri(MUST(String::formatted("{}/{}", uri(), child))); !child_resource.is_error()) {
             if (callback(*child_resource.value()) == IterationDecision::Break)
                 return IterationDecision::Break;
-            if (child_resource.value()->for_each_descendant(callback) == IterationDecision::Break)
+            if (child_resource.value()->for_each_descendent(callback) == IterationDecision::Break)
                 return IterationDecision::Break;
         }
     }
@@ -83,9 +83,9 @@ IterationDecision Resource::for_each_descendant(Callback&& callback) const
 }
 
 template<IteratorFunction<Resource const&> Callback>
-void Resource::for_each_descendant_file(Callback&& callback) const
+void Resource::for_each_descendent_file(Callback&& callback) const
 {
-    for_each_descendant([callback = forward<Callback>(callback)](Resource const& resource) {
+    for_each_descendent([callback = forward<Callback>(callback)](Resource const& resource) {
         if (resource.is_directory())
             return IterationDecision::Continue;
         return callback(resource);

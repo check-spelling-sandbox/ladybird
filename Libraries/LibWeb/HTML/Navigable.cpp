@@ -521,8 +521,8 @@ GC::Ptr<Navigable> Navigable::find_a_navigable_by_target_name(StringView name)
         // 1. Let documentToSearch be subtreeToSearch's active document.
         auto& document_to_search = *subtree_to_search->active_document();
 
-        // 2. For each navigable of the inclusive descendant navigables of documentToSearch:
-        for (auto const& navigable : document_to_search.inclusive_descendant_navigables()) {
+        // 2. For each navigable of the inclusive descendent navigables of documentToSearch:
+        for (auto const& navigable : document_to_search.inclusive_descendent_navigables()) {
             // 1. If currentNavigable is not allowed by sandboxing to navigate navigable given sourceSnapshotParams, then optionally continue.
             if (!allowed_by_sandboxing_to_navigate(*navigable, source_snapshot_params))
                 continue;
@@ -548,8 +548,8 @@ GC::Ptr<Navigable> Navigable::find_a_navigable_by_target_name(StringView name)
         // 2. Let documentToSearch be topLevelBrowsingContext's active document.
         auto* document_to_search = top_level_browsing_context->active_document();
 
-        // 3. For each navigable of the inclusive descendant navigables of documentToSearch:
-        for (auto const& navigable : document_to_search->inclusive_descendant_navigables()) {
+        // 3. For each navigable of the inclusive descendent navigables of documentToSearch:
+        for (auto const& navigable : document_to_search->inclusive_descendent_navigables()) {
             // 1. If currentNavigable's active browsing context is not familiar with navigable's active browsing context, then continue.
             if (!active_browsing_context()->is_familiar_with(*navigable->active_browsing_context()))
                 continue;
@@ -1633,8 +1633,8 @@ void Navigable::begin_navigation(NavigateParams params)
             return;
         }
 
-        // 1. Let unloadPromptCanceled be the result of checking if unloading is user-canceled for navigable's active document's inclusive descendant navigables.
-        auto unload_prompt_canceled = traversable_navigable()->check_if_unloading_is_canceled(this->active_document()->inclusive_descendant_navigables());
+        // 1. Let unloadPromptCanceled be the result of checking if unloading is user-canceled for navigable's active document's inclusive descendent navigables.
+        auto unload_prompt_canceled = traversable_navigable()->check_if_unloading_is_canceled(this->active_document()->inclusive_descendent_navigables());
 
         // 2. If unloadPromptCanceled is true, or navigable's ongoing navigation is no longer navigationId, then:
         if (unload_prompt_canceled != TraversableNavigable::CheckIfUnloadingIsCanceledResult::Continue || !ongoing_navigation().has<String>() || ongoing_navigation().get<String>() != navigation_id) {
@@ -1651,10 +1651,10 @@ void Navigable::begin_navigation(NavigateParams params)
             return;
         }
 
-        // 3. Queue a global task on the navigation and traversal task source given navigable's active window to abort a document and its descendants given navigable's active document.
+        // 3. Queue a global task on the navigation and traversal task source given navigable's active window to abort a document and its descendents given navigable's active document.
         queue_global_task(Task::Source::NavigationAndTraversal, *active_window(), GC::create_function(heap(), [this] {
             VERIFY(this->active_document());
-            this->active_document()->abort_a_document_and_its_descendants();
+            this->active_document()->abort_a_document_and_its_descendents();
         }));
 
         // 4. Let documentState be a new document state with
@@ -2486,8 +2486,8 @@ void Navigable::stop_loading()
     if (document->unload_counter() == 0 && ongoing_navigation().has<String>())
         set_ongoing_navigation(Empty {});
 
-    // 3. Abort a document and its descendants given document.
-    document->abort_a_document_and_its_descendants();
+    // 3. Abort a document and its descendents given document.
+    document->abort_a_document_and_its_descendents();
 }
 
 void Navigable::set_has_session_history_entry_and_ready_for_navigation()

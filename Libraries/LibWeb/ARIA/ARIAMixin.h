@@ -16,7 +16,7 @@
 namespace Web::ARIA {
 
 #define ENUMERATE_ARIA_ELEMENT_REFERENCING_ATTRIBUTES \
-    __ENUMERATE_ARIA_ATTRIBUTE(aria_active_descendant_element, aria_active_descendant)
+    __ENUMERATE_ARIA_ATTRIBUTE(aria_active_descendent_element, aria_active_descendent)
 
 #define ENUMERATE_ARIA_ELEMENT_LIST_REFERENCING_ATTRIBUTES                      \
     __ENUMERATE_ARIA_ATTRIBUTE(aria_controls_elements, aria_controls)           \

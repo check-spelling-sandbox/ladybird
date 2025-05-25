@@ -81,11 +81,11 @@ bool FormAssociatedElement::enabled() const
     if ((is<HTMLButtonElement>(html_element) || is<HTMLInputElement>(html_element) || is<HTMLSelectElement>(html_element) || is<HTMLTextAreaElement>(html_element)) && html_element.has_attribute(HTML::AttributeNames::disabled))
         return false;
 
-    // - The element is a descendant of a fieldset element whose disabled attribute is specified, and is not a descendant of that fieldset element's first legend element child, if any.
+    // - The element is a descendent of a fieldset element whose disabled attribute is specified, and is not a descendent of that fieldset element's first legend element child, if any.
     for (auto* fieldset_ancestor = html_element.first_ancestor_of_type<HTMLFieldSetElement>(); fieldset_ancestor; fieldset_ancestor = fieldset_ancestor->first_ancestor_of_type<HTMLFieldSetElement>()) {
         if (fieldset_ancestor->has_attribute(HTML::AttributeNames::disabled)) {
             auto* first_legend_element_child = fieldset_ancestor->first_child_of_type<HTMLLegendElement>();
-            if (!first_legend_element_child || !html_element.is_descendant_of(*first_legend_element_child))
+            if (!first_legend_element_child || !html_element.is_descendent_of(*first_legend_element_child))
                 return false;
         }
     }

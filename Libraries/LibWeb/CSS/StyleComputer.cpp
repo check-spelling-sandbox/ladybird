@@ -449,10 +449,10 @@ InvalidationSet StyleComputer::invalidation_set_for_properties(Vector<Invalidati
 {
     if (!m_style_invalidation_data)
         return {};
-    auto const& descendant_invalidation_sets = m_style_invalidation_data->descendant_invalidation_sets;
+    auto const& descendent_invalidation_sets = m_style_invalidation_data->descendent_invalidation_sets;
     InvalidationSet result;
     for (auto const& property : properties) {
-        if (auto it = descendant_invalidation_sets.find(property); it != descendant_invalidation_sets.end())
+        if (auto it = descendent_invalidation_sets.find(property); it != descendent_invalidation_sets.end())
             result.include_all_from(it->value);
     }
     return result;
@@ -2440,7 +2440,7 @@ void StyleComputer::transform_box_type_if_needed(ComputedProperties& style, DOM:
     case BoxTypeTransformation::Inlinify:
         if (display.is_inline_outside()) {
             // FIXME: If an inline box (inline flow) is inlinified, it recursively inlinifies all of its in-flow children,
-            //        so that no block-level descendants break up the inline formatting context in which it participates.
+            //        so that no block-level descendents break up the inline formatting context in which it participates.
             if (display.is_flow_inside()) {
                 dbgln("FIXME: Inlinify inline box children recursively");
             }

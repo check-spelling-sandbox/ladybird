@@ -147,14 +147,14 @@ GC::Ref<HTMLCollection> ParentNode::children()
 // NOTE: This method is only exposed on Document and Element, but is in ParentNode to prevent code duplication.
 GC::Ref<HTMLCollection> ParentNode::get_elements_by_tag_name(FlyString const& qualified_name)
 {
-    // 1. If qualifiedName is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches only descendant elements.
+    // 1. If qualifiedName is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches only descendent elements.
     if (qualified_name == "*") {
         return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [](Element const&) {
             return true;
         });
     }
 
-    // 2. Otherwise, if root’s node document is an HTML document, return a HTMLCollection rooted at root, whose filter matches the following descendant elements:
+    // 2. Otherwise, if root’s node document is an HTML document, return a HTMLCollection rooted at root, whose filter matches the following descendent elements:
     if (root().document().document_type() == Document::Type::HTML) {
         FlyString qualified_name_in_ascii_lowercase = qualified_name.to_ascii_lowercase();
         return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [qualified_name, qualified_name_in_ascii_lowercase](Element const& element) {
@@ -167,7 +167,7 @@ GC::Ref<HTMLCollection> ParentNode::get_elements_by_tag_name(FlyString const& qu
         });
     }
 
-    // 3. Otherwise, return a HTMLCollection rooted at root, whose filter matches descendant elements whose qualified name is qualifiedName.
+    // 3. Otherwise, return a HTMLCollection rooted at root, whose filter matches descendent elements whose qualified name is qualifiedName.
     return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [qualified_name](Element const& element) {
         return element.qualified_name() == qualified_name;
     });
@@ -181,28 +181,28 @@ GC::Ref<HTMLCollection> ParentNode::get_elements_by_tag_name_ns(Optional<FlyStri
     if (namespace_ == FlyString {})
         namespace_ = OptionalNone {};
 
-    // 2. If both namespace and localName are "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendant elements.
+    // 2. If both namespace and localName are "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendent elements.
     if (namespace_ == "*" && local_name == "*") {
         return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [](Element const&) {
             return true;
         });
     }
 
-    // 3. Otherwise, if namespace is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendant elements whose local name is localName.
+    // 3. Otherwise, if namespace is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendent elements whose local name is localName.
     if (namespace_ == "*") {
         return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [local_name](Element const& element) {
             return element.local_name() == local_name;
         });
     }
 
-    // 4. Otherwise, if localName is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendant elements whose namespace is namespace.
+    // 4. Otherwise, if localName is "*" (U+002A), return a HTMLCollection rooted at root, whose filter matches descendent elements whose namespace is namespace.
     if (local_name == "*") {
         return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [namespace_](Element const& element) {
             return element.namespace_uri() == namespace_;
         });
     }
 
-    // 5. Otherwise, return a HTMLCollection rooted at root, whose filter matches descendant elements whose namespace is namespace and local name is localName.
+    // 5. Otherwise, return a HTMLCollection rooted at root, whose filter matches descendent elements whose namespace is namespace and local name is localName.
     return HTMLCollection::create(*this, HTMLCollection::Scope::Descendants, [namespace_, local_name](Element const& element) {
         return element.namespace_uri() == namespace_ && element.local_name() == local_name;
     });

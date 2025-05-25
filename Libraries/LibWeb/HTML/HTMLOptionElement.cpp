@@ -38,7 +38,7 @@ void HTMLOptionElement::initialize(JS::Realm& realm)
     Base::initialize(realm);
 }
 
-// FIXME: This needs to be called any time a descendant's text is modified.
+// FIXME: This needs to be called any time a descendent's text is modified.
 void HTMLOptionElement::update_selection_label()
 {
     if (selected()) {
@@ -102,14 +102,14 @@ WebIDL::ExceptionOr<void> HTMLOptionElement::set_value(String const& value)
     return set_attribute(HTML::AttributeNames::value, value);
 }
 
-static void concatenate_descendants_text_content(DOM::Node const* node, StringBuilder& builder)
+static void concatenate_descendents_text_content(DOM::Node const* node, StringBuilder& builder)
 {
     if (is<HTMLScriptElement>(node) || is<SVG::SVGScriptElement>(node))
         return;
     if (is<DOM::Text>(node))
         builder.append(as<DOM::Text>(node)->data());
     node->for_each_child([&](auto const& node) {
-        concatenate_descendants_text_content(&node, builder);
+        concatenate_descendents_text_content(&node, builder);
         return IterationDecision::Continue;
     });
 }
@@ -137,11 +137,11 @@ String HTMLOptionElement::text() const
 {
     StringBuilder builder;
 
-    // Concatenation of data of all the Text node descendants of the option element, in tree order,
-    // excluding any that are descendants of descendants of the option element that are themselves
+    // Concatenation of data of all the Text node descendents of the option element, in tree order,
+    // excluding any that are descendents of descendents of the option element that are themselves
     // script or SVG script elements.
     for_each_child([&](auto const& node) {
-        concatenate_descendants_text_content(&node, builder);
+        concatenate_descendents_text_content(&node, builder);
         return IterationDecision::Continue;
     });
 

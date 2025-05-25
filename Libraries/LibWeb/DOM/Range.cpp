@@ -1283,7 +1283,7 @@ WebIDL::ExceptionOr<GC::Ref<DocumentFragment>> Range::create_contextual_fragment
     // 7. Let fragment node be the result of invoking the fragment parsing algorithm steps with element and compliantString. FIXME: Use compliantString.
     auto fragment_node = TRY(element->parse_fragment(string));
 
-    // 8. For each script of fragment node's script element descendants:
+    // 8. For each script of fragment node's script element descendents:
     fragment_node->for_each_in_subtree_of_type<HTML::HTMLScriptElement>([&](HTML::HTMLScriptElement& script_element) {
         // 8.1 Set scripts already started to false.
         script_element.unmark_as_already_started({});

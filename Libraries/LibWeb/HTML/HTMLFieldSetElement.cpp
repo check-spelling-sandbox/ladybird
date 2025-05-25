@@ -47,11 +47,11 @@ bool HTMLFieldSetElement::is_disabled() const
     if (has_attribute(AttributeNames::disabled))
         return true;
 
-    // - It is a descendant of another fieldset element whose disabled attribute is specified, and is not a descendant of that fieldset element's first legend element child, if any.
+    // - It is a descendent of another fieldset element whose disabled attribute is specified, and is not a descendent of that fieldset element's first legend element child, if any.
     for (auto* fieldset_ancestor = first_ancestor_of_type<HTMLFieldSetElement>(); fieldset_ancestor; fieldset_ancestor = fieldset_ancestor->first_ancestor_of_type<HTMLFieldSetElement>()) {
         if (fieldset_ancestor->has_attribute(HTML::AttributeNames::disabled)) {
             auto* first_legend_element_child = fieldset_ancestor->first_child_of_type<HTMLLegendElement>();
-            if (!first_legend_element_child || !is_descendant_of(*first_legend_element_child))
+            if (!first_legend_element_child || !is_descendent_of(*first_legend_element_child))
                 return true;
         }
     }

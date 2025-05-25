@@ -54,8 +54,8 @@ GC::Ptr<HTMLElement> HTMLLabelElement::control() const
         return control;
     }
 
-    // If the for attribute is not specified, but the label element has a labelable element descendant,
-    // then the first such descendant in tree order is the label element's labeled control.
+    // If the for attribute is not specified, but the label element has a labelable element descendent,
+    // then the first such descendent in tree order is the label element's labeled control.
     for_each_in_subtree_of_type<HTMLElement>([&](auto& element) {
         if (element.is_labelable()) {
             control = &const_cast<HTMLElement&>(element);

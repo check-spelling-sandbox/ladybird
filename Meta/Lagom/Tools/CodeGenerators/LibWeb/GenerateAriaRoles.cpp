@@ -134,7 +134,7 @@ HashTable<@enum_class@> const& @name@::@member_name@() const
 
 StringView aria_name_to_enum_name(StringView name)
 {
-    if (name == "aria-activedescendant"sv) {
+    if (name == "aria-activedescendent"sv) {
         return "AriaActiveDescendant"sv;
     } else if (name == "aria-atomic"sv) {
         return "AriaAtomic"sv;

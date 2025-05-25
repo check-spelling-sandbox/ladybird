@@ -133,8 +133,8 @@ struct LayoutState {
 
         Optional<LineBoxFragmentCoordinate> containing_line_box_fragment;
 
-        void add_floating_descendant(Box const& box) { m_floating_descendants.set(&box); }
-        auto const& floating_descendants() const { return m_floating_descendants; }
+        void add_floating_descendent(Box const& box) { m_floating_descendents.set(&box); }
+        auto const& floating_descendents() const { return m_floating_descendents; }
 
         void set_override_borders_data(Painting::PaintableBox::BordersDataWithElementKind const& override_borders_data) { m_override_borders_data = override_borders_data; }
         auto const& override_borders_data() const { return m_override_borders_data; }
@@ -183,7 +183,7 @@ struct LayoutState {
         bool m_has_definite_width { false };
         bool m_has_definite_height { false };
 
-        HashTable<GC::Ptr<Box const>> m_floating_descendants;
+        HashTable<GC::Ptr<Box const>> m_floating_descendents;
 
         Optional<Painting::PaintableBox::BordersDataWithElementKind> m_override_borders_data;
         Optional<Painting::PaintableBox::TableCellCoordinates> m_table_cell_coordinates;

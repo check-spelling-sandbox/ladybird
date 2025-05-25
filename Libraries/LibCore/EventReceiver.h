@@ -99,14 +99,14 @@ public:
     }
 
     template<typename T>
-    T* find_descendant_of_type_named(StringView)
+    T* find_descendent_of_type_named(StringView)
     requires IsBaseOf<EventReceiver, T>;
 
     template<typename T, size_t N>
-    ALWAYS_INLINE T* find_descendant_of_type_named(char const (&string_literal)[N])
+    ALWAYS_INLINE T* find_descendent_of_type_named(char const (&string_literal)[N])
     requires IsBaseOf<EventReceiver, T>
     {
-        return find_descendant_of_type_named<T>(StringView { string_literal, N - 1 });
+        return find_descendent_of_type_named<T>(StringView { string_literal, N - 1 });
     }
 
     bool is_ancestor_of(EventReceiver const&) const;
@@ -217,7 +217,7 @@ requires IsBaseOf<EventReceiver, T>
 }
 
 template<typename T>
-T* EventReceiver::find_descendant_of_type_named(StringView name)
+T* EventReceiver::find_descendent_of_type_named(StringView name)
 requires IsBaseOf<EventReceiver, T>
 {
     if (is<T>(*this) && this->name() == name) {
@@ -225,7 +225,7 @@ requires IsBaseOf<EventReceiver, T>
     }
     T* found_child = nullptr;
     for_each_child([&](auto& child) {
-        found_child = child.template find_descendant_of_type_named<T>(name);
+        found_child = child.template find_descendent_of_type_named<T>(name);
         if (found_child)
             return IterationDecision::Break;
         return IterationDecision::Continue;

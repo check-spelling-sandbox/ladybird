@@ -203,7 +203,7 @@ void LayoutState::commit(Box& root)
 
     HashTable<Layout::InlineNode*> inline_nodes;
 
-    root.document().for_each_shadow_including_inclusive_descendant([&](DOM::Node& node) {
+    root.document().for_each_shadow_including_inclusive_descendent([&](DOM::Node& node) {
         node.clear_paintable();
         if (node.layout_node() && is<InlineNode>(node.layout_node())) {
             // Inline nodes might have a continuation chain; add all inline nodes that are part of it.

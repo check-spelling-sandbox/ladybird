@@ -839,7 +839,7 @@ void delete_the_selection(Selection& selection, bool block_merging, bool strip_w
     // 25. For each node in node list:
     for (auto node : node_list) {
         // 1. Let parent be the parent of node.
-        // NOTE: All nodes in node_list are descendants of common_ancestor and as such, always have a parent.
+        // NOTE: All nodes in node_list are descendents of common_ancestor and as such, always have a parent.
         GC::Ptr<DOM::Node> parent = *node->parent();
 
         // 2. Remove node from parent.
@@ -977,8 +977,8 @@ void delete_the_selection(Selection& selection, bool block_merging, bool strip_w
             children.first()->previous_sibling()->remove();
     }
 
-    // 33. Otherwise, if start block is a descendant of end block:
-    else if (start_block->is_descendant_of(*end_block)) {
+    // 33. Otherwise, if start block is a descendent of end block:
+    else if (start_block->is_descendent_of(*end_block)) {
         // 1. Call collapse() on the context object's selection, with first argument start block and second argument
         //    start block's length.
         MUST(selection.collapse(start_block, start_block->length()));
@@ -1405,13 +1405,13 @@ void force_the_value(GC::Ref<DOM::Node> node, FlyString const& command, Optional
 
     // 4. If node is an allowed child of "span":
     if (is_allowed_child_of_node(node, HTML::TagNames::span)) {
-        // 1. Reorder modifiable descendants of node's previousSibling.
+        // 1. Reorder modifiable descendents of node's previousSibling.
         if (node->previous_sibling())
-            reorder_modifiable_descendants(*node->previous_sibling(), command, new_value);
+            reorder_modifiable_descendents(*node->previous_sibling(), command, new_value);
 
-        // 2. Reorder modifiable descendants of node's nextSibling.
+        // 2. Reorder modifiable descendents of node's nextSibling.
         if (node->next_sibling())
-            reorder_modifiable_descendants(*node->next_sibling(), command, new_value);
+            reorder_modifiable_descendents(*node->next_sibling(), command, new_value);
 
         // 3. Wrap the one-node list consisting of node, with sibling criteria returning true for a simple modifiable
         //    element whose specified command value is equivalent to new value and whose effective command value is
@@ -2017,8 +2017,8 @@ bool is_collapsed_whitespace_node(GC::Ref<DOM::Node> node)
     // 7. Let reference be node.
     GC::Ptr<DOM::Node> reference = node;
 
-    // 8. While reference is a descendant of ancestor:
-    while (reference->is_descendant_of(*ancestor)) {
+    // 8. While reference is a descendent of ancestor:
+    while (reference->is_descendent_of(*ancestor)) {
         // 1. Let reference be the node before it in tree order.
         reference = reference->previous_in_pre_order();
 
@@ -2035,8 +2035,8 @@ bool is_collapsed_whitespace_node(GC::Ref<DOM::Node> node)
     // 9. Let reference be node.
     reference = node;
 
-    // 10. While reference is a descendant of ancestor:
-    while (reference->is_descendant_of(*ancestor)) {
+    // 10. While reference is a descendent of ancestor:
+    while (reference->is_descendent_of(*ancestor)) {
         // 1. Let reference be the node after it in tree order, or null if there is no such node.
         reference = reference->next_in_pre_order();
 
@@ -2086,15 +2086,15 @@ bool is_effectively_contained_in_range(GC::Ref<DOM::Node> node, GC::Ref<DOM::Ran
             return false;
     }
 
-    // and either range's start node is not a descendant of node or is not a Text node or range's start offset is zero;
+    // and either range's start node is not a descendent of node or is not a Text node or range's start offset is zero;
     auto start_node = range->start_container();
-    if (start_node->is_descendant_of(node) && is<DOM::Text>(*start_node) && range->start_offset() != 0)
+    if (start_node->is_descendent_of(node) && is<DOM::Text>(*start_node) && range->start_offset() != 0)
         return false;
 
-    // and either range's end node is not a descendant of node or is not a Text node or range's end offset is its end
+    // and either range's end node is not a descendent of node or is not a Text node or range's end offset is its end
     // node's length.
     auto end_node = range->end_container();
-    if (end_node->is_descendant_of(node) && is<DOM::Text>(*end_node) && range->end_offset() != end_node->length())
+    if (end_node->is_descendent_of(node) && is<DOM::Text>(*end_node) && range->end_offset() != end_node->length())
         return false;
 
     return true;
@@ -2572,8 +2572,8 @@ bool is_visible_node(GC::Ref<DOM::Node> node)
     if (is<HTML::HTMLBRElement>(*node) && !is_extraneous_line_break(node))
         return true;
 
-    // or any node with a visible descendant;
-    // NOTE: We call into is_visible_node() recursively, so check children instead of descendants.
+    // or any node with a visible descendent;
+    // NOTE: We call into is_visible_node() recursively, so check children instead of descendents.
     bool has_visible_child_node = false;
     node->for_each_child([&](DOM::Node& child_node) {
         if (is_visible_node(child_node)) {
@@ -2660,10 +2660,10 @@ void justify_the_selection(DOM::Document& document, JustifyAlignment alignment)
         auto inline_style = element->style_for_bindings();
         MUST(inline_style->remove_property(CSS::PropertyID::TextAlign));
 
-        // 3. If element is a div or span or center with no attributes, remove it, preserving its descendants.
+        // 3. If element is a div or span or center with no attributes, remove it, preserving its descendents.
         if (element->local_name().is_one_of(HTML::TagNames::div, HTML::TagNames::span, HTML::TagNames::center)
             && !element->has_attributes())
-            remove_node_preserving_its_descendants(element);
+            remove_node_preserving_its_descendents(element);
 
         // 4. If element is a center with one or more attributes, set the tag name of element to "div".
         if (element->local_name() == HTML::TagNames::center && element->has_attributes())
@@ -2830,7 +2830,7 @@ void move_node_preserving_ranges(GC::Ref<DOM::Node> node, GC::Ref<DOM::Node> new
     if (!range)
         return;
 
-    // 2. If a boundary point's node is the same as or a descendant of node, leave it unchanged, so
+    // 2. If a boundary point's node is the same as or a descendent of node, leave it unchanged, so
     //    it moves to the new location.
     // NOTE: This step exists for completeness.
 
@@ -2941,9 +2941,9 @@ void outdent(GC::Ref<DOM::Node> node)
     if (!node->is_editable())
         return;
 
-    // 2. If node is a simple indentation element, remove node, preserving its descendants. Then abort these steps.
+    // 2. If node is a simple indentation element, remove node, preserving its descendents. Then abort these steps.
     if (is_simple_indentation_element(node)) {
-        remove_node_preserving_its_descendants(node);
+        remove_node_preserving_its_descendents(node);
         return;
     }
 
@@ -3029,8 +3029,8 @@ void outdent(GC::Ref<DOM::Node> node)
             // 1. Record the values of node's children, and let values be the result.
             auto values = record_the_values_of_nodes(children);
 
-            // 2. Remove node, preserving its descendants.
-            remove_node_preserving_its_descendants(node);
+            // 2. Remove node, preserving its descendents.
+            remove_node_preserving_its_descendents(node);
 
             // 3. Restore the values from values.
             restore_the_values_of_nodes(values);
@@ -3419,10 +3419,10 @@ void remove_extraneous_line_breaks_from_a_node(GC::Ref<DOM::Node> node)
     remove_extraneous_line_breaks_at_the_end_of_node(node);
 }
 
-// https://w3c.github.io/editing/docs/execCommand/#preserving-its-descendants
-void remove_node_preserving_its_descendants(GC::Ref<DOM::Node> node)
+// https://w3c.github.io/editing/docs/execCommand/#preserving-its-descendents
+void remove_node_preserving_its_descendents(GC::Ref<DOM::Node> node)
 {
-    // To remove a node node while preserving its descendants, split the parent of node's children if it has any.
+    // To remove a node node while preserving its descendents, split the parent of node's children if it has any.
     if (node->has_children()) {
         Vector<GC::Ref<DOM::Node>> children;
         children.ensure_capacity(node->child_count());
@@ -3436,8 +3436,8 @@ void remove_node_preserving_its_descendants(GC::Ref<DOM::Node> node)
     node->remove();
 }
 
-// https://w3c.github.io/editing/docs/execCommand/#reorder-modifiable-descendants
-void reorder_modifiable_descendants(GC::Ref<DOM::Node> node, FlyString const& command, Optional<String> new_value)
+// https://w3c.github.io/editing/docs/execCommand/#reorder-modifiable-descendents
+void reorder_modifiable_descendents(GC::Ref<DOM::Node> node, FlyString const& command, Optional<String> new_value)
 {
     // 1. Let candidate equal node.
     GC::Ptr<DOM::Node> candidate = node;
@@ -3625,8 +3625,8 @@ SelectionsListState selections_list_state(DOM::Document const& document)
     //    none is a ul or an ancestor of a ul, return "ol".
     auto is_ancestor_of_type = []<typename T>(GC::Ref<DOM::Node> node) {
         bool has_type = false;
-        node->for_each_in_subtree([&has_type](GC::Ref<DOM::Node> descendant) {
-            if (is<T>(*descendant)) {
+        node->for_each_in_subtree([&has_type](GC::Ref<DOM::Node> descendent) {
+            if (is<T>(*descendent)) {
                 has_type = true;
                 return TraversalDecision::Break;
             }
@@ -3711,8 +3711,8 @@ void set_the_selections_value(DOM::Document& document, FlyString const& command,
 
     // 2. If there is no formattable node effectively contained in the active range:
     auto has_matching_node = false;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (is_formattable_node(descendant)) {
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (is_formattable_node(descendent)) {
             has_matching_node = true;
             return TraversalDecision::Break;
         }
@@ -3767,9 +3767,9 @@ void set_the_selections_value(DOM::Document& document, FlyString const& command,
 
     // 5. Let element list be all editable Elements effectively contained in the active range.
     Vector<GC::Ref<DOM::Element>> element_list;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (descendant->is_editable() && is<DOM::Element>(*descendant))
-            element_list.append(static_cast<DOM::Element&>(*descendant));
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (descendent->is_editable() && is<DOM::Element>(*descendent))
+            element_list.append(static_cast<DOM::Element&>(*descendent));
         return TraversalDecision::Continue;
     });
 
@@ -3779,9 +3779,9 @@ void set_the_selections_value(DOM::Document& document, FlyString const& command,
 
     // 7. Let node list be all editable nodes effectively contained in the active range.
     Vector<GC::Ref<DOM::Node>> node_list;
-    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendant) {
-        if (descendant->is_editable())
-            node_list.append(descendant);
+    for_each_node_effectively_contained_in_range(active_range(document), [&](GC::Ref<DOM::Node> descendent) {
+        if (descendent->is_editable())
+            node_list.append(descendent);
         return TraversalDecision::Continue;
     });
 
@@ -4600,9 +4600,9 @@ GC::Ptr<DOM::Node> wrap(
 GC::Ptr<DOM::Node> first_formattable_node_effectively_contained(GC::Ptr<DOM::Range> range)
 {
     GC::Ptr<DOM::Node> node;
-    for_each_node_effectively_contained_in_range(range, [&](GC::Ref<DOM::Node> descendant) {
-        if (is_formattable_node(descendant)) {
-            node = descendant;
+    for_each_node_effectively_contained_in_range(range, [&](GC::Ref<DOM::Node> descendent) {
+        if (is_formattable_node(descendent)) {
+            node = descendent;
             return TraversalDecision::Break;
         }
         return TraversalDecision::Continue;
@@ -4642,13 +4642,13 @@ void for_each_node_effectively_contained_in_range(GC::Ptr<DOM::Range> range, Fun
 
     // A node can still be "effectively contained" in range even if it's not actually contained within the range; so we
     // need to do an inclusive subtree traversal since the common ancestor could be matched as well.
-    range->common_ancestor_container()->for_each_in_inclusive_subtree([&](GC::Ref<DOM::Node> descendant) {
-        if (!is_effectively_contained_in_range(descendant, *range)) {
-            // NOTE: We cannot skip children here since if a descendant is not effectively contained within a range, its
+    range->common_ancestor_container()->for_each_in_inclusive_subtree([&](GC::Ref<DOM::Node> descendent) {
+        if (!is_effectively_contained_in_range(descendent, *range)) {
+            // NOTE: We cannot skip children here since if a descendent is not effectively contained within a range, its
             //       children might still be.
             return TraversalDecision::Continue;
         }
-        return callback(descendant);
+        return callback(descendent);
     });
 }
 

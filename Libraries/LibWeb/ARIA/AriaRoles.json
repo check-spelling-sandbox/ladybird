@@ -126,7 +126,7 @@
   },
   "Composite": {
     "specLink": "https://www.w3.org/TR/wai-aria-1.2/#composite",
-    "description": "A widget that may contain navigable descendants or owned children.",
+    "description": "A widget that may contain navigable descendents or owned children.",
     "superClassRoles": [
       "Widget"
     ],
@@ -138,7 +138,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -183,7 +183,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -1446,7 +1446,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2331,7 +2331,7 @@
   },
   "Dialog": {
     "specLink": "https://www.w3.org/TR/wai-aria-1.2/#dialog",
-    "description": "A dialog is a descendant window of the primary window of a web application. For HTML pages, the primary application window is the entire web document, i.e., the body element.",
+    "description": "A dialog is a descendent window of the primary window of a web application. For HTML pages, the primary application window is the entire web document, i.e., the body element.",
     "superClassRoles": [
       "Window"
     ],
@@ -2603,7 +2603,7 @@
       "aria-selected"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2664,7 +2664,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2708,7 +2708,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2756,7 +2756,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2810,7 +2810,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2863,7 +2863,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2911,7 +2911,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -2963,7 +2963,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -3015,7 +3015,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -3669,7 +3669,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -4149,7 +4149,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-autocomplete",
       "aria-braillelabel",
@@ -4248,7 +4248,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-autocomplete",
       "aria-braillelabel",
@@ -4347,7 +4347,7 @@
       "aria-invalid"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-autocomplete",
       "aria-braillelabel",
@@ -4397,7 +4397,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",
@@ -4486,7 +4486,7 @@
       "aria-hidden"
     ],
     "supportedProperties": [
-      "aria-activedescendant",
+      "aria-activedescendent",
       "aria-atomic",
       "aria-braillelabel",
       "aria-brailleroledescription",

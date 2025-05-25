@@ -217,7 +217,7 @@ bool Node::establishes_stacking_context() const
     // https://drafts.fxtf.org/filter-effects/#FilterProperty
     // https://drafts.fxtf.org/filter-effects-2/#backdrop-filter-operation
     // A computed value of other than none results in the creation of both a stacking context
-    // [CSS21] and a Containing Block for absolute and fixed position descendants, unless the
+    // [CSS21] and a Containing Block for absolute and fixed position descendents, unless the
     // element it applies to is a document root element in the current browsing context.
     // Spec Note: This rule works in the same way as for the filter property.
     if (!computed_values().backdrop_filter().is_empty() || !computed_values().filter().is_empty())

@@ -1168,7 +1168,7 @@ void BlockFormattingContext::layout_floating_box(Box const& box, BlockContainer 
         float_box(FloatSide::Right, m_right_floats);
     }
 
-    m_state.get_mutable(root()).add_floating_descendant(box);
+    m_state.get_mutable(root()).add_floating_descendent(box);
 
     if (line_builder)
         line_builder->recalculate_available_space();

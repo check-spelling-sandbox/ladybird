@@ -4,10 +4,10 @@ Found 9 tests
 
 9 Pass
 Pass	Initial color
-Pass	add test to subject_descendant
-Pass	remove test from subject_descendant
-Pass	add test to sibling_descendant
-Pass	remove test from sibling_descendant
+Pass	add test to subject_descendent
+Pass	remove test from subject_descendent
+Pass	add test to sibling_descendent
+Pass	remove test from sibling_descendent
 Pass	add test_inner to subject_child
 Pass	remove test_inner from subject_child
 Pass	add test_inner to sibling_child

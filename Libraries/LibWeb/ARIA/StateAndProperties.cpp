@@ -13,7 +13,7 @@ ErrorOr<String> state_or_property_to_string_value(StateAndProperties state_or_pr
 {
     switch (state_or_property) {
     case StateAndProperties::AriaActiveDescendant: {
-        return aria_data.aria_active_descendant_or_default().value_or(String {});
+        return aria_data.aria_active_descendent_or_default().value_or(String {});
     }
     case StateAndProperties::AriaAtomic: {
         bool value;
@@ -356,7 +356,7 @@ StringView state_or_property_to_string(StateAndProperties value)
 {
     switch (value) {
     case StateAndProperties::AriaActiveDescendant:
-        return "aria-activedescendant"sv;
+        return "aria-activedescendent"sv;
     case StateAndProperties::AriaAtomic:
         return "aria-atomic"sv;
     case StateAndProperties::AriaAutoComplete:
