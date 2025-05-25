@@ -16,7 +16,7 @@ These pointers cannot be copied. Transferring ownership is done by moving the po
 
 `NonnullOwnPtr` is a special variant of `OwnPtr` with one additional property: it cannot be null. `NonnullOwnPtr` is suitable as a return type from functions that are guaranteed to never return null, and as an argument type where ownership is transferred, and the argument may not be null. In other words, if `OwnPtr` is "\*", then `NonnullOwnPtr` is "&".
 
-Note: A `NonnullOwnPtr` can be assigned to an `OwnPtr` but not vice versa. To transform an known-non-null `OwnPtr` into a `NonnullOwnPtr`, use `OwnPtr::release_nonnull()`.
+Note: A `NonnullOwnPtr` can be assigned to an `OwnPtr` but not vice versa. To transform a known-non-null `OwnPtr` into a `NonnullOwnPtr`, use `OwnPtr::release_nonnull()`.
 
 ### Construction using helper functions
 
@@ -83,7 +83,7 @@ class Bar : public RefCounted<Bar> {
 };
 ```
 
-Note: A `NonnullRefPtr` can be assigned to a `RefPtr` but not vice versa. To transform an known-non-null `RefPtr` into a `NonnullRefPtr`, either use `RefPtr::release_nonnull()` or simply dereference the `RefPtr` using its `operator*`.
+Note: A `NonnullRefPtr` can be assigned to a `RefPtr` but not vice versa. To transform a known-non-null `RefPtr` into a `NonnullRefPtr`, either use `RefPtr::release_nonnull()` or simply dereference the `RefPtr` using its `operator*`.
 
 ### Construction using helper functions
 

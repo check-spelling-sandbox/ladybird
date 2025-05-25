@@ -44,7 +44,7 @@ describe("switch statement is a valid statement and gets executed", () => {
         expect(hit).toBeTrue();
     });
 
-    test("switch statement in an while statement", () => {
+    test("switch statement in a while statement", () => {
         var a = 0;
         var loops = 0;
         while (a < 1 && loops++ < 5)
@@ -56,7 +56,7 @@ describe("switch statement is a valid statement and gets executed", () => {
         expect(a).toBe(1);
     });
 
-    test("switch statement in an for statement", () => {
+    test("switch statement in a for statement", () => {
         var loops = 0;
         for (let a = 0; a < 1 && loops++ < 5; )
             switch (a) {

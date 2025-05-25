@@ -2806,7 +2806,7 @@ void set_sec_fetch_user_header(Infrastructure::Request& request)
 // https://w3c.github.io/webappsec-fetch-metadata/#abstract-opdef-append-the-fetch-metadata-headers-for-a-request
 void append_fetch_metadata_headers_for_request(Infrastructure::Request& request)
 {
-    // 1. If r’s url is not an potentially trustworthy URL, return.
+    // 1. If r’s url is not a potentially trustworthy URL, return.
     if (SecureContexts::is_url_potentially_trustworthy(request.url()) != SecureContexts::Trustworthiness::PotentiallyTrustworthy)
         return;
 

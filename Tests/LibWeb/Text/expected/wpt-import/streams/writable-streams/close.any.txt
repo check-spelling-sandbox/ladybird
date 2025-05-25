@@ -26,6 +26,6 @@ Pass	close() on a writable stream should work
 Pass	close() on a locked stream should reject
 Pass	close() on an erroring stream should reject
 Pass	close() on an errored stream should reject
-Pass	close() on an closed stream should reject
+Pass	close() on a closed stream should reject
 Pass	close() on a stream with a pending close should reject
 Pass	write() on a closed stream should reject
