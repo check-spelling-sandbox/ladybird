@@ -133,7 +133,7 @@ JS_DEFINE_NATIVE_FUNCTION(Uint8ArrayPrototypeHelpers::to_hex)
     // 4. Let out be the empty String.
     StringBuilder out;
 
-    // 5. For each byte byte of toEncode, do
+    // 5. For each byte of toEncode, do
     for (auto byte : to_encode.bytes()) {
         // a. Let hex be Number::toString(𝔽(byte), 16).
         // b. Set hex to StringPad(hex, 2, "0", START).

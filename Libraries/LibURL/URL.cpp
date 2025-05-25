@@ -468,7 +468,7 @@ ByteString percent_decode(StringView input)
     // 1. Let output be an empty byte sequence.
     StringBuilder builder;
 
-    // 2. For each byte byte in input:
+    // 2. For each byte in input:
     for (size_t i = 0; i < input.length(); ++i) {
         // 1. If byte is not 0x25 (%), then append byte to output.
         if (input[i] != '%') {

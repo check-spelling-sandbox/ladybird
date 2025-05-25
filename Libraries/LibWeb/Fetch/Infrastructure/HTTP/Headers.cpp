@@ -577,7 +577,7 @@ bool is_cors_safelisted_request_header(Header const& header)
 // https://fetch.spec.whatwg.org/#cors-unsafe-request-header-byte
 bool is_cors_unsafe_request_header_byte(u8 byte)
 {
-    // A CORS-unsafe request-header byte is a byte byte for which one of the following is true:
+    // A CORS-unsafe request-header byte is a byte for which one of the following is true:
     // - byte is less than 0x20 and is not 0x09 HT
     // - byte is 0x22 ("), 0x28 (left parenthesis), 0x29 (right parenthesis), 0x3A (:), 0x3C (<), 0x3E (>), 0x3F (?), 0x40 (@), 0x5B ([), 0x5C (\), 0x5D (]), 0x7B ({), 0x7D (}), or 0x7F DEL.
     return (byte < 0x20 && byte != 0x09)
