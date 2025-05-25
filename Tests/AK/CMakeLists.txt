@@ -83,7 +83,7 @@ set(AK_TEST_SOURCES
 )
 
 # FIXME: LexicalPathWindows has some parenting and path parts sizing inconsistencies with LexicalPath, so it deserves
-#  it's own platform-specific tests to avoid if-def soup in the Unix-based tests.
+#  its own platform-specific tests to avoid if-def soup in the Unix-based tests.
 if(NOT WIN32)
     list(APPEND AK_TEST_SOURCES TestLexicalPath.cpp)
 endif()

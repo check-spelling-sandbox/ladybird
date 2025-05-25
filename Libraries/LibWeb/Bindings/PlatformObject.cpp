@@ -40,7 +40,7 @@ JS::ThrowCompletionOr<bool> PlatformObject::is_named_property_exposed_on_object(
         return false;
 
     // 1. If P is not a supported property name of O, then return false.
-    // NOTE: This is in it's own variable to enforce the type.
+    // NOTE: This is in its own variable to enforce the type.
     if (!is_supported_property_name(property_key.to_string()))
         return false;
 
