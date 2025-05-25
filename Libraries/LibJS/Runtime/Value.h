@@ -71,7 +71,7 @@ static constexpr u64 SHIFTED_BOOLEAN_TAG = BOOLEAN_TAG << GC::TAG_SHIFT;
 static constexpr u64 SHIFTED_INT32_TAG = INT32_TAG << GC::TAG_SHIFT;
 
 // Summary:
-// To pack all the different value in to doubles we use the following schema:
+// To pack all the different values into doubles we use the following schema:
 // s = sign, e = exponent, m = mantissa
 // The top part is the tag and the bottom the payload.
 // 0bseeeeeeeeeeemmmm mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
