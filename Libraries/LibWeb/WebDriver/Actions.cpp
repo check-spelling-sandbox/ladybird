@@ -1115,7 +1115,7 @@ static ErrorOr<void, WebDriver::Error> dispatch_pointer_down_action(ActionObject
     // 16. Perform implementation-specific action dispatch steps on browsing context equivalent to pressing the button
     //     numbered button on the pointer with pointerId equal to source's pointerId, having type pointerType at viewport
     //     x coordinate x, viewport y coordinate y, width, height, pressure, tangentialPressure, tiltX, tiltY, twist,
-    //     altitudeAngle, azimuthAngle, with buttons buttons depressed in accordance with the requirements of [UI-EVENTS]
+    //     altitudeAngle, azimuthAngle, with buttons depressed in accordance with the requirements of [UI-EVENTS]
     //     and [POINTER-EVENTS]. set ctrlKey, shiftKey, altKey, and metaKey equal to the corresponding items in global
     //     key state. Type specific properties for the pointer that are not exposed through the webdriver API must be
     //     set to the default value specified for hardware that doesn't support that property.
@@ -1156,7 +1156,7 @@ static ErrorOr<void, WebDriver::Error> dispatch_pointer_up_action(ActionObject::
 
     // 7. Perform implementation-specific action dispatch steps on browsing context equivalent to releasing the button
     //    numbered button on the pointer with pointerId equal to input source's pointerId, having type pointerType at
-    //    viewport x coordinate x, viewport y coordinate y, with buttons buttons depressed, in accordance with the
+    //    viewport x coordinate x, viewport y coordinate y, with buttons depressed, in accordance with the
     //    requirements of [UI-EVENTS] and [POINTER-EVENTS]. The generated events must set ctrlKey, shiftKey, altKey,
     //    and metaKey equal to the corresponding items in global key state. Type specific properties for the pointer
     //    that are not exposed through the webdriver API must be set to the default value specified for hardware that
