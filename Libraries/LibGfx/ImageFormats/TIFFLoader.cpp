@@ -549,7 +549,7 @@ private:
     {
         if (ifd_offset != 0) {
             if (ifd_offset < TRY(m_stream->tell()))
-                return Error::from_string_literal("TIFFImageDecoderPlugin: Can not accept an IFD pointing to previous data");
+                return Error::from_string_literal("TIFFImageDecoderPlugin: Cannot accept an IFD pointing to previous data");
 
             m_next_ifd = Optional<u32> { ifd_offset };
         } else {

@@ -1394,7 +1394,7 @@ CSSPixelPoint EventHandler::compute_mouse_event_movement(CSSPixelPoint screen_po
     if (!m_mousemove_previous_screen_position.has_value())
         // When unlocked, the system cursor can exit and re-enter the user agent window.
         // If it does so and the user agent was not the target of operating system mouse move events
-        // then the most recent pointer position will be unknown to the user agent and movementX/movementY can not be computed and must be set to zero.
+        // then the most recent pointer position will be unknown to the user agent and movementX/movementY cannot be computed and must be set to zero.
         // FIXME: For this to actually work, m_mousemove_previous_client_offset needs to be cleared when the mouse leaves the window
         return { 0, 0 };
 

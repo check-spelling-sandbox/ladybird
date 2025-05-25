@@ -172,7 +172,7 @@ TLSv12::TLSv12(NonnullOwnPtr<Core::TCPSocket> socket, SSL_CTX* ssl_ctx, SSL* ssl
             }
         }
 
-        // Now that we handled possible fatal errors, we can notify the user that there is data to read.
+        // Now that we handled possible fatal errors, we cannotify the user that there is data to read.
         if (on_ready_to_read)
             on_ready_to_read();
     };

@@ -210,7 +210,7 @@ ErrorOr<Bytes> CircularBuffer::read_with_seekback(Bytes bytes, size_t distance) 
 ErrorOr<void> CircularBuffer::discard(size_t discarding_size)
 {
     if (m_used_space < discarding_size)
-        return Error::from_string_literal("Can not discard more data than what the buffer contains");
+        return Error::from_string_literal("Cannot discard more data than what the buffer contains");
     m_used_space -= discarding_size;
     m_reading_head = (m_reading_head + discarding_size) % capacity();
 
