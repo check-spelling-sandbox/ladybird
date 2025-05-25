@@ -67,7 +67,7 @@ For information on running host and target tests, see [Testing](Testing.md). The
 Some OS distributions don't ship bleeding-edge clang-format binaries. Below are 2 options to acquire an updated clang-format tool, in order of preference:
 
 1) If you have a Debian-based (apt-based) distribution, use the [LLVM apt repositories](https://apt.llvm.org) to install the latest release of clang-format.
-2) Compile LLVM from source as described in the LLVM documentation [here](https://llvm.org/docs/GettingStarted.html#compiling-the-llvm-suite-source-code).
+2) Compile LLVM from source as described in the [LLVM documentation](https://llvm.org/docs/GettingStarted.html#compiling-the-llvm-suite-source-code).
 
 ## Clangd Configuration
 
