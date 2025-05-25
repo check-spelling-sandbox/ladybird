@@ -36,7 +36,7 @@ def find_files_here_or_argv():
 
 
 def run():
-    """Check files checked in to git for trailing newlines at end of file."""
+    """Check files checked into git for trailing newlines at end of file."""
     no_newline_at_eof_errors = []
     blank_lines_at_eof_errors = []
 
