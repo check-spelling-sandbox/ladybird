@@ -1,0 +1,238 @@
+# See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-patterns
+
+\bget(?!ting|ter)(?=[a-z]{2})
+grid-template-areas: .*;
+expect\(.*;
+\bGL(?=[a-z]{2})
+const (?:ar|pl) = \[.*\]
+re\.compile\(".*"
+
+# wasm shell commands
+\[[a-z]+(?:\][a-z]+)+
+
+# Automatically suggested patterns
+
+# hit-count: 11515 file-count: 3410
+# https/http/file urls
+(?:\b(?:https?|ftp|file)://)[-A-Za-z0-9+&@#/*%?=~_|!:,.;]+[-A-Za-z0-9+&@#/*%=~_|]
+
+# hit-count: 4873 file-count: 354
+# hex digits including css/html color classes:
+(?:[\\0][xX]|\\u|[uU]\+|#x?|%23|&H)[0-9_a-fA-FgGrR]*?[a-fA-FgGrR]{2,}[0-9_a-fA-FgGrR]*(?:[uUlL]{0,3}|[iu]\d+)\b
+
+# hit-count: 4401 file-count: 3281
+# copyright
+Copyright (?:\([Cc]\)|)(?:[-\d, ]|and)+(?: [A-Z][a-z]+ [A-Z][a-z]+,?)+
+
+# hit-count: 4325 file-count: 231
+# hex runs
+\b[0-9a-fA-F]{16,}\b
+
+# hit-count: 1225 file-count: 661
+# #includes
+^\s*#include\s*(?:<.*?>|".*?")
+
+# hit-count: 1073 file-count: 113
+# libraries
+(?:\b|_)[Ll]ib(?:re(?=office)|)(?!era[lt]|ero|erty|rar(?:i(?:an|es)|y))(?=[a-z])
+
+# hit-count: 872 file-count: 773
+# mailto urls
+mailto:[-a-zA-Z=;:/?%&0-9+@._]{3,}
+
+# hit-count: 421 file-count: 103
+# Compiler flags (Unix, Java/Scala)
+# Use if you have things like `-Pdocker` and want to treat them as `docker`
+#(?:^|[\t ,>"'`=(#])-(?:(?:J-|)[DPWXY]|L|(?!ram))(?=[A-Z]{2,}|[A-Z][a-z]|[a-z]{2,})
+
+# hit-count: 340 file-count: 25
+# css url wrappings
+\burl\([^)]+\)
+
+# hit-count: 333 file-count: 34
+# version suffix <word>v#
+(?:(?<=[A-Z]{2})V|(?<=[a-z]{2}|[A-Z]{2})v)\d+(?:\b|(?=[a-zA-Z_]))
+
+# hit-count: 225 file-count: 37
+# in check-spelling@v0.0.22+, printf markers aren't automatically consumed
+# printf markers
+(?<!\\)\\[nrt](?=[a-z]{2,})
+
+# hit-count: 193 file-count: 28
+# Repeated letters
+\b([a-z])\g{-1}{2,}\b
+
+# hit-count: 186 file-count: 124
+# Alternatively, if you're using check-spelling v0.0.25+, and you would like to _check_ the Non-English content for spelling errors, you can. For information on how to do so, see:
+# https://docs.check-spelling.dev/Feature:-Configurable-word-characters.html#unicode
+[a-zA-Z]*[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź][a-zA-Z]{3}[a-zA-ZÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź]*|[a-zA-Z]{3,}[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź]|[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź][a-zA-Z]{3,}
+
+# hit-count: 168 file-count: 34
+# ANSI color codes
+(?:\\(?:u00|x)1[Bb]|\\03[1-7]|\x1b|\\u\{1[Bb]\})\[\d+(?:;\d+)*m
+
+# hit-count: 149 file-count: 5
+# css fonts
+\bfont(?:-family|):[^;}]+
+
+# hit-count: 110 file-count: 11
+# URL escaped characters
+%[0-9A-F][A-F](?=[A-Za-z])
+
+# hit-count: 107 file-count: 44
+# C# includes
+^\s*using [^;]+;
+
+# hit-count: 76 file-count: 37
+# data url
+\bdata:[-a-zA-Z=;:/0-9+_]*,\S*
+
+# hit-count: 65 file-count: 1
+# c99 hex digits (not the full format, just one I've seen)
+0x[0-9a-fA-F](?:\.[0-9a-fA-F]*|)[pP]
+
+# hit-count: 64 file-count: 13
+# base64 encoded content
+([`'"])[-a-zA-Z=;:/0-9+]{3,}=\g{-1}
+
+# hit-count: 29 file-count: 18
+# IServiceProvider / isAThing
+(?:(?:\b|_|(?<=[a-z]))[IQ]|(?:\b|_)(?:nsI|isA))(?=(?:[A-Z][a-z]{2,})+(?:[A-Z\d]|\b))
+
+# hit-count: 21 file-count: 4
+# Punycode
+\bxn--[-0-9a-z]+
+
+# hit-count: 16 file-count: 8
+# git index header
+index (?:[0-9a-z]{7,40},|)[0-9a-z]{7,40}\.\.[0-9a-z]{7,40}
+
+# hit-count: 14 file-count: 6
+# imports
+^import\s+(?:(?:static|type)\s+|)(?:[\w.]|\{\s*\w*?(?:,\s*(?:\w*|\*))+\s*\})+
+
+# hit-count: 14 file-count: 6
+# Markdown anchor links
+\(#\S*?[a-zA-Z]\S*?\)
+
+# hit-count: 11 file-count: 2
+# Contributor
+\[[^\]]+\]\(https://github\.com/[^/\s"]+/?\)
+
+# hit-count: 10 file-count: 4
+# tar arguments
+\b(?:\\n|)g?tar(?:\.exe|)(?:(?:\s+--[-a-zA-Z]+|\s+-[a-zA-Z]+|\s[ABGJMOPRSUWZacdfh-pr-xz]+\b)(?:=[^ ]*|))+
+
+# hit-count: 7 file-count: 7
+# GitHub actions
+\buses:\s+[-\w.]+/[-\w./]+@[-\w.]+
+
+# hit-count: 7 file-count: 5
+# patch hunk comments
+^@@ -\d+(?:,\d+|) \+\d+(?:,\d+|) @@ .*
+
+# hit-count: 7 file-count: 4
+# Lorem
+# Update Lorem based on your content (requires `ge` and `w` from https://github.com/jsoref/spelling; and `review` from https://github.com/check-spelling/check-spelling/wiki/Looking-for-items-locally )
+# grep '^[^#].*lorem' .github/actions/spelling/patterns.txt|perl -pne 's/.*i..\?://;s/\).*//' |tr '|' "\n"|sort -f |xargs -n1 ge|perl -pne 's/^[^:]*://'|sort -u|w|sed -e 's/ .*//'|w|review -
+# Warning, while `(?i)` is very neat and fancy, if you have some binary files that aren't proper unicode, you might run into:
+# ... Operation "substitution (s///)" returns its argument for non-Unicode code point 0x1C19AE (the code point will vary).
+# ... You could manually change `(?i)X...` to use `[Xx]...`
+# ... or you could add the files to your `excludes` file (a version after 0.0.19 should identify the file path)
+(?:(?:\w|\s|[,.])*\b(?i)(?:amet|consectetur|cursus|dolor|eros|ipsum|lacus|libero|ligula|lorem|magna|neque|nulla|suscipit|tempus)\b(?:\w|\s|[,.])*)
+
+# hit-count: 5 file-count: 2
+# uuid:
+\b[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}\b
+
+# hit-count: 5 file-count: 1
+# javascript replace regex
+\.replace\(/[^/\s"]{3,}/[gim]*\s*,
+
+# hit-count: 4 file-count: 2
+# Windows Resources with accelerators
+\b[A-Z]&[a-z]+\b(?!;)
+
+# hit-count: 3 file-count: 3
+# Python string prefix / binary prefix
+# Note that there's a high false positive rate, remove the `?=` and search for the regex to see if the matches seem like reasonable strings
+(?<!['"])\b(?:B|BR|Br|F|FR|Fr|R|RB|RF|Rb|Rf|U|UR|Ur|b|bR|br|f|fR|fr|r|rB|rF|rb|rf|u|uR|ur)['"](?=[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,})
+
+# hit-count: 2 file-count: 2
+# javascript match regex
+\.match\(/[^/\s"]{3,}/[gim]*\s*
+
+# hit-count: 2 file-count: 1
+# IPv6
+\b(?:[0-9a-fA-F]{0,4}:){3,7}[0-9a-fA-F]{0,4}\b
+
+# hit-count: 1 file-count: 1
+# Docker images
+^\s*(?i)FROM\s+\S+:\S+(?:\s+AS\s+\S+|)
+
+# hit-count: 1 file-count: 1
+# Alternative printf
+# %s
+%(?:s(?=[a-z]{2,}))(?!%)(?=[_a-zA-Z]+(?!%[^s])\b)(?=.*?['"])
+
+# hit-count: 1 file-count: 1
+# curl arguments
+\b(?:\\n|)curl(?:\.exe|)(?:\s+-[a-zA-Z]{1,2}\b)*(?:\s+-[a-zA-Z]{3,})(?:\s+-[a-zA-Z]+)*
+
+# hit-count: 1 file-count: 1
+# assign regex
+= /[^*].*?(?:[a-z]{3,}|[A-Z]{3,}|[A-Z][a-z]{2,}).*/[gim]*(?=\W|$)
+
+# hit-count: 1 file-count: 1
+# node packages
+(["'])@[^/'" ]+/[^/'" ]+\g{-1}
+
+# hit-count: 1 file-count: 1
+# data url in quotes
+([`'"])data:(?:[^ `'"].*?|)(?:[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,}).*\g{-1}
+
+# Questionably acceptable forms of `in to`
+# Personally, I prefer `log into`, but people object
+# https://www.tprteaching.com/log-into-log-in-to-login/
+\b(?:(?:[Ll]og(?:g(?=[a-z])|)|[Ss]ign)(?:ed|ing)?) in to\b
+
+# to opt in
+\bto opt in\b
+
+# pass(ed|ing) in
+\bpass(?:ed|ing) in\b
+
+# acceptable duplicates
+# ls directory listings
+[-bcdlpsw](?:[-r][-w][-SsTtx]){3}[\.+*]?\s+\d+\s+\S+\s+\S+\s+[.\d]+(?:[KMGT]|)\s+
+# mount
+\bmount\s+-t\s+(\w+)\s+\g{-1}\b
+# C types and repeated CSS values
+\s(auto|buffalo|center|div|inherit|long|LONG|none|normal|solid|thin|transparent|very)(?:\s\g{-1})+\s
+# C enum and struct
+\b(?:enum|struct)\s+(\w+)\s+\g{-1}\b
+# go templates
+\s(\w+)\s+\g{-1}\s+\`(?:graphql|inject|json|yaml):
+# doxygen / javadoc / .net
+(?:[\\@](?:brief|defgroup|groupname|link|t?param|return|retval)|(?:public|private|\[Parameter(?:\(.+\)|)\])(?:\s+(?:static|override|readonly|required|virtual))*)(?:\s+\{\w+\}|)\s+(\w+)\s+\g{-1}\s
+
+# macOS file path
+(?:Contents\W+|(?!iOS)/)MacOS\b
+
+# Python package registry has incorrect spelling for macOS / Mac OS X
+"Operating System :: MacOS :: MacOS X"
+
+# "company" in Germany
+\bGmbH\b
+
+# IntelliJ
+\bIntelliJ\b
+
+# Commit message -- Signed-off-by and friends
+^\s*(?:(?:Based-on-patch|Co-authored|Helped|Mentored|Reported|Reviewed|Signed-off)-by|Thanks-to): (?:[^<]*<[^>]*>|[^<]*)\s*$
+
+# Autogenerated revert commit message
+^This reverts commit [0-9a-f]{40}\.$
+
+# ignore long runs of a single character:
+\b([A-Za-z])\g{-1}{3,}\b
