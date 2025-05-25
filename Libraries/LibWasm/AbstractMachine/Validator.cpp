@@ -15,7 +15,7 @@ namespace Wasm {
 
 ErrorOr<void, ValidationError> Validator::validate(Module& module)
 {
-    // Pre-emptively make invalid. The module will be set to `Valid` at the end
+    // Preemptively make invalid. The module will be set to `Valid` at the end
     // of validation.
     module.set_validation_status(Module::ValidationStatus::Invalid, {});
 
