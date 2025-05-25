@@ -50,7 +50,7 @@
    .eyes { position: absolute; top: 5em; left: 3em; margin: 0; padding: 0; background: red; }
    #eyes-a { height: 0; line-height: 2em; text-align: right; } /* contents should paint top-most because they're inline */
    #eyes-a object { display: inline; vertical-align: bottom; }
-   #eyes-a object[type] { width: 7.5em; height: 2.5em; } /* should have no effect since that object should fallback to being inline (height/width don't apply to inlines) */
+   #eyes-a object[type] { width: 7.5em; height: 2.5em; } /* should have no effect since that object should fall back to being inline (height/width don't apply to inlines) */
    #eyes-a object object object { border-right: solid 1em black; padding: 0 12px 0 11px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAABnRSTlMAAAAAAABupgeRAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAAEUlEQVR42mP4%2F58BCv7%2FZwAAHfAD%2FabwPj4AAAAASUVORK5CYII%3D) fixed 1px 0; }
    #eyes-b { float: left; width: 10em; height: 2em; background: fixed url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAABnRSTlMAAAAAAABupgeRAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAAEUlEQVR42mP4%2F58BCv7%2FZwAAHfAD%2FabwPj4AAAAASUVORK5CYII%3D); border-left: solid 1em black; border-right: solid 1em red; } /* should paint in the middle layer because it is a float */
    #eyes-c { display: block; background: red; border-left: 2em solid yellow; width: 10em; height: 2em; } /* should paint bottom most because it is a block */

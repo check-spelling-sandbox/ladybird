@@ -96,7 +96,7 @@ ErrorOr<void> FFmpegLoaderPlugin::initialize()
             return static_cast<double>(m_audio_stream->duration) * time_base;
         }
 
-        // If the stream doesn't specify the duration, fallback to what the container says the duration is.
+        // If the stream doesn't specify the duration, fall back to what the container says the duration is.
         // If the container doesn't know the duration, then we're out of luck. Return an error.
         if (m_format_context->duration < 0)
             return Error::from_string_literal("Negative stream duration");

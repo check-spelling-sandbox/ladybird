@@ -24,21 +24,21 @@ AudioNode::~AudioNode() = default;
 
 WebIDL::ExceptionOr<void> AudioNode::initialize_audio_node_options(AudioNodeOptions const& given_options, AudioNodeDefaultOptions const& default_options)
 {
-    // Set channel count, fallback to default if not provided
+    // Set channel count, fall back to default if not provided
     if (given_options.channel_count.has_value()) {
         TRY(set_channel_count(given_options.channel_count.value()));
     } else {
         TRY(set_channel_count(default_options.channel_count));
     }
 
-    // Set channel count mode, fallback to default if not provided
+    // Set channel count mode, fall back to default if not provided
     if (given_options.channel_count_mode.has_value()) {
         TRY(set_channel_count_mode(given_options.channel_count_mode.value()));
     } else {
         TRY(set_channel_count_mode(default_options.channel_count_mode));
     }
 
-    // Set channel interpretation, fallback to default if not provided
+    // Set channel interpretation, fall back to default if not provided
     if (given_options.channel_interpretation.has_value()) {
         TRY(set_channel_interpretation(given_options.channel_interpretation.value()));
     } else {

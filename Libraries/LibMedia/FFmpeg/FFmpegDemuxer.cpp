@@ -62,7 +62,7 @@ DecoderErrorOr<AK::Duration> FFmpegDemuxer::duration_of_track_in_milliseconds(Tr
         return AK::Duration::from_milliseconds(AK::round_to<int64_t>(duration_in_milliseconds));
     }
 
-    // If the stream doesn't specify the duration, fallback to what the container says the duration is.
+    // If the stream doesn't specify the duration, fall back to what the container says the duration is.
     // If the container doesn't know the duration, then we're out of luck. Return an error.
     if (m_format_context->duration < 0)
         return DecoderError::format(DecoderErrorCategory::Unknown, "Negative stream duration");

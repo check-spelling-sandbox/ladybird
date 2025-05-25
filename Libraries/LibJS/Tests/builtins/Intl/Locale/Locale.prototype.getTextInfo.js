@@ -20,7 +20,7 @@ describe("normal behavior", () => {
         expect(new Intl.Locale("ar").getTextInfo().direction).toBe("rtl");
     });
 
-    test("fallback to ltr", () => {
+    test("fall back to ltr", () => {
         expect(new Intl.Locale("xx").getTextInfo().direction).toBe("ltr");
     });
 });
