@@ -1235,7 +1235,7 @@ static bool fast_matches_simple_selector(CSS::Selector::SimpleSelector const& si
         // https://html.spec.whatwg.org/multipage/semantics-other.html#case-sensitivity-of-selectors
         // When comparing a CSS element type selector to the names of HTML elements in HTML documents, the CSS element type selector must first be converted to ASCII lowercase. The
         // same selector when compared to other elements must be compared according to its original case. In both cases, to match the values must be identical to each other (and therefore
-        // the comparison is case sensitive).
+        // the comparison is case-sensitive).
         if (element.namespace_uri() == Namespace::HTML && element.document().document_type() == DOM::Document::Type::HTML) {
             if (simple_selector.qualified_name().name.lowercase_name != element.local_name())
                 return false;
