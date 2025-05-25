@@ -2637,7 +2637,7 @@ Element* Document::find_a_potential_indicated_element(FlyString const& fragment)
     if (auto element = get_element_by_id(fragment))
         return const_cast<Element*>(element.ptr());
 
-    // 2. If there is an a element in the document tree whose root is document that has a name attribute
+    // 2. If there is an element in the document tree whose root is document that has a name attribute
     //    whose value is equal to fragment, then return the first such element in tree order.
     Element* element_with_name = nullptr;
     root().for_each_in_subtree_of_type<Element>([&](Element const& element) {

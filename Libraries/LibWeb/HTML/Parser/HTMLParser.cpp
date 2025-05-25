@@ -2399,7 +2399,7 @@ void HTMLParser::handle_in_body(HTMLToken& token)
 
     // -> A start tag whose tag name is "a"
     if (token.is_start_tag() && token.tag_name() == HTML::TagNames::a) {
-        // If the list of active formatting elements contains an a element between the end of the list and the last marker on the list (or the start of the list if there
+        // If the list of active formatting elements contains an element between the end of the list and the last marker on the list (or the start of the list if there
         // is no marker on the list), then this is a parse error; run the adoption agency algorithm for the token, then remove that element from the list of active formatting
         // elements and the stack of open elements if the adoption agency algorithm didn't already remove it (it might not have if the element is not in table scope).
         if (auto* element = m_list_of_active_formatting_elements.last_element_with_tag_name_before_marker(HTML::TagNames::a)) {

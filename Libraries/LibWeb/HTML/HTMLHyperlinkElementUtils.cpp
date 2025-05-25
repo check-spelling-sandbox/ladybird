@@ -468,7 +468,7 @@ bool HTMLHyperlinkElementUtils::cannot_navigate() const
     if (!document.is_fully_active())
         return true;
 
-    // 2. element is not an a element and is not connected.
+    // 2. element is not an element and is not connected.
     if (!hyperlink_element_utils_is_html_anchor_element() && !hyperlink_element_utils_is_connected())
         return true;
 

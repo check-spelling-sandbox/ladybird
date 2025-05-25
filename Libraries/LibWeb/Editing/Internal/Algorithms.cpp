@@ -113,7 +113,7 @@ void autolink(DOM::BoundaryPoint point)
         point = previous_point.release_value();
     }
 
-    // 2. If node is not a Text node, or has an a ancestor, do nothing and abort these steps.
+    // 2. If node is not a Text node, or has an ancestor, do nothing and abort these steps.
     if (!is<DOM::Text>(*point.node) || point.node->first_ancestor_of_type<HTML::HTMLAnchorElement>())
         return;
 
@@ -680,7 +680,7 @@ Vector<GC::Ref<DOM::Node>> clear_the_value(FlyString const& command, GC::Ref<DOM
             element->remove_attribute(HTML::AttributeNames::size);
     }
 
-    // 9. If element is an a element and command is "createLink" or "unlink", unset the href property of element.
+    // 9. If element is an element and command is "createLink" or "unlink", unset the href property of element.
     if (is<HTML::HTMLAnchorElement>(*element) && command.is_one_of(CommandNames::createLink, CommandNames::unlink))
         element->remove_attribute(HTML::AttributeNames::href);
 
@@ -1152,7 +1152,7 @@ Optional<String> effective_command_value(GC::Ptr<DOM::Node> node, FlyString cons
     // 3. If command is "createLink" or "unlink":
     auto node_as_element = [&] -> GC::Ref<DOM::Element> { return static_cast<DOM::Element&>(*node); };
     if (command.is_one_of(CommandNames::createLink, CommandNames::unlink)) {
-        // 1. While node is not null, and is not an a element that has an href attribute, set node to its parent.
+        // 1. While node is not null, and is not an element that has an href attribute, set node to its parent.
         while (node && !(is<HTML::HTMLAnchorElement>(*node) && node_as_element()->has_attribute(HTML::AttributeNames::href)))
             node = node->parent();
 
@@ -2216,7 +2216,7 @@ bool is_modifiable_element(GC::Ref<DOM::Node> node)
             HTML::AttributeNames::face, HTML::AttributeNames::size });
     }
 
-    // or an a element with no attributes except possibly style and/or href.
+    // or an element with no attributes except possibly style and/or href.
     return is<HTML::HTMLAnchorElement>(html_element)
         && has_no_attributes_except(Array { HTML::AttributeNames::style, HTML::AttributeNames::href });
 }
@@ -2472,7 +2472,7 @@ bool is_simple_modifiable_element(GC::Ref<DOM::Node> node)
     if (attribute_count != 1)
         return false;
 
-    // * It is an a element with exactly one attribute, which is href.
+    // * It is an element with exactly one attribute, which is href.
     if (is<HTML::HTMLAnchorElement>(html_element)
         && html_element.get_attribute(HTML::AttributeNames::href).has_value())
         return true;
@@ -3842,7 +3842,7 @@ Optional<String> specified_command_value(GC::Ref<DOM::Element> element, FlyStrin
 
     // 2. If command is "createLink" or "unlink":
     if (command.is_one_of(CommandNames::createLink, CommandNames::unlink)) {
-        // 1. If element is an a element and has an href attribute, return the value of that attribute.
+        // 1. If element is an element and has an href attribute, return the value of that attribute.
         auto href_attribute = element->get_attribute(HTML::AttributeNames::href);
         if (href_attribute.has_value())
             return href_attribute.release_value();

@@ -92,7 +92,7 @@ void HTMLAnchorElement::activation_behavior(Web::DOM::Event const& event)
     // 2. Let hyperlinkSuffix be null.
     Optional<String> hyperlink_suffix {};
 
-    // 3. If element is an a element, and event's target is an img with an ismap attribute specified, then:
+    // 3. If element is an element, and event's target is an img with an ismap attribute specified, then:
     if (event.target() && is<HTMLImageElement>(*event.target()) && static_cast<HTMLImageElement const&>(*event.target()).has_attribute(AttributeNames::ismap)) {
         // 1. Let x and y be 0.
         CSSPixels x { 0 };

@@ -121,7 +121,7 @@ EventResult DragAndDropEventHandler::handle_drag_start(
 
         // 2. For each node in the list of dragged nodes:
         //
-        //    If the node is an a element with an href attribute
+        //    If the node is an element with an href attribute
         //        Add to urls the result of encoding-parsing-and-serializing a URL given the element's href content
         //        attribute's value, relative to the element's node document.
         //    If the node is an img element with a src attribute
@@ -531,7 +531,7 @@ GC::Ref<HTML::DragEvent> DragAndDropEventHandler::fire_a_drag_and_drop_event(
         // "move"                                                                            | "move"
         // "uninitialized" when what is being dragged is a selection from a text control     | "move", or, if appropriate, either "copy" or "link"
         // "uninitialized" when what is being dragged is a selection                         | "copy", or, if appropriate, either "link" or "move"
-        // "uninitialized" when what is being dragged is an a element with an href attribute | "link", or, if appropriate, either "copy" or "move"
+        // "uninitialized" when what is being dragged is an element with an href attribute | "link", or, if appropriate, either "copy" or "move"
         // Any other case                                                                    | "copy", or, if appropriate, either "link" or "move"
         using namespace HTML::DataTransferEffect;
 

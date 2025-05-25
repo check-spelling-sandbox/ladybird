@@ -634,7 +634,7 @@ bool HTMLElement::cannot_navigate() const
     if (!document().is_fully_active())
         return true;
 
-    // - element is not an a element and is not connected.
+    // - element is not an element and is not connected.
     return !is<HTML::HTMLAnchorElement>(this) && !is_connected();
 }
 
