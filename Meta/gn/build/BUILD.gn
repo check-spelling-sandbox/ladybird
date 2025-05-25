@@ -59,7 +59,7 @@ config("compiler_defaults") {
       # - in debug builds: From 5.2s to 4.6s
       #
       # Time needed for gdb startup and setting a breakpoint is comparable,
-      # the time from from `r` to hititng a breakpoint on main goes from 4s
+      # the time from `r` to hititng a breakpoint on main goes from 4s
       # to 2s.
       #
       # (macOS's linker always keeps debug info out of its output executables

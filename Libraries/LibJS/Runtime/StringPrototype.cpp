@@ -1044,7 +1044,7 @@ JS_DEFINE_NATIVE_FUNCTION(StringPrototype::slice)
     if (int_start >= int_end)
         return PrimitiveString::create(vm, String {});
 
-    // 13. Return the substring of S from from to to.
+    // 13. Return the substring of S from to to.
     return PrimitiveString::create(vm, Utf16String::create(string->utf16_string_view().substring_view(int_start, int_end - int_start)));
 }
 
@@ -1235,7 +1235,7 @@ JS_DEFINE_NATIVE_FUNCTION(StringPrototype::substring)
     // 9. Let to be max(finalStart, finalEnd).
     size_t to = max(final_start, final_end);
 
-    // 10. Return the substring of S from from to to.
+    // 10. Return the substring of S from to to.
     return PrimitiveString::create(vm, Utf16String::create(string->utf16_string_view().substring_view(from, to - from)));
 }
 
