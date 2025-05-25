@@ -3209,7 +3209,7 @@ WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> AesGcm::encrypt(AlgorithmParams co
     //    AES as the block cipher,
     //    the contents of the iv member of normalizedAlgorithm as the IV input parameter,
     //    the contents of additionalData as the A input parameter,
-    //    tagLength as the t pre-requisite
+    //    tagLength as the t prerequisite
     //    and the contents of plaintext as the input plaintext.
     ::Crypto::Cipher::AESGCMCipher cipher(key->handle().get<ByteBuffer>());
     auto maybe_encrypted = cipher.encrypt(plaintext, normalized_algorithm.iv, additional_data, tag_length / 8);
@@ -3268,7 +3268,7 @@ WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> AesGcm::decrypt(AlgorithmParams co
     //    AES as the block cipher,
     //    the contents of the iv member of normalizedAlgorithm as the IV input parameter,
     //    the contents of additionalData as the A input parameter,
-    //    tagLength as the t pre-requisite,
+    //    tagLength as the t prerequisite,
     //    the contents of actualCiphertext as the input ciphertext, C
     //    and the contents of tag as the authentication tag, T.
     // If the result of the algorithm is the indication of inauthenticity, "FAIL": throw an OperationError
