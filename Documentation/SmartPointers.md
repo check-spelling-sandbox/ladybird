@@ -120,7 +120,7 @@ NonnullRefPtr<Bar> our_object = adopt_ref(*new Bar);
 
 Note: It is safe to immediately dereference this raw pointer, as the normal `new` expression cannot return a null pointer.
 
-Any (possibly null) pointer to a reference-counted object can can be turned into a `RefPtr` by the global `adopt_ref_if_nonnull()` function.
+Any (possibly null) pointer to a reference-counted object can be turned into a `RefPtr` by the global `adopt_ref_if_nonnull()` function.
 
 ```cpp
 RefPtr<Bar> our_object = adopt_ref_if_nonnull(new (nothrow) Bar);
