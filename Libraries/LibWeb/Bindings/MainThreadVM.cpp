@@ -293,7 +293,7 @@ void initialize_main_thread_vm(AgentType type)
                 //                         Since the only active execution context currently is the realm execution context of job settings, lets attach it here.
                 HTML::execution_context_of_realm(*realm).script_or_module = script_or_module;
             } else {
-                // FIXME: We need to setup a dummy execution context in case a JS::NativeFunction is called when processing the job.
+                // FIXME: We need to set up a dummy execution context in case a JS::NativeFunction is called when processing the job.
                 //        This is because JS::NativeFunction::call excepts something to be on the execution context stack to be able to get the caller context to initialize the environment.
                 //        Do note that the JS spec gives _no_ guarantee that the execution context stack has something on it if HostEnqueuePromiseJob was called with a null realm: https://tc39.es/ecma262/#job-preparedtoevaluatecode
                 dummy_execution_context = JS::ExecutionContext::create(0, 0);

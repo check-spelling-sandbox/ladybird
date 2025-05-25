@@ -60,7 +60,7 @@ jobs:
             rm wabt-1.0.35-ubuntu-20.04.tar.gz
           )
 
-          # FIXME: Just use the setup action
+          # FIXME: Just use the set up action
           ./Toolchain/BuildVcpkg.py --ci
 
       - name: Setup Python

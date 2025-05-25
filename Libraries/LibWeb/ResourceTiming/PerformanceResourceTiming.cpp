@@ -76,7 +76,7 @@ void PerformanceResourceTiming::mark_resource_timing(GC::Ref<Fetch::Infrastructu
     auto converted_end_time = convert_fetch_timestamp(timing_info->end_time(), global);
     auto entry = realm.create<PerformanceResourceTiming>(realm, requested_url, converted_start_time, converted_end_time - converted_start_time, timing_info);
 
-    // Setup the resource timing entry for entry, given initiatorType, requestedURL, timingInfo, cacheMode, bodyInfo, responseStatus, and deliveryType.
+    // Set up the resource timing entry for entry, given initiatorType, requestedURL, timingInfo, cacheMode, bodyInfo, responseStatus, and deliveryType.
     entry->setup_the_resource_timing_entry(initiator_type, requested_url, timing_info, cache_mode, move(body_info), response_status, delivery_type);
 
     // 3. Queue entry.
@@ -89,7 +89,7 @@ void PerformanceResourceTiming::mark_resource_timing(GC::Ref<Fetch::Infrastructu
 // https://www.w3.org/TR/resource-timing/#dfn-setup-the-resource-timing-entry
 void PerformanceResourceTiming::setup_the_resource_timing_entry(FlyString const& initiator_type, String const& requested_url, GC::Ref<Fetch::Infrastructure::FetchTimingInfo> timing_info, Optional<Fetch::Infrastructure::Response::CacheState> const& cache_mode, Fetch::Infrastructure::Response::BodyInfo body_info, Fetch::Infrastructure::Status response_status, FlyString delivery_type)
 {
-    // 2. Setup the resource timing entry for entry, given initiatorType, requestedURL, timingInfo, cacheMode, bodyInfo, responseStatus, and deliveryType.
+    // 2. Set up the resource timing entry for entry, given initiatorType, requestedURL, timingInfo, cacheMode, bodyInfo, responseStatus, and deliveryType.
     // https://w3c.github.io/resource-timing/#dfn-setup-the-resource-timing-entry
 
     // 1. Assert that cacheMode is the empty string, "local", or "validated".

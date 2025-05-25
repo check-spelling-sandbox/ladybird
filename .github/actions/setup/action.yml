@@ -1,4 +1,4 @@
-name: 'Setup action'
+name: 'Set up action'
 description: 'Sets up the dependencies for the CI VM'
 author: 'Andrew Kaster <akaster@serenityos.org>'
 inputs:

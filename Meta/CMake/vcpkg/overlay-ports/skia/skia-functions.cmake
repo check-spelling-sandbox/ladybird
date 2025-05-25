@@ -77,7 +77,7 @@ function(get_externals)
     endforeach()
 endfunction()
 
-# Setup a third-party dependency from pkg-config data
+# Set up a third-party dependency from pkg-config data
 function(third_party_from_pkgconfig gn_group)
     cmake_parse_arguments(PARSE_ARGV 1 arg "" "PATH" "DEFINES;MODULES")
     if(NOT arg_PATH)
@@ -134,7 +134,7 @@ function(third_party_from_pkgconfig gn_group)
     configure_file("${CMAKE_CURRENT_LIST_DIR}/third-party.gn.in" "${SOURCE_PATH}/${arg_PATH}/BUILD.gn" @ONLY)
 endfunction()
 
-# Setup a third-party dependency from vcpkg installed tree
+# Set up a third-party dependency from vcpkg installed tree
 function(third_party_from_vcpkg gn_group)
     cmake_parse_arguments(PARSE_ARGV 1 arg "" "PATH" "")
     if(NOT arg_PATH)
