@@ -107,7 +107,7 @@ sudo xbps-install -S git bash gcc python3 curl cmake zip unzip linux-headers mak
 
 ### NixOS or with Nix:
 
-A Nix development shell is maintained [here](https://github.com/nix-community/nix-environments/tree/master/envs/ladybird),
+See the [Nix development shell](https://github.com/nix-community/nix-environments/tree/master/envs/ladybird) maintained
 in the [nix-environments](https://github.com/nix-community/nix-environments/) repository. If you encounter any problems
 building with Nix, please create an issue there.
 
