@@ -738,7 +738,7 @@ static WebIDL::ExceptionOr<String> serialize_document(DOM::Document const& docum
     // 1. Let serialized document be an empty string.
     StringBuilder serialized_document;
 
-    // 2. For each child child of node, in tree order, run the XML serialization algorithm on the child passing along the provided arguments, and append the result to serialized document.
+    // 2. For each child of node, in tree order, run the XML serialization algorithm on the child passing along the provided arguments, and append the result to serialized document.
     for (auto const* child = document.first_child(); child; child = child->next_sibling())
         serialized_document.append(TRY(serialize_node_to_xml_string_impl(*child, namespace_, namespace_prefix_map, prefix_index, require_well_formed)));
 
@@ -808,7 +808,7 @@ static WebIDL::ExceptionOr<String> serialize_document_fragment(DOM::DocumentFrag
     // 1. Let markup the empty string.
     StringBuilder markup;
 
-    // 2. For each child child of node, in tree order, run the XML serialization algorithm on the child given namespace, prefix map, a reference to prefix index,
+    // 2. For each child of node, in tree order, run the XML serialization algorithm on the child given namespace, prefix map, a reference to prefix index,
     //    and flag require well-formed. Concatenate the result to markup.
     for (auto const* child = document_fragment.first_child(); child; child = child->next_sibling())
         markup.append(TRY(serialize_node_to_xml_string_impl(*child, namespace_, namespace_prefix_map, prefix_index, require_well_formed)));
