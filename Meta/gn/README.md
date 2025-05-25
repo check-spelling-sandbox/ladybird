@@ -14,8 +14,7 @@ To create a GN build, you need to have GN installed. It's available in some Linu
 On Ubuntu 22.04, the main package repos do not have an up to date enough package for GN, so you will need to build it from source or get a binary from Google.
 
 The easiest way to build GN from source is to use our [Toolchain/BuildGN.sh](../../Toolchain/BuildGN.sh) script, which will
-drop the built binary into the `Toolchain/Local/gn/bin` directory. The instructions for downloading a prebuilt binary from Google are
-[here](https://gn.googlesource.com/gn/+/refs/heads/main#getting-a-binary).
+drop the built binary into the `Toolchain/Local/gn/bin` directory. See [Google's instructions for downloading a prebuilt binary](https://gn.googlesource.com/gn/+/refs/heads/main#getting-a-binary).
 
 Once you have GN installed, you can create a build directory by running the following commands:
 
