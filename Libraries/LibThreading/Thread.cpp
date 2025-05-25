@@ -24,7 +24,7 @@ Thread::~Thread()
 
 ErrorOr<void> Thread::set_priority(int priority)
 {
-    // MacOS has an extra __opaque field, so list initialization will not compile on MacOS Lagom.
+    // macOS has an extra __opaque field, so list initialization will not compile on macOS Lagom.
     sched_param scheduling_parameters {};
     scheduling_parameters.sched_priority = priority;
     int result = pthread_setschedparam(m_tid, 0, &scheduling_parameters);

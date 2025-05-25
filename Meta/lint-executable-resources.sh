@@ -6,7 +6,7 @@ script_path=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 cd "$script_path/.."
 
 if [ "$(uname -s)" = "Darwin" ]; then
-    # MacOS's find does not support '-executable' OR '-perm /mode'.
+    # macOS's find does not support '-executable' OR '-perm /mode'.
     BAD_FILES=$(find Base/res/ -type f -perm +111)
     BAD_FILES+=$(find Tests/ -name WPT -prune -or -perm +111 \! -type d -print | grep -Ev '\.(sh|py)$' || true)
 else

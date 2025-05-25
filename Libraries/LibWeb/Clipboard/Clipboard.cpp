@@ -55,7 +55,7 @@ static String os_specific_well_known_format(StringView mime_type_string)
     if (auto const& essence = mime_type->essence(); essence == "text/plain"sv) {
         // On Windows, follow the convention described below:
         //     Assign CF_UNICODETEXT to wellKnownFormat.
-        // On MacOS, follow the convention described below:
+        // On macOS, follow the convention described below:
         //     Assign NSPasteboardTypeString to wellKnownFormat.
         // On Linux, ChromeOS, and Android, follow the convention described below:
         //     Assign "text/plain" to wellKnownFormat.
@@ -65,7 +65,7 @@ static String os_specific_well_known_format(StringView mime_type_string)
     else if (essence == "text/html"sv) {
         // On Windows, follow the convention described below:
         //     Assign CF_HTML to wellKnownFormat.
-        // On MacOS, follow the convention described below:
+        // On macOS, follow the convention described below:
         //     Assign NSHTMLPboardType to wellKnownFormat.
         // On Linux, ChromeOS, and Android, follow the convention described below:
         //     Assign "text/html" to wellKnownFormat.
@@ -75,7 +75,7 @@ static String os_specific_well_known_format(StringView mime_type_string)
     else if (essence == "image/png"sv) {
         // On Windows, follow the convention described below:
         //     Assign "PNG" to wellKnownFormat.
-        // On MacOS, follow the convention described below:
+        // On macOS, follow the convention described below:
         //     Assign NSPasteboardTypePNG to wellKnownFormat.
         // On Linux, ChromeOS, and Android, follow the convention described below:
         //     Assign "image/png" to wellKnownFormat.

@@ -56,13 +56,13 @@ StackInfo::StackInfo()
     }
     pthread_attr_destroy(&attr);
 #elif defined(AK_OS_MACOS) || defined(AK_OS_IOS)
-    // NOTE: !! On MacOS, pthread_get_stackaddr_np gives the TOP of the stack, not the bottom!
+    // NOTE: !! On macOS, pthread_get_stackaddr_np gives the TOP of the stack, not the bottom!
     FlatPtr top_of_stack = (FlatPtr)pthread_get_stackaddr_np(pthread_self());
     m_size = (size_t)pthread_get_stacksize_np(pthread_self());
     // https://github.com/rust-lang/rust/issues/43347#issuecomment-316783599
     // https://developer.apple.com/library/archive/qa/qa1419/_index.html
     //
-    // MacOS seems inconsistent on what stack size is given for the main thread.
+    // macOS seems inconsistent on what stack size is given for the main thread.
     // According to the Apple docs, default for main thread is 8MB, and default for
     // other threads is 512KB
     if (pthread_main_np() == 1) {
