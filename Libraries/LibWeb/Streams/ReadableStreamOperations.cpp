@@ -320,7 +320,7 @@ GC::Ref<WebIDL::Promise> readable_stream_pipe_to(ReadableStream& source, Writabl
                 });
             }
 
-            // 4. If preventCancel is false, append the following action action to actions:
+            // 4. If preventCancel is false, append the following action to actions:
             if (!prevent_cancel) {
                 cancel_source = GC::create_function(realm.heap(), [&realm, source, error]() {
                     // 1. If source.[[state]] is "readable", return ! ReadableStreamCancel(source, error).
