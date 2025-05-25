@@ -76,21 +76,21 @@ protected:
     bool is_supported_property_index(u32) const;
 
     // NOTE: These will crash if you make has_named_property_setter return true but do not override these methods.
-    // NOTE: This is only used if named_property_setter_has_identifier returns false, otherwise set_value_of_named_property is used instead.
+    // NOTE: This is only used if named_property_setter_has_identifier returns false; otherwise, set_value_of_named_property is used instead.
     virtual WebIDL::ExceptionOr<void> set_value_of_new_named_property(String const&, JS::Value);
     virtual WebIDL::ExceptionOr<void> set_value_of_existing_named_property(String const&, JS::Value);
 
     // NOTE: These will crash if you make has_named_property_setter return true but do not override these methods.
-    // NOTE: This is only used if you make named_property_setter_has_identifier return true, otherwise set_value_of_{new,existing}_named_property is used instead.
+    // NOTE: This is only used if you make named_property_setter_has_identifier return true; otherwise, set_value_of_{new,existing}_named_property is used instead.
     virtual WebIDL::ExceptionOr<void> set_value_of_named_property(String const&, JS::Value);
 
     // NOTE: These will crash if you make has_indexed_property_setter return true but do not override these methods.
-    // NOTE: This is only used if indexed_property_setter_has_identifier returns false, otherwise set_value_of_indexed_property is used instead.
+    // NOTE: This is only used if indexed_property_setter_has_identifier returns false; otherwise, set_value_of_indexed_property is used instead.
     virtual WebIDL::ExceptionOr<void> set_value_of_new_indexed_property(u32, JS::Value);
     virtual WebIDL::ExceptionOr<void> set_value_of_existing_indexed_property(u32, JS::Value);
 
     // NOTE: These will crash if you make has_named_property_setter return true but do not override these methods.
-    // NOTE: This is only used if indexed_property_setter_has_identifier returns true, otherwise set_value_of_{new,existing}_indexed_property is used instead.
+    // NOTE: This is only used if indexed_property_setter_has_identifier returns true; otherwise, set_value_of_{new,existing}_indexed_property is used instead.
     virtual WebIDL::ExceptionOr<void> set_value_of_indexed_property(u32, JS::Value);
 
     enum class DidDeletionFail {

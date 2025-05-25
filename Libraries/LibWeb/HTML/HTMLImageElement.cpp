@@ -883,7 +883,7 @@ void HTMLImageElement::react_to_changes_in_the_environment()
         // 15. Queue an element task on the DOM manipulation task source given the img element and the following steps:
         queue_an_element_task(HTML::Task::Source::DOMManipulation, [this, selected_source, image_request, key, image_data] {
             // 1. FIXME: If the img element has experienced relevant mutations since this algorithm started, then let pending request be null and abort these steps.
-            // AD-HOC: Check if we have a pending request still, otherwise we will crash when upgrading the request. This will happen if the image has experienced mutations,
+            // AD-HOC: Check if we have a pending request still; otherwise, we will crash when upgrading the request. This will happen if the image has experienced mutations,
             //        but since the pending request may be set by another task soon after it is cleared, this check is probably not sufficient.
             if (!m_pending_request)
                 return;
@@ -1054,7 +1054,7 @@ static void update_the_source_set(DOM::Element& element)
         });
     }
 
-    // 4. Let img be el if el is an img element, otherwise null.
+    // 4. Let img be el if el is an img element; otherwise, null.
     HTMLImageElement* img = nullptr;
     if (is<HTMLImageElement>(element))
         img = static_cast<HTMLImageElement*>(&element);

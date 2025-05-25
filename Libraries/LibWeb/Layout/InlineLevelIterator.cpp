@@ -529,7 +529,7 @@ Optional<InlineLevelIterator::Item> InlineLevelIterator::next_without_lookahead(
                 });
 
             // https://drafts.csswg.org/css-text/#white-space-phase-2
-            // if fragments have added to the width, calculate the net distance to the next tab stop, otherwise the shift will just be the tab width
+            // if fragments have added to the width, calculate the net distance to the next tab stop; otherwise, the shift will just be the tab width
             auto tab_stop_dist = accumulated_width > 0 ? (ceil((accumulated_width / tab_width)) * tab_width) - accumulated_width : tab_width;
             auto ch_width = chunk.font->glyph_width('0');
 

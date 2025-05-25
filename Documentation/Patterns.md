@@ -44,7 +44,7 @@ Note: Our `TRY(...)` macro functions similarly to the `?` [operator in rust](htt
 ## `MUST(...)` Error Handling
 
 The `MUST(...)` macro is similar to `TRY(...)` except the macro enforces that
-the code run inside the macro must succeed, otherwise we assert.
+the code run inside the macro must succeed; otherwise, we assert.
 
 Note that `MUST(...)` should not be used as a replacement for `TRY(...)` in cases where error propagation is not (currently) possible.
 Instead, the `release_value_but_fixme_should_propagate_errors()` method of `ErrorOr<>` should be used to retrieve the value

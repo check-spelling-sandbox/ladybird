@@ -126,7 +126,7 @@ static bool prefix_is_in_prefix_map(FlyString const& prefix, HashMap<FlyString, 
     if (candidates_list_iterator == namespace_prefix_map.end())
         return false;
 
-    // 2. If the value of prefix occurs at least once in candidates list, return true, otherwise return false.
+    // 2. If the value of prefix occurs at least once in candidates list, return true; otherwise, return false.
     return candidates_list_iterator->value.contains_slow(prefix);
 }
 

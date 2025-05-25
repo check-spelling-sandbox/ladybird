@@ -120,10 +120,10 @@ String generate_a_pattern_string(ReadonlySpan<Part> part_list, Options const& op
         // 1. Let part be part list[index].
         auto const& part = part_list[index];
 
-        // 2. Let previous part be part list[index - 1] if index is greater than 0, otherwise let it be null.
+        // 2. Let previous part be part list[index - 1] if index is greater than 0; otherwise, let it be null.
         Part const* previous_part = index > 0 ? &part_list[index - 1] : nullptr;
 
-        // 3. Let next part be part list[index + 1] if index is less than index list’s size - 1, otherwise let it be null.
+        // 3. Let next part be part list[index + 1] if index is less than index list’s size - 1; otherwise, let it be null.
         Part const* next_part = index + 1 < part_list.size() ? &part_list[index + 1] : nullptr;
 
         // 4. If part’s type is "fixed-text" then:
@@ -156,7 +156,7 @@ String generate_a_pattern_string(ReadonlySpan<Part> part_list, Options const& op
         // 5. Let custom name be true if part’s name[0] is not an ASCII digit; otherwise false.
         bool custom_name = !is_ascii_digit(part.name.bytes()[0]);
 
-        // 6. Let needs grouping be true if at least one of the following are true, otherwise let it be false:
+        // 6. Let needs grouping be true if at least one of the following are true; otherwise, let it be false:
         //     * part’s suffix is not the empty string.
         //     * part’s prefix is not the empty string and is not options’s prefix code point.
         bool needs_grouping = !part.suffix.is_empty()

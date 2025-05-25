@@ -135,7 +135,7 @@ void TableFormattingContext::compute_cell_measures()
         auto cell_intrinsic_width_offsets = padding_left + padding_right + border_left + border_right;
         // For fixed mode, according to https://www.w3.org/TR/css-tables-3/#computing-column-measures:
         // The min-content and max-content width of cells is considered zero unless they are directly specified as a length-percentage,
-        // in which case they are resolved based on the table width (if it is definite, otherwise use 0).
+        // in which case they are resolved based on the table width (if it is definite; otherwise, use 0).
         auto width_is_specified_length_or_percentage = computed_values.width().is_length() || computed_values.width().is_percentage();
         if (!use_fixed_mode_layout() || width_is_specified_length_or_percentage) {
             cell.outer_min_width = max(min_width, min_content_width) + cell_intrinsic_width_offsets;

@@ -1155,14 +1155,14 @@ WebIDL::ExceptionOr<void> HTMLMediaElement::process_media_data(Function<void(Str
 
         // FIXME: 4. If either the media resource or the URL of the current media resource indicate a particular set of audio tracks to enable, or if
         //           the user agent has information that would facilitate the selection of specific audio tracks to improve the user's experience, then:
-        //           if this audio track is one of the ones to enable, then set enable to true, otherwise, set enable to false.
+        //           if this audio track is one of the ones to enable, then set enable to true; otherwise, set enable to false.
 
-        // 5. If enable is still unknown, then, if the media element does not yet have an enabled audio track, then set enable to true, otherwise,
+        // 5. If enable is still unknown, then, if the media element does not yet have an enabled audio track, then set enable to true; otherwise,
         //    set enable to false.
         if (enable == TriState::Unknown)
             enable = m_audio_tracks->has_enabled_track() ? TriState::False : TriState::True;
 
-        // 6. If enable is true, then enable this audio track, otherwise, do not enable this audio track.
+        // 6. If enable is true, then enable this audio track; otherwise, do not enable this audio track.
         if (enable == TriState::True)
             audio_track->set_enabled(true);
 
@@ -1187,14 +1187,14 @@ WebIDL::ExceptionOr<void> HTMLMediaElement::process_media_data(Function<void(Str
 
         // FIXME: 4. If either the media resource or the URL of the current media resource indicate a particular set of video tracks to enable, or if
         //           the user agent has information that would facilitate the selection of specific video tracks to improve the user's experience, then:
-        //           if this video track is the first such video track, then set enable to true, otherwise, set enable to false.
+        //           if this video track is the first such video track, then set enable to true; otherwise, set enable to false.
 
-        // 5. If enable is still unknown, then, if the media element does not yet have a selected video track, then set enable to true, otherwise, set
+        // 5. If enable is still unknown, then, if the media element does not yet have a selected video track, then set enable to true; otherwise, set
         //    enable to false.
         if (enable == TriState::Unknown)
             enable = m_video_tracks->selected_index() == -1 ? TriState::True : TriState::False;
 
-        // 6. If enable is true, then select this track and unselect any previously selected video tracks, otherwise, do not select this video track.
+        // 6. If enable is true, then select this track and unselect any previously selected video tracks; otherwise, do not select this video track.
         //    If other tracks are unselected, then a change event will be fired.
         if (enable == TriState::True)
             video_track->set_selected(true);

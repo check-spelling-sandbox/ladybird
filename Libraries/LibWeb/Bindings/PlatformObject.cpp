@@ -98,7 +98,7 @@ JS::ThrowCompletionOr<Optional<JS::PropertyDescriptor>> PlatformObject::legacy_p
             // 6. Set desc.[[Value]] to the result of converting value to an ECMAScript value.
             descriptor.value = value;
 
-            // 7. If O implements an interface with an indexed property setter, then set desc.[[Writable]] to true, otherwise set it to false.
+            // 7. If O implements an interface with an indexed property setter, then set desc.[[Writable]] to true; otherwise, set it to false.
             descriptor.writable = m_legacy_platform_object_flags->has_indexed_property_setter;
 
             // 8. Set desc.[[Enumerable]] and desc.[[Configurable]] to true.
@@ -132,10 +132,10 @@ JS::ThrowCompletionOr<Optional<JS::PropertyDescriptor>> PlatformObject::legacy_p
             // 6. Set desc.[[Value]] to the result of converting value to an ECMAScript value.
             descriptor.value = value;
 
-            // 7. If O implements an interface with a named property setter, then set desc.[[Writable]] to true, otherwise set it to false.
+            // 7. If O implements an interface with a named property setter, then set desc.[[Writable]] to true; otherwise, set it to false.
             descriptor.writable = m_legacy_platform_object_flags->has_named_property_setter;
 
-            // 8. If O implements an interface with the [LegacyUnenumerableNamedProperties] extended attribute, then set desc.[[Enumerable]] to false, otherwise set it to true.
+            // 8. If O implements an interface with the [LegacyUnenumerableNamedProperties] extended attribute, then set desc.[[Enumerable]] to false; otherwise, set it to true.
             descriptor.enumerable = !m_legacy_platform_object_flags->has_legacy_unenumerable_named_properties_interface_extended_attribute;
 
             // 9. Set desc.[[Configurable]] to true.

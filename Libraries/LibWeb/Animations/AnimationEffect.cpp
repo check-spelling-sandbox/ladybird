@@ -458,7 +458,7 @@ Optional<double> AnimationEffect::overall_progress() const
 
     // -> If the iteration duration is zero,
     if (m_iteration_duration.has<String>() || m_iteration_duration.get<double>() == 0.0) {
-        // If the animation effect is in the before phase, let overall progress be zero, otherwise, let it be equal to
+        // If the animation effect is in the before phase, let overall progress be zero; otherwise, let it be equal to
         // the iteration count.
         if (is_in_the_before_phase())
             overall_progress = 0.0;
@@ -517,7 +517,7 @@ AnimationDirection AnimationEffect::current_direction() const
     if (m_playback_direction == Bindings::PlaybackDirection::AlternateReverse)
         d += 1.0;
 
-    //    3. If d % 2 == 0, let the current direction be forwards, otherwise let the current direction be reverse. If d
+    //    3. If d % 2 == 0, let the current direction be forwards; otherwise, let the current direction be reverse. If d
     //       is infinity, let the current direction be forwards.
     if (isinf(d))
         return AnimationDirection::Forwards;
@@ -534,7 +534,7 @@ Optional<double> AnimationEffect::simple_iteration_progress() const
     if (!overall_progress.has_value())
         return {};
 
-    // 2. If overall progress is infinity, let the simple iteration progress be iteration start % 1.0, otherwise, let
+    // 2. If overall progress is infinity, let the simple iteration progress be iteration start % 1.0; otherwise, let
     //    the simple iteration progress be overall progress % 1.0.
     double simple_iteration_progress = isinf(overall_progress.value()) ? fmod(m_iteration_start, 1.0) : fmod(overall_progress.value(), 1.0);
 
@@ -587,7 +587,7 @@ Optional<double> AnimationEffect::transformed_progress() const
     //    1. Determine the current direction using the procedure defined in §4.9.1 Calculating the directed progress.
     auto current_direction = this->current_direction();
 
-    //    2. If the current direction is forwards, let going forwards be true, otherwise it is false.
+    //    2. If the current direction is forwards, let going forwards be true; otherwise, it is false.
     auto going_forwards = current_direction == AnimationDirection::Forwards;
 
     //    3. The before flag is set if the animation effect is in the before phase and going forwards is true; or if the animation effect

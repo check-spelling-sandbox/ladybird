@@ -569,7 +569,7 @@ Vector<MatchingRule const*> StyleComputer::collect_matching_rules(DOM::Element c
 
     for (auto const& rule_to_run : rules_to_run) {
         // NOTE: When matching an element against a rule from outside the shadow root's style scope,
-        //       we have to pass in null for the shadow host, otherwise combinator traversal will
+        //       we have to pass in null for the shadow host; otherwise, combinator traversal will
         //       be confined to the element itself (since it refuses to cross the shadow boundary).
         auto rule_root = rule_to_run.shadow_root;
         auto shadow_host_to_use = shadow_host;
@@ -1581,7 +1581,7 @@ void StyleComputer::start_needed_transitions(ComputedProperties const& previous_
                 dbgln_if(CSS_TRANSITIONS_DEBUG, "Transition step 4.3");
                 // implementations must cancel the running transition and start a new transition whose:
                 existing_transition->cancel();
-                // AD-HOC: Remove the cancelled transition, otherwise it breaks the invariant that there is only one
+                // AD-HOC: Remove the cancelled transition; otherwise, it breaks the invariant that there is only one
                 // running or completed transition for a property at once.
                 element.remove_transition(property_id);
 
@@ -1621,7 +1621,7 @@ void StyleComputer::start_needed_transitions(ComputedProperties const& previous_
                 dbgln_if(CSS_TRANSITIONS_DEBUG, "Transition step 4.4");
                 // implementations must cancel the running transition and start a new transition whose:
                 existing_transition->cancel();
-                // AD-HOC: Remove the cancelled transition, otherwise it breaks the invariant that there is only one
+                // AD-HOC: Remove the cancelled transition; otherwise, it breaks the invariant that there is only one
                 // running or completed transition for a property at once.
                 element.remove_transition(property_id);
 

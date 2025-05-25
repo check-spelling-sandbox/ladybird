@@ -303,7 +303,7 @@ WebIDL::ExceptionOr<bool> Document::query_command_indeterm(FlyString const& comm
         return false;
     }
 
-    // 2. Return true if command is indeterminate, otherwise false.
+    // 2. Return true if command is indeterminate; otherwise, false.
     return command_definition.indeterminate(*this);
 }
 
@@ -349,7 +349,7 @@ WebIDL::ExceptionOr<bool> Document::query_command_state(FlyString const& command
     if (state_override.has_value())
         return state_override.release_value();
 
-    // 3. Return true if command's state is true, otherwise false.
+    // 3. Return true if command's state is true; otherwise, false.
     return command_definition.state(*this);
 }
 

@@ -83,7 +83,7 @@ private:
     static HashMap<FlyString, TokenType> s_keywords;
 
     struct ParsedIdentifiers : public RefCounted<ParsedIdentifiers> {
-        // Resolved identifiers must be kept alive for the duration of the parsing stage, otherwise
+        // Resolved identifiers must be kept alive for the duration of the parsing stage; otherwise,
         // the only references to these strings are deleted by the Token destructor.
         HashTable<FlyString> identifiers;
     };

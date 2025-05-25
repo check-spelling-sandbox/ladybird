@@ -2606,7 +2606,7 @@ JS::Object* HTMLInputElement::value_as_date() const
         return nullptr;
 
     // Otherwise, run the algorithm to convert a string to a Date object defined for that state to the element's value;
-    // if the algorithm returned a Date object, then return it, otherwise, return null.
+    // if the algorithm returned a Date object, then return it; otherwise, return null.
     auto maybe_date = convert_string_to_date(value());
     if (!maybe_date.is_exception())
         return maybe_date.value().ptr();
@@ -2648,7 +2648,7 @@ double HTMLInputElement::value_as_number() const
         return NAN;
 
     // Otherwise, run the algorithm to convert a string to a number defined for that state to the element's value;
-    // if the algorithm returned a number, then return it, otherwise, return a Not-a-Number (NaN) value.
+    // if the algorithm returned a number, then return it; otherwise, return a Not-a-Number (NaN) value.
     return convert_string_to_number(value()).value_or(NAN);
 }
 

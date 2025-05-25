@@ -503,7 +503,7 @@ void BlockFormattingContext::resolve_used_height_if_treated_as_auto(Box const& b
         // FIXME: Handle vertical writing mode.
 
         // 1. Let margins be sum of the used values of the margin-left and margin-right properties of element
-        //    if element has a vertical writing mode, otherwise let margins be the sum of the used values of
+        //    if element has a vertical writing mode; otherwise, let margins be the sum of the used values of
         //    the margin-top and margin-bottom properties of element.
         auto margins = box_state.margin_top + box_state.margin_bottom;
 
@@ -628,7 +628,7 @@ CSSPixels BlockFormattingContext::compute_auto_height_for_block_level_element(Bo
         }
     }
 
-    // 4. zero, otherwise
+    // 4. zero; otherwise,
     return 0;
 }
 
@@ -1037,7 +1037,7 @@ void BlockFormattingContext::layout_floating_box(Box const& box, BlockContainer 
     resolve_used_height_if_treated_as_auto(box, available_space, independent_formatting_context);
 
     // First we place the box normally (to get the right y coordinate.)
-    // If we have a LineBuilder, we're in the middle of inline layout, otherwise this is block layout.
+    // If we have a LineBuilder, we're in the middle of inline layout; otherwise, this is block layout.
     if (line_builder) {
         auto y = line_builder->y_for_float_to_be_inserted_here(box);
         box_state.set_content_y(y + box_state.margin_box_top());

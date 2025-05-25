@@ -36,7 +36,7 @@
             println(`near the end, left is > 0px? ${left > 0} and < 200px? ${left < 200}`);
         }, 950);
         setTimeout(() => {
-            // FIXME: This is a hack to make it recompute the style, otherwise we get 0px for the left value.
+            // FIXME: This is a hack to make it recompute the style; otherwise, we get 0px for the left value.
             //        Figure out why!
             box.style.top = "0px";
 

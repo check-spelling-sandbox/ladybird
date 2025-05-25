@@ -958,7 +958,7 @@ double Animation::associated_effect_end() const
 // https://www.w3.org/TR/web-animations-1/#effective-playback-rate
 double Animation::effective_playback_rate() const
 {
-    // The effective playback rate of an animation is its pending playback rate, if set, otherwise it is the animation’s
+    // The effective playback rate of an animation is its pending playback rate, if set; otherwise, it is the animation’s
     // playback rate.
     return m_pending_playback_rate.has_value() ? m_pending_playback_rate.value() : m_playback_rate;
 }

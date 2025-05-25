@@ -658,14 +658,14 @@ ErrorOr<void> GB18030Decoder::process(StringView input, Function<ErrorOr<void>(u
             Optional<u32> pointer;
             first = 0x00;
 
-            // 3. Let offset be 0x40 if byte is less than 0x7F, otherwise 0x41.
+            // 3. Let offset be 0x40 if byte is less than 0x7F; otherwise, 0x41.
             u8 const offset = byte < 0x7F ? 0x40 : 0x41;
 
             // 4. If byte is in the range 0x40 to 0x7E, inclusive, or 0x80 to 0xFE, inclusive, set pointer to (lead − 0x81) × 190 + (byte − offset).
             if ((byte >= 0x40 && byte <= 0x7E) || (byte >= 0x80 && byte <= 0xFE))
                 pointer = (lead - 0x81) * 190 + (byte - offset);
 
-            // 5. Let code point be null if pointer is null, otherwise the index code point for pointer in index gb18030.
+            // 5. Let code point be null if pointer is null; otherwise, the index code point for pointer in index gb18030.
             auto code_point = pointer.has_value() ? index_gb18030_code_point(pointer.value()) : Optional<u32> {};
 
             // 6. If code point is non-null, return a code point whose value is code point.
@@ -734,7 +734,7 @@ ErrorOr<void> Big5Decoder::process(StringView input, Function<ErrorOr<void>(u32)
             Optional<u32> pointer;
             big5_lead = 0x00;
 
-            // 1. Let offset be 0x40 if byte is less than 0x7F, otherwise 0x62.
+            // 1. Let offset be 0x40 if byte is less than 0x7F; otherwise, 0x62.
             u8 const offset = byte < 0x7F ? 0x40 : 0x62;
 
             // 2. If byte is in the range 0x40 to 0x7E, inclusive, or 0xA1 to 0xFE, inclusive, set pointer to (lead − 0x81) × 157 + (byte − offset).
@@ -763,7 +763,7 @@ ErrorOr<void> Big5Decoder::process(StringView input, Function<ErrorOr<void>(u32)
                 continue;
             }
 
-            // 4. Let code point be null if pointer is null, otherwise the index code point for pointer in index Big5.
+            // 4. Let code point be null if pointer is null; otherwise, the index code point for pointer in index Big5.
             auto code_pointer = pointer.has_value() ? index_big5_code_point(pointer.value()) : Optional<u32> {};
 
             // 5. If code point is non-null, return a code point whose value is code point.
@@ -1161,10 +1161,10 @@ ErrorOr<void> ShiftJISDecoder::process(StringView input, Function<ErrorOr<void>(
             Optional<u32> pointer;
             shift_jis_lead = 0x00;
 
-            // 1. Let offset be 0x40 if byte is less than 0x7F, otherwise 0x41.
+            // 1. Let offset be 0x40 if byte is less than 0x7F; otherwise, 0x41.
             u8 const offset = byte < 0x7F ? 0x40 : 0x41;
 
-            // 2. Let lead offset be 0x81 if lead is less than 0xA0, otherwise 0xC1.
+            // 2. Let lead offset be 0x81 if lead is less than 0xA0; otherwise, 0xC1.
             u8 const lead_offset = lead < 0xA0 ? 0x81 : 0xC1;
 
             // 3. If byte is in the range 0x40 to 0x7E, inclusive, or 0x80 to 0xFC, inclusive, set pointer to (lead − lead offset) × 188 + byte − offset.
@@ -1177,7 +1177,7 @@ ErrorOr<void> ShiftJISDecoder::process(StringView input, Function<ErrorOr<void>(
                 continue;
             }
 
-            // 5. Let code point be null if pointer is null, otherwise the index code point for pointer in index jis0208.
+            // 5. Let code point be null if pointer is null; otherwise, the index code point for pointer in index jis0208.
             auto code_point = pointer.has_value() ? index_jis0208_code_point(pointer.value()) : Optional<u32> {};
 
             // 6. If code point is non-null, return a code point whose value is code point.
@@ -1250,7 +1250,7 @@ ErrorOr<void> EUCKRDecoder::process(StringView input, Function<ErrorOr<void>(u32
             if (byte >= 0x41 && byte <= 0xFE)
                 pointer = (lead - 0x81) * 190 + (byte - 0x41);
 
-            // 2. Let code point be null if pointer is null, otherwise the index code point for pointer in index EUC-KR.
+            // 2. Let code point be null if pointer is null; otherwise, the index code point for pointer in index EUC-KR.
             auto code_point = pointer.has_value() ? index_euc_kr_code_point(pointer.value()) : Optional<u32> {};
 
             // 3. If code point is non-null, return a code point whose value is code point.

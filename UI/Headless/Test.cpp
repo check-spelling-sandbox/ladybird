@@ -544,7 +544,7 @@ ErrorOr<void> run_tests(Core::AnonymousBuffer const& theme, Web::DevicePixelSize
         view.on_load_finish = [&](auto const&) { ++loaded_web_views; };
     }
 
-    // We need to wait for the initial about:blank load to complete before starting the tests, otherwise we may load the
+    // We need to wait for the initial about:blank load to complete before starting the tests; otherwise, we may load the
     // test URL before the about:blank load completes. WebContent currently cannot handle this, and will drop the test URL.
     Core::EventLoop::current().spin_until([&]() {
         return loaded_web_views == concurrency;

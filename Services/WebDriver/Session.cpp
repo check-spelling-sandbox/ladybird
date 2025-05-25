@@ -191,7 +191,7 @@ void Session::close()
         m_web_content_socket_path = {};
     }
 
-    // 5. If an error has occurred in any of the steps above, return the error, otherwise return success with data null.
+    // 5. If an error has occurred in any of the steps above, return the error; otherwise, return success with data null.
 }
 
 ErrorOr<NonnullRefPtr<Core::LocalServer>> Session::create_server(NonnullRefPtr<ServerPromise> promise)

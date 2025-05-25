@@ -405,7 +405,7 @@ ErrorOr<void> ShiftJISEncoder::process(Utf8View input, Function<ErrorOr<void>(u8
         // 9. Let lead be pointer / 188.
         auto lead = *pointer / 188;
 
-        // 10. Let lead offset be 0x81 if lead is less than 0x1F, otherwise 0xC1.
+        // 10. Let lead offset be 0x81 if lead is less than 0x1F; otherwise, 0xC1.
         auto lead_offset = 0xC1;
         if (lead < 0x1F)
             lead_offset = 0x81;
@@ -413,7 +413,7 @@ ErrorOr<void> ShiftJISEncoder::process(Utf8View input, Function<ErrorOr<void>(u8
         // 11. Let trail be pointer % 188.
         auto trail = *pointer % 188;
 
-        // 12. Let offset be 0x40 if trail is less than 0x3F, otherwise 0x41.
+        // 12. Let offset be 0x40 if trail is less than 0x3F; otherwise, 0x41.
         auto offset = 0x41;
         if (trail < 0x3F)
             offset = 0x40;
@@ -514,7 +514,7 @@ ErrorOr<void> Big5Encoder::process(Utf8View input, Function<ErrorOr<void>(u8)> o
         // 6. Let trail be pointer % 157.
         auto trail = *pointer % 157;
 
-        // 7. Let offset be 0x40 if trail is less than 0x3F, otherwise 0x62.
+        // 7. Let offset be 0x40 if trail is less than 0x3F; otherwise, 0x62.
         auto offset = 0x62;
         if (trail < 0x3f)
             offset = 0x40;
@@ -589,7 +589,7 @@ ErrorOr<void> GB18030Encoder::process(Utf8View input, Function<ErrorOr<void>(u8)
             // 2. Let trail be pointer % 190.
             auto trail = *pointer % 190;
 
-            // 3. Let offset be 0x40 if trail is less than 0x3F, otherwise 0x41.
+            // 3. Let offset be 0x40 if trail is less than 0x3F; otherwise, 0x41.
             auto offset = 0x41;
             if (trail < 0x3f)
                 offset = 0x40;

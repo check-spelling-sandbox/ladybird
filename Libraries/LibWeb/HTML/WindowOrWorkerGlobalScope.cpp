@@ -631,7 +631,7 @@ void WindowOrWorkerGlobalScopeMixin::queue_the_performance_observer_task()
             }
 
             // 8. Let callbackOptions be a PerformanceObserverCallbackOptions with its droppedEntriesCount set to
-            //    droppedEntriesCount if droppedEntriesCount is not null, otherwise unset.
+            //    droppedEntriesCount if droppedEntriesCount is not null; otherwise, unset.
             auto callback_options = JS::Object::create(realm, realm.intrinsics().object_prototype());
             if (dropped_entries_count.has_value())
                 MUST(callback_options->create_data_property("droppedEntriesCount"_fly_string, JS::Value(dropped_entries_count.value())));

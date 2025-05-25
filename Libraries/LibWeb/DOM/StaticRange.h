@@ -11,7 +11,7 @@
 
 namespace Web::DOM {
 
-// NOTE: We must use GCP instead of NNGCP here, otherwise the generated code cannot default initialize this struct.
+// NOTE: We must use GCP instead of NNGCP here; otherwise, the generated code cannot default initialize this struct.
 //       They will never be null, as they are marked as required and non-null in the dictionary.
 struct StaticRangeInit {
     GC::Ptr<Node> start_container;

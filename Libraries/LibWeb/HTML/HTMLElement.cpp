@@ -1440,7 +1440,7 @@ WebIDL::ExceptionOr<void> HTMLElement::hide_popover(FocusPreviousElement focus_p
             return {};
         }
     }
-    // 8. Let autoPopoverListContainsElement be true if document's showing auto popover list's last item is element, otherwise false.
+    // 8. Let autoPopoverListContainsElement be true if document's showing auto popover list's last item is element; otherwise, false.
     auto const& showing_popovers = document.showing_auto_popover_list();
     bool auto_popover_list_contains_element = !showing_popovers.is_empty() && showing_popovers.last() == this;
 
@@ -1651,7 +1651,7 @@ void HTMLElement::hide_popover_stack_until(Vector<GC::Ref<HTMLElement>> const& p
         // 5. Assert: repeatingHide is false or popoverList's last item is endpoint.
         VERIFY(!repeating_hide || popover_list.last() == this);
 
-        // 6. Set repeatingHide to true if popoverList contains endpoint and popoverList's last item is not endpoint, otherwise false.
+        // 6. Set repeatingHide to true if popoverList contains endpoint and popoverList's last item is not endpoint; otherwise, false.
         repeating_hide = popover_list.contains_slow(GC::Ref(*this)) && popover_list.last() != this;
 
         // 7. If repeatingHide is true, then set fireEvents to false.

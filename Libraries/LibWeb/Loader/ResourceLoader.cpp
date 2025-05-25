@@ -428,7 +428,7 @@ void ResourceLoader::load(LoadRequest& request, GC::Root<SuccessCallback> succes
         auto on_buffered_request_finished = [this, success_callback, error_callback, request, &protocol_request = *protocol_request](auto, auto const& timing_info, auto const& network_error, auto& response_headers, auto status_code, auto const& reason_phrase, ReadonlyBytes payload) mutable {
             handle_network_response_headers(request, response_headers);
 
-            // NOTE: We finish the network request *after* invoking callbacks, otherwise a nested
+            // NOTE: We finish the network request *after* invoking callbacks; otherwise, a nested
             //       event loop inside a callback may cause this function object to be destroyed
             //       while we're still calling it.
             ScopeGuard cleanup = [&] {

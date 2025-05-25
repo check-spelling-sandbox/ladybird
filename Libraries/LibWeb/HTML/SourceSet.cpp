@@ -50,7 +50,7 @@ ImageSourceAndPixelDensity SourceSet::select_an_image_source()
     }
 
     // 2. In an implementation-defined manner, choose one image source from sourceSet. Let this be selectedSource.
-    //    In our case, select the lowest density greater than 1, otherwise the greatest density available.
+    //    In our case, select the lowest density greater than 1; otherwise, the greatest density available.
     // 3. Return selectedSource and its associated pixel density.
 
     quick_sort(unique_pixel_density_sources, [](auto& a, auto& b) {

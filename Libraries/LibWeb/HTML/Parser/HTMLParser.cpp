@@ -382,7 +382,7 @@ void HTMLParser::the_end(GC::Ref<DOM::Document> document, GC::Ptr<HTMLParser> pa
         // 1. Update the current document readiness to "complete".
         document->update_readiness(HTML::DocumentReadyState::Complete);
 
-        // AD-HOC: We need to wait until the document ready state is complete before detaching the parser, otherwise the DOM complete time will not be set correctly.
+        // AD-HOC: We need to wait until the document ready state is complete before detaching the parser; otherwise, the DOM complete time will not be set correctly.
         if (parser)
             document->detach_parser({});
 

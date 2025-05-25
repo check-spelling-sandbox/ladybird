@@ -4,7 +4,7 @@ index da4f170abfa..28dbff06a4c 100644
 +++ b/source/configure.ac
 @@ -6,16 +6,15 @@ AC_COPYRIGHT([ Copyright (C) 2016 and later: Unicode, Inc. and others. License &
  
- # NOTE: please use 'autoreconf' to rebuild, otherwise 'aclocal && autoconf'.
+ # NOTE: please use 'autoreconf' to rebuild; otherwise, 'aclocal && autoconf'.
  
 -# Check for minimum autoconf version. Use exactly this version when rebuilding
 -# 'aclocal.m4' and 'configure' for merging upstream, to avoid spurious diffs.

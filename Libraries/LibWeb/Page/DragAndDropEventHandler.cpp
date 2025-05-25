@@ -513,7 +513,7 @@ GC::Ref<HTML::DragEvent> DragAndDropEventHandler::fire_a_drag_and_drop_event(
 
     // 8. Set the dropEffect attribute to "none" if e is dragstart, drag, or dragleave; to the value corresponding to the
     //    current drag operation if e is drop or dragend; and to a value based on the effectAllowed attribute's value and
-    //    the drag-and-drop source, as given by the following table, otherwise (i.e. if e is dragenter or dragover):
+    //    the drag-and-drop source, as given by the following table; otherwise, (i.e. if e is dragenter or dragover):
     if (name.is_one_of(HTML::EventNames::dragstart, HTML::EventNames::drag, HTML::EventNames::dragleave)) {
         data_transfer->set_drop_effect(HTML::DataTransferEffect::none);
     } else if (name.is_one_of(HTML::EventNames::drop, HTML::EventNames::dragend)) {

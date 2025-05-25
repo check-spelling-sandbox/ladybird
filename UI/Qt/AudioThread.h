@@ -42,7 +42,7 @@ struct AudioTask {
 
 using AudioTaskQueue = Core::SharedSingleProducerCircularQueue<AudioTask>;
 
-class AudioThread final : public QThread { // We have to use QThread, otherwise internal Qt media QTimer objects do not work.
+class AudioThread final : public QThread { // We have to use QThread; otherwise, internal Qt media QTimer objects do not work.
     Q_OBJECT
 
 public:

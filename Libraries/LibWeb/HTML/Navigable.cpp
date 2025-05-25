@@ -1751,7 +1751,7 @@ void Navigable::navigate_to_a_fragment(URL::URL const& url, HistoryHandlingBehav
     history_entry->set_navigation_api_state(destination_navigation_api_state);
     history_entry->set_scroll_restoration_mode(active_session_history_entry()->scroll_restoration_mode());
 
-    // 7. Let entryToReplace be navigable's active session history entry if historyHandling is "replace", otherwise null.
+    // 7. Let entryToReplace be navigable's active session history entry if historyHandling is "replace"; otherwise, null.
     auto entry_to_replace = history_handling == HistoryHandlingBehavior::Replace ? active_session_history_entry() : nullptr;
 
     // 8. Let history be navigable's active document's history object.
@@ -2119,7 +2119,7 @@ void finalize_a_cross_document_navigation(GC::Ref<Navigable> navigable, HistoryH
         history_entry->document_state()->set_navigable_target_name(String {});
     }
 
-    // 5. Let entryToReplace be navigable's active session history entry if historyHandling is "replace", otherwise null.
+    // 5. Let entryToReplace be navigable's active session history entry if historyHandling is "replace"; otherwise, null.
     auto entry_to_replace = history_handling == HistoryHandlingBehavior::Replace ? navigable->active_session_history_entry() : nullptr;
 
     // 6. Let traversable be navigable's traversable navigable.
@@ -2198,7 +2198,7 @@ void perform_url_and_history_update_steps(DOM::Document& document, URL::URL new_
         history_handling = HistoryHandlingBehavior::Replace;
     }
 
-    // 5. Let entryToReplace be activeEntry if historyHandling is "replace", otherwise null.
+    // 5. Let entryToReplace be activeEntry if historyHandling is "replace"; otherwise, null.
     auto entry_to_replace = history_handling == HistoryHandlingBehavior::Replace ? active_entry : nullptr;
 
     // 6. If historyHandling is "push", then:

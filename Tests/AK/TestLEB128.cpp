@@ -60,7 +60,7 @@ TEST_CASE(two_bytes)
     u8 buf[] = { 0x00, 0x1 };
     FixedMemoryStream stream { ReadonlyBytes { buf, sizeof(buf) } };
 
-    // Only test with first byte expecting more, otherwise equivalent to single byte case
+    // Only test with first byte expecting more; otherwise, equivalent to single byte case
     for (u16 i = 0x80; i <= 0xFF; ++i) {
         buf[0] = static_cast<u8>(i);
 

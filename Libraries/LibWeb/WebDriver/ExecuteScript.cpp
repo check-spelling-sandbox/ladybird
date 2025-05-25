@@ -62,7 +62,7 @@ static JS::ThrowCompletionOr<JS::Value> execute_a_function_body(HTML::BrowsingCo
     if (parser.has_errors())
         return JS::js_null();
 
-    // 5. If body begins with a directive prologue that contains a use strict directive then let strict be true, otherwise let strict be false.
+    // 5. If body begins with a directive prologue that contains a use strict directive then let strict be true; otherwise, let strict be false.
     // NOTE: Handled in step 8 below.
 
     // 6. Prepare to run a script with realm.

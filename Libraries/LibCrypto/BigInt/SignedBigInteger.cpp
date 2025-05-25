@@ -388,7 +388,7 @@ UnsignedBigInteger::CompareResult SignedBigInteger::compare_to_double(double val
     if (magnitudes_compare_result == UnsignedBigInteger::CompareResult::DoubleEqualsBigInt)
         return UnsignedBigInteger::CompareResult::DoubleEqualsBigInt;
 
-    // If we're negative, revert the comparison result, otherwise return the same result.
+    // If we're negative, revert the comparison result; otherwise, return the same result.
     if (value_is_negative) {
         if (magnitudes_compare_result == UnsignedBigInteger::CompareResult::DoubleLessThanBigInt)
             return UnsignedBigInteger::CompareResult::DoubleGreaterThanBigInt;

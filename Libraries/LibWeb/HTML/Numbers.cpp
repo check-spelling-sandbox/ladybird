@@ -49,7 +49,7 @@ Optional<StringView> parse_integer_digits(StringView string)
     size_t end_index = lexer.tell();
     auto digits = lexer.input().substring_view(start_index, end_index - start_index);
 
-    // 9. If sign is "positive", return value, otherwise return the result of subtracting value from zero.
+    // 9. If sign is "positive", return value; otherwise, return the result of subtracting value from zero.
     // NOTE: Skipped, see comment on step 6.
 
     return digits;

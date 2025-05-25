@@ -113,7 +113,7 @@ requires(IsIntegral<T> || IsFloatingPoint<T> || IsEnum<T>)
 T deserialize_primitive_type(ReadonlySpan<u32> const& serialized, size_t& position)
 {
     T value;
-    // NOTE: Make sure we always round up, otherwise Ts that are less than 32 bit will end up with a size of 0.
+    // NOTE: Make sure we always round up; otherwise, Ts that are less than 32 bit will end up with a size of 0.
     auto size = 1 + ((sizeof(value) - 1) / 4);
     VERIFY(position + size <= serialized.size());
     memcpy(&value, serialized.offset_pointer(position), sizeof(value));

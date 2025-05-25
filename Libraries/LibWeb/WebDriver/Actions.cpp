@@ -703,7 +703,7 @@ static void dispatch_pause_action()
 static String normalized_key_value(u32 key)
 {
     // The normalized key value for a raw key key is, if key appears in the table below, the string value in the second
-    // column on the row containing key's unicode code point in the first column, otherwise it is key.
+    // column on the row containing key's unicode code point in the first column; otherwise, it is key.
     // clang-format off
     switch (key) {
     case 0xE000: return "Unidentified"_string;
@@ -793,7 +793,7 @@ struct KeyCodeData {
 static KeyCodeData key_code_data(u32 code_point)
 {
     // The code for key is the value in the last column of the following table on the row with key in either the first
-    // or second column, if any such row exists, otherwise it is undefined.
+    // or second column, if any such row exists; otherwise, it is undefined.
     static auto key_code_data = to_array<KeyCodeData>({
         { '`', '~', UIEvents::KeyCode::Key_Backtick },
         { '\\', '|', UIEvents::KeyCode::Key_Backslash },
@@ -971,7 +971,7 @@ static ErrorOr<void, WebDriver::Error> dispatch_key_down_action(ActionObject::Ke
     // 2. Let key be equal to the normalized key value for raw key.
     auto key = normalized_key_value(raw_key);
 
-    // 3. If the source's pressed property contains key, let repeat be true, otherwise let repeat be false.
+    // 3. If the source's pressed property contains key, let repeat be true; otherwise, let repeat be false.
     bool repeat = source.pressed.contains(key);
 
     // 4. Let code be the code for raw key.

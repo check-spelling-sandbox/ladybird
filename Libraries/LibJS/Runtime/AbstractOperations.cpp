@@ -340,7 +340,7 @@ bool validate_and_apply_property_descriptor(Object* object, PropertyKey const& p
             // ii. If Desc has a [[Enumerable]] field, let enumerable be Desc.[[Enumerable]], else let enumerable be current.[[Enumerable]].
             auto enumerable = descriptor.enumerable.value_or(*current->enumerable);
 
-            // iii. Replace the property named P of object O with an accessor property having [[Configurable]] and [[Enumerable]] attributes set to configurable and enumerable, respectively, and each other attribute set to its corresponding value in Desc if present, otherwise to its default value.
+            // iii. Replace the property named P of object O with an accessor property having [[Configurable]] and [[Enumerable]] attributes set to configurable and enumerable, respectively, and each other attribute set to its corresponding value in Desc if present; otherwise, to its default value.
             auto accessor = Accessor::create(object->vm(), descriptor.get.value_or(nullptr), descriptor.set.value_or(nullptr));
             PropertyAttributes attributes;
             attributes.set_enumerable(enumerable);
@@ -355,7 +355,7 @@ bool validate_and_apply_property_descriptor(Object* object, PropertyKey const& p
             // ii. If Desc has a [[Enumerable]] field, let enumerable be Desc.[[Enumerable]], else let enumerable be current.[[Enumerable]].
             auto enumerable = descriptor.enumerable.value_or(*current->enumerable);
 
-            // iii. Replace the property named P of object O with a data property having [[Configurable]] and [[Enumerable]] attributes set to configurable and enumerable, respectively, and each other attribute set to its corresponding value in Desc if present, otherwise to its default value.
+            // iii. Replace the property named P of object O with a data property having [[Configurable]] and [[Enumerable]] attributes set to configurable and enumerable, respectively, and each other attribute set to its corresponding value in Desc if present; otherwise, to its default value.
             auto value = descriptor.value.value_or(js_undefined());
             PropertyAttributes attributes;
             attributes.set_writable(descriptor.writable.value_or(false));

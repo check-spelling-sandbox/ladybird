@@ -83,7 +83,7 @@ void TabBar::mouseMoveEvent(QMouseEvent* event)
 TabWidget::TabWidget(QWidget* parent)
     : QTabWidget(parent)
 {
-    // This must be called first, otherwise several of the options below have no effect.
+    // This must be called first; otherwise, several of the options below have no effect.
     setTabBar(new TabBar(this));
 
     setDocumentMode(true);

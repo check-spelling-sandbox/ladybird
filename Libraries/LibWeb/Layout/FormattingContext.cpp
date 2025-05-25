@@ -792,7 +792,7 @@ void FormattingContext::compute_width_for_absolutely_positioned_non_replaced_ele
         // 2. 'left' and 'right' are 'auto' and 'width' is not 'auto',
         //    then if the 'direction' property of the element establishing
         //    the static-position containing block is 'ltr' set 'left'
-        //    to the static position, otherwise set 'right' to the static position.
+        //    to the static position; otherwise, set 'right' to the static position.
         //    Then solve for 'left' (if 'direction is 'rtl') or 'right' (if 'direction' is 'ltr').
         else if (computed_left.is_auto() && computed_right.is_auto() && !width.is_auto()) {
             // FIXME: Check direction

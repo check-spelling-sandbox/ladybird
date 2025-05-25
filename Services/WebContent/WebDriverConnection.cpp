@@ -314,7 +314,7 @@ Messages::WebDriverClient::NavigateToResponse WebDriverConnection::navigate_to(J
 
         // 8. If url is special except for file and current URL and URL do not have the same absolute URL:
         // AD-HOC: We wait for the navigation to complete regardless of whether the current URL differs from the provided
-        //         URL. Even if they're the same, the navigation queues a tasks that we must await, otherwise subsequent
+        //         URL. Even if they're the same, the navigation queues a tasks that we must await; otherwise, subsequent
         //         endpoint invocations will attempt to operate on the wrong page.
         if (url->is_special() && url->scheme() != "file"sv) {
             // a. Try to wait for navigation to complete.
@@ -1307,7 +1307,7 @@ Messages::WebDriverClient::GetElementAttributeResponse WebDriverConnection::get_
 
         // -> If name is a boolean attribute
         if (Web::HTML::is_boolean_attribute(name)) {
-            // "true" (string) if the element hasAttribute() with name, otherwise null.
+            // "true" (string) if the element hasAttribute() with name; otherwise, null.
             if (element->has_attribute(name))
                 result = "true"_string;
         }
@@ -2234,14 +2234,14 @@ Web::WebDriver::Response WebDriverConnection::add_cookie_impl(JsonObject const& 
     cookie.value = TRY(Web::WebDriver::get_property(data, "value"sv));
 
     // Cookie path
-    //     The value if the entry exists, otherwise "/".
+    //     The value if the entry exists; otherwise, "/".
     if (data.has("path"sv))
         cookie.path = TRY(Web::WebDriver::get_property(data, "path"sv));
     else
         cookie.path = "/"_string;
 
     // Cookie domain
-    //     The value if the entry exists, otherwise the current browsing context’s active document’s URL domain.
+    //     The value if the entry exists; otherwise, the current browsing context’s active document’s URL domain.
     // NOTE: The otherwise case is handled by the CookieJar
     if (data.has("domain"sv)) {
         cookie.domain = TRY(Web::WebDriver::get_property(data, "domain"sv));
@@ -2253,24 +2253,24 @@ Web::WebDriver::Response WebDriverConnection::add_cookie_impl(JsonObject const& 
     }
 
     // Cookie secure only
-    //     The value if the entry exists, otherwise false.
+    //     The value if the entry exists; otherwise, false.
     if (data.has("secure"sv))
         cookie.secure_attribute_present = TRY(Web::WebDriver::get_property<bool>(data, "secure"sv));
 
     // Cookie HTTP only
-    //     The value if the entry exists, otherwise false.
+    //     The value if the entry exists; otherwise, false.
     if (data.has("httpOnly"sv))
         cookie.http_only_attribute_present = TRY(Web::WebDriver::get_property<bool>(data, "httpOnly"sv));
 
     // Cookie expiry time
-    //     The value if the entry exists, otherwise leave unset to indicate that this is a session cookie.
+    //     The value if the entry exists; otherwise, leave unset to indicate that this is a session cookie.
     if (data.has("expiry"sv)) {
         auto expiry = TRY(Web::WebDriver::get_property<i64>(data, "expiry"sv));
         cookie.expiry_time_from_expires_attribute = UnixDateTime::from_seconds_since_epoch(expiry);
     }
 
     // Cookie same site
-    //     The value if the entry exists, otherwise leave unset to indicate that no same site policy is defined.
+    //     The value if the entry exists; otherwise, leave unset to indicate that no same site policy is defined.
     if (data.has("sameSite"sv)) {
         auto same_site = TRY(Web::WebDriver::get_property(data, "sameSite"sv));
         cookie.same_site_attribute = Web::Cookie::same_site_from_string(same_site);
@@ -2381,7 +2381,7 @@ Messages::WebDriverClient::ReleaseActionsResponse WebDriverConnection::release_a
         // 5. Wait for an action queue token with input state.
         Web::WebDriver::wait_for_an_action_queue_token(input_state);
 
-        // FIXME: Spec issue: The token we just enqueued must be dequeued, otherwise another token enqueued by dispatching
+        // FIXME: Spec issue: The token we just enqueued must be dequeued; otherwise, another token enqueued by dispatching
         //        the undo actions below will never be at the head of the queue.
         //        https://github.com/w3c/webdriver/issues/1878
         input_state.actions_queue.take_first();

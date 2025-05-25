@@ -24,7 +24,7 @@ static WebIDL::ExceptionOr<GC::Ref<Fetch::Infrastructure::Request>> fetch_a_styl
     // 1. Let environmentSettings be sheet’s relevant settings object.
     auto& environment_settings = HTML::relevant_settings_object(sheet_or_document.visit([](auto& it) -> JS::Object& { return it; }));
 
-    // 2. Let base be sheet’s stylesheet base URL if it is not null, otherwise environmentSettings’s API base URL. [CSSOM]
+    // 2. Let base be sheet’s stylesheet base URL if it is not null; otherwise, environmentSettings’s API base URL. [CSSOM]
     // AD-HOC: We use the sheet's location if it has no base url. https://github.com/w3c/csswg-drafts/issues/12068
     auto base = sheet_or_document.visit(
         [&](GC::Ref<CSSStyleSheet> sheet) {

@@ -106,7 +106,7 @@ bool node_reference_is_known(HTML::BrowsingContext const& browsing_context, Stri
 
     // 2. Let navigable seen nodes map be session's navigable seen nodes map.
     // 3. If navigable seen nodes map contains navigable and navigable seen nodes map[navigable] contains reference,
-    //    return true, otherwise return false.
+    //    return true; otherwise, return false.
     if (auto map = navigable_seen_nodes_map.get(navigable); map.has_value())
         return map->contains(reference);
     return false;

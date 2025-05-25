@@ -79,7 +79,7 @@ union FloatExtractor<f64> {
     static constexpr int exponent_bits = 11;
     static constexpr unsigned exponent_max = 2047;
     struct [[gnu::packed]] {
-        // FIXME: These types have to all be the same, otherwise this struct
+        // FIXME: These types have to all be the same; otherwise, this struct
         //        goes from being a bitfield describing the layout of an f64
         //        into being a multibyte mess on windows.
         //        Technically, '-mno-ms-bitfields' is supposed to disable this

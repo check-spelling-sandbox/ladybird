@@ -2289,7 +2289,7 @@ bool command_style_with_css_action(DOM::Document& document, String const& value)
 // https://w3c.github.io/editing/docs/execCommand/#the-stylewithcss-command
 bool command_style_with_css_state(DOM::Document const& document)
 {
-    // True if the CSS styling flag is true, otherwise false.
+    // True if the CSS styling flag is true; otherwise, false.
     return document.css_styling_flag();
 }
 
