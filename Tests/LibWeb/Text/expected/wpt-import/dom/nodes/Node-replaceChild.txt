@@ -31,4 +31,4 @@ Pass	Replacing the document element with a DocumentFragment containing a single 
 Pass	Replacing the document element with a DocumentFragment containing a single element and comments should work.
 Pass	Replacing the document element with a single element should work.
 Pass	replaceChild should work in the presence of mutation events.
-Pass	Replacing an element with a DocumentFragment should allow a child of the DocumentFragment to be found by Id.
+Pass	Replacing an element with a DocumentFragment should allow a child of the DocumentFragment to be found by ID.
