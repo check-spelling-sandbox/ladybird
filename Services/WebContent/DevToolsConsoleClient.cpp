@@ -146,7 +146,7 @@ void DevToolsConsoleClient::send_messages(i32 start_index)
         // When the console is first created, it requests any messages that happened before then, by requesting with
         // start_index=0. If we don't have any messages at all, that is still a valid request, and we can just ignore it.
         if (start_index != 0)
-            m_client->console_peer_did_misbehave("Requested non-existent console message index");
+            m_client->console_peer_did_misbehave("Requested nonexistent console message index");
         return;
     }
 

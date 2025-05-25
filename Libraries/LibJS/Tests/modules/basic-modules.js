@@ -220,7 +220,7 @@ describe("in- and exports", () => {
         expect(result.default.toString()).toBe(/foo/.toString());
     });
 
-    test("importing a non-existent file results in a SyntaxError", () => {
+    test("importing a nonexistent file results in a SyntaxError", () => {
         expectedModuleToThrowSyntaxError("./i-do-no-exist.mjs", "Cannot find/open module");
     });
 });

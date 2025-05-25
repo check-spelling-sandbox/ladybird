@@ -671,10 +671,10 @@ Pass	Document.querySelectorAll: ID selector, chained, matching element with spec
 Pass	Document.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Document.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Document.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Document.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
-Pass	Document.querySelector: ID selector, not matching non-existent descendent: #id #none
-Pass	Document.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
-Pass	Document.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
+Pass	Document.querySelectorAll: ID selector, not matching nonexistent descendent: #id #none
+Pass	Document.querySelector: ID selector, not matching nonexistent descendent: #id #none
+Pass	Document.querySelectorAll: ID selector, not matching nonexistent ancestor: #none #id-div1
+Pass	Document.querySelector: ID selector, not matching nonexistent ancestor: #none #id-div1
 Pass	Document.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Document.querySelector: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Document.querySelectorAll: ID selector, matching id value using non-ASCII characters (1): #台北Táiběi
@@ -1107,10 +1107,10 @@ Pass	Detached Element.querySelectorAll: ID selector, chained, matching element w
 Pass	Detached Element.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Detached Element.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Detached Element.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Detached Element.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
-Pass	Detached Element.querySelector: ID selector, not matching non-existent descendent: #id #none
-Pass	Detached Element.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
-Pass	Detached Element.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
+Pass	Detached Element.querySelectorAll: ID selector, not matching nonexistent descendant: #id #none
+Pass	Detached Element.querySelector: ID selector, not matching nonexistent descendant: #id #none
+Pass	Detached Element.querySelectorAll: ID selector, not matching nonexistent ancestor: #none #id-div1
+Pass	Detached Element.querySelector: ID selector, not matching nonexistent ancestor: #none #id-div1
 Pass	Detached Element.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Detached Element.querySelector: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Detached Element.querySelectorAll: ID selector, matching id value using non-ASCII characters (1): #台北Táiběi
@@ -1541,10 +1541,10 @@ Pass	Fragment.querySelectorAll: ID selector, chained, matching element with spec
 Pass	Fragment.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	Fragment.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	Fragment.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	Fragment.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
-Pass	Fragment.querySelector: ID selector, not matching non-existent descendent: #id #none
-Pass	Fragment.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
-Pass	Fragment.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
+Pass	Fragment.querySelectorAll: ID selector, not matching nonexistent descendant: #id #none
+Pass	Fragment.querySelector: ID selector, not matching nonexistent descendant: #id #none
+Pass	Fragment.querySelectorAll: ID selector, not matching nonexistent ancestor: #none #id-div1
+Pass	Fragment.querySelector: ID selector, not matching nonexistent ancestor: #none #id-div1
 Pass	Fragment.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Fragment.querySelector: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	Fragment.querySelectorAll: ID selector, matching id value using non-ASCII characters (1): #台北Táiběi
@@ -1975,10 +1975,10 @@ Pass	In-document Element.querySelectorAll: ID selector, chained, matching elemen
 Pass	In-document Element.querySelector: ID selector, chained, matching element with specified id: #id-div1, #id-div2
 Pass	In-document Element.querySelectorAll: ID Selector, chained, with type selector: div#id-div1, div#id-div2
 Pass	In-document Element.querySelector: ID Selector, chained, with type selector: div#id-div1, div#id-div2
-Pass	In-document Element.querySelectorAll: ID selector, not matching non-existent descendent: #id #none
-Pass	In-document Element.querySelector: ID selector, not matching non-existent descendent: #id #none
-Pass	In-document Element.querySelectorAll: ID selector, not matching non-existent ancestor: #none #id-div1
-Pass	In-document Element.querySelector: ID selector, not matching non-existent ancestor: #none #id-div1
+Pass	In-document Element.querySelectorAll: ID selector, not matching nonexistent descendant: #id #none
+Pass	In-document Element.querySelector: ID selector, not matching nonexistent descendant: #id #none
+Pass	In-document Element.querySelectorAll: ID selector, not matching nonexistent ancestor: #none #id-div1
+Pass	In-document Element.querySelector: ID selector, not matching nonexistent ancestor: #none #id-div1
 Pass	In-document Element.querySelectorAll: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	In-document Element.querySelector: ID selector, matching multiple elements with duplicate id: #id-li-duplicate
 Pass	In-document Element.querySelectorAll: ID selector, matching id value using non-ASCII characters (1): #台北Táiběi

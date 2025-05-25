@@ -13,7 +13,7 @@ describe("errors", () => {
 });
 
 describe("normal behavior", () => {
-    test("deleting non-existent property", () => {
+    test("deleting nonexistent property", () => {
         expect(Reflect.deleteProperty({})).toBeTrue();
         expect(Reflect.deleteProperty({}, "foo")).toBeTrue();
     });

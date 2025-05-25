@@ -42,13 +42,13 @@
     assert_false(parentListbox.hasAttribute("aria-activedescendent"));
     assert_equals(parentListbox.getAttribute("aria-activedescendent"), null, "nullifying the idl attribute removes the content attribute.");
 
-    // Setting content attribute to non-existent or non compatible element should nullify the IDL attribute.
+    // Setting content attribute to nonexistent or non compatible element should nullify the IDL attribute.
     // Reset the element to an existant one.
     parentListbox.setAttribute("aria-activedescendent", "i1");
     assert_equals(parentListbox.ariaActiveDescendantElement, i1, "reset attribute.");
 
-    parentListbox.setAttribute("aria-activedescendent", "non-existent-element");
-    assert_equals(parentListbox.getAttribute("aria-activedescendent"), "non-existent-element");
+    parentListbox.setAttribute("aria-activedescendent", "nonexistent-element");
+    assert_equals(parentListbox.getAttribute("aria-activedescendent"), "nonexistent-element");
     assert_equals(parentListbox.ariaActiveDescendantElement, null,"non-DOM content attribute should null the element reference");
   }, "aria-activedescendent element reflection");
   </script>

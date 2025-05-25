@@ -1,4 +1,4 @@
-# Disable flake linting for this file since it flags "config" as a non-existent variable
+# Disable flake linting for this file since it flags "config" as a nonexistent variable
 # flake8: noqa
 
 import os

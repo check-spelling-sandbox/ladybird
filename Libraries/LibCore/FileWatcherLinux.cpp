@@ -58,7 +58,7 @@ static Optional<FileWatcherEvent> get_event_from_fd(int fd, HashMap<unsigned, By
 
     auto it = wd_to_path.find(event->wd);
     if (it == wd_to_path.end()) {
-        dbgln_if(FILE_WATCHER_DEBUG, "get_event_from_fd: Got an event for a non-existent wd {}?!", event->wd);
+        dbgln_if(FILE_WATCHER_DEBUG, "get_event_from_fd: Got an event for a nonexistent wd {}?!", event->wd);
         return {};
     }
 

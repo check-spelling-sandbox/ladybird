@@ -19,4 +19,4 @@ Pass	Parse and sort: z=z&=f&=t&=x
 Pass	URL parse and sort: z=z&=f&=t&=x
 Pass	Parse and sort: aí ¼U+df08&aí ½U+dca9
 Pass	URL parse and sort: aí ¼U+df08&aí ½U+dca9
-Pass	Sorting non-existent params removes ? from URL
+Pass	Sorting nonexistent params removes ? from URL

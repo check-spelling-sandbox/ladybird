@@ -120,7 +120,7 @@ public:
 
         auto it = m_inode_id_to_path.find(inode_id);
         if (it == m_inode_id_to_path.end())
-            return Error::from_string_literal("Got an event for a non-existent inode ID");
+            return Error::from_string_literal("Got an event for a nonexistent inode ID");
 
         return MonitoredPath {
             LexicalPath::join(it->value.path, lexical_path.basename()).string(),

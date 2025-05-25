@@ -61,7 +61,7 @@ describe("[[Has]] invariants", () => {
             "foo" in p;
         }).toThrowWithMessage(
             TypeError,
-            "Proxy handler's has trap violates invariant: a property cannot be reported as non-existent if it exists on the target as a non-configurable property"
+            "Proxy handler's has trap violates invariant: a property cannot be reported as nonexistent if it exists on the target as a non-configurable property"
         );
     });
 
@@ -81,7 +81,7 @@ describe("[[Has]] invariants", () => {
             "foo" in p;
         }).toThrowWithMessage(
             TypeError,
-            "Proxy handler's has trap violates invariant: a property cannot be reported as non-existent if it exists on the target and the target is non-extensible"
+            "Proxy handler's has trap violates invariant: a property cannot be reported as nonexistent if it exists on the target and the target is non-extensible"
         );
     });
 });

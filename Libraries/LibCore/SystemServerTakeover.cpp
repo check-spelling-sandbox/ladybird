@@ -51,7 +51,7 @@ ErrorOr<NonnullOwnPtr<Core::LocalSocket>> take_over_socket_from_system_server(By
     } else {
         auto it = s_overtaken_sockets.find(socket_path);
         if (it == s_overtaken_sockets.end())
-            return Error::from_string_literal("Non-existent socket requested");
+            return Error::from_string_literal("Nonexistent socket requested");
         fd = it->value;
     }
 

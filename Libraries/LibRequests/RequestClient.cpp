@@ -47,7 +47,7 @@ void RequestClient::request_started(i32 request_id, IPC::File response_file)
 {
     auto request = m_requests.get(request_id);
     if (!request.has_value()) {
-        warnln("Received response for non-existent request {}", request_id);
+        warnln("Received response for nonexistent request {}", request_id);
         return;
     }
 
@@ -82,7 +82,7 @@ void RequestClient::headers_became_available(i32 request_id, HTTP::HeaderMap res
 {
     auto request = const_cast<Request*>(m_requests.get(request_id).value_or(nullptr));
     if (!request) {
-        warnln("Received headers for non-existent request {}", request_id);
+        warnln("Received headers for nonexistent request {}", request_id);
         return;
     }
     request->did_receive_headers({}, response_headers, status_code, reason_phrase);

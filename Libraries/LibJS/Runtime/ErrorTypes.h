@@ -191,10 +191,10 @@
         "non-extensible target")                                                                                                    \
     M(ProxyGetPrototypeOfReturn, "Proxy handler's getPrototypeOf trap violates invariant: must return an object or null")           \
     M(ProxyHasExistingNonConfigurable,                                                                                              \
-        "Proxy handler's has trap violates invariant: a property cannot be reported as non-existent if it exists on the "           \
+        "Proxy handler's has trap violates invariant: a property cannot be reported as nonexistent if it exists on the "           \
         "target as a non-configurable property")                                                                                    \
     M(ProxyHasExistingNonExtensible,                                                                                                \
-        "Proxy handler's has trap violates invariant: a property cannot be reported as non-existent if it exists on the "           \
+        "Proxy handler's has trap violates invariant: a property cannot be reported as nonexistent if it exists on the "           \
         "target and the target is non-extensible")                                                                                  \
     M(ProxyIsExtensibleReturn,                                                                                                      \
         "Proxy handler's isExtensible trap violates invariant: return value must match the target's extensibility")                 \

@@ -8,7 +8,7 @@ describe("basic functionality", () => {
         expect(Object.hasOwn(o, "foo")).toBeTrue();
     });
 
-    test("returns false for non-existent own property", () => {
+    test("returns false for nonexistent own property", () => {
         const o = {};
         expect(Object.hasOwn(o, "foo")).toBeFalse();
     });
