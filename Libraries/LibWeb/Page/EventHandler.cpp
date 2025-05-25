@@ -683,7 +683,7 @@ EventResult EventHandler::handle_mousedown(CSSPixelPoint viewport_position, CSSP
 
                 // https://drafts.csswg.org/css-ui/#valdef-user-select-none
                 // Attempting to start a selection in an element where user-select is none, such as by clicking in it or starting
-                // a drag in it, must not cause a pre-existing selection to become unselected or to be affected in any way.
+                // a drag in it, must not cause a preexisting selection to become unselected or to be affected in any way.
                 auto user_select = paintable->layout_node().user_select_used_value();
                 if (user_select != CSS::UserSelect::None) {
                     auto target = document->active_input_events_target();
