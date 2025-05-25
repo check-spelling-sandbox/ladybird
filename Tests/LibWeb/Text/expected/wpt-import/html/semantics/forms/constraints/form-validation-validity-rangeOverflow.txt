@@ -46,7 +46,7 @@ Pass	[INPUT in NUMBER status] The max attribute is not set
 Pass	[INPUT in NUMBER status] Value is empty string
 Pass	[INPUT in NUMBER status] The max is greater than value(integer)
 Pass	[INPUT in NUMBER status] The max is greater than value(floating number)
-Pass	[INPUT in NUMBER status] The max equals to value
+Pass	[INPUT in NUMBER status] The max equals value
 Pass	[INPUT in NUMBER status] The value is not a number
 Pass	[INPUT in NUMBER status] The value is greater than max(integer)
 Pass	[INPUT in NUMBER status] The value is greater than max(floating number)

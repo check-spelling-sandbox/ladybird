@@ -44,7 +44,7 @@ Pass	[INPUT in NUMBER status] The min attribute is not set
 Pass	[INPUT in NUMBER status] Value is empty string
 Pass	[INPUT in NUMBER status] The min is less than value(integer)
 Pass	[INPUT in NUMBER status] The min is less than value(floating number)
-Pass	[INPUT in NUMBER status] The min equals to value
+Pass	[INPUT in NUMBER status] The min equals value
 Pass	[INPUT in NUMBER status] The value is not a number
 Pass	[INPUT in NUMBER status] The value is less than min(integer)
 Pass	[INPUT in NUMBER status] The value is less than min(floating number)

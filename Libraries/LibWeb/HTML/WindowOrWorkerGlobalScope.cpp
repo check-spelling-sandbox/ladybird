@@ -417,7 +417,7 @@ void WindowOrWorkerGlobalScopeMixin::queue_performance_entry(GC::Ref<Performance
     //    objects:
     for (auto const& registered_observer : m_registered_performance_observer_objects) {
         // 1. If regObs's options list contains a PerformanceObserverInit options whose entryTypes member includes entryType
-        //    or whose type member equals to entryType:
+        //    or whose type member equals entryType:
         auto iterator = registered_observer->options_list().find_if([&entry_type](PerformanceTimeline::PerformanceObserverInit const& entry) {
             if (entry.entry_types.has_value())
                 return entry.entry_types->contains_slow(entry_type.to_string());

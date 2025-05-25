@@ -67,7 +67,7 @@ unsigned long long PerformanceEventTiming::interaction_id()
 PerformanceTimeline::ShouldAddEntry PerformanceEventTiming::should_add_performance_event_timing() const
 {
     dbgln("FIXME: Implement PerformanceEventTiming should_add_performance_event_timing()");
-    // 1. If entry’s entryType attribute value equals to "first-input", return true.
+    // 1. If entry’s entryType attribute value equals "first-input", return true.
     if (entry_type() == "first-input")
         return PerformanceTimeline::ShouldAddEntry::Yes;
 
