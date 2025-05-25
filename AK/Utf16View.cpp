@@ -350,7 +350,7 @@ bool Utf16View::equals_ignoring_case(Utf16View const& other) const
         return false;
 
     for (size_t i = 0; i < length_in_code_units(); ++i) {
-        // FIXME: Handle non-ASCII case insensitive comparisons.
+        // FIXME: Handle non-ASCII case-insensitive comparisons.
         if (to_ascii_lowercase(m_code_units[i]) != to_ascii_lowercase(other.m_code_units[i]))
             return false;
     }

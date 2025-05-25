@@ -7,12 +7,12 @@
         for (const attributeName of attributeNames) {
             const htmlElement = document.createElement(elementName);
             htmlElement.setAttribute(attributeName, "TeSt");
-            println(`The ${attributeName} attribute is matched case insensitively in HTML documents ${htmlElement.matches(`[${attributeName}^=test]`)}`);
+            println(`The ${attributeName} attribute is matched case-insensitively in HTML documents ${htmlElement.matches(`[${attributeName}^=test]`)}`);
 
             const xmlDocument = new Document();
             const xmlElement = xmlDocument.createElementNS("http://www.w3.org/1999/xhtml", elementName);
             xmlElement.setAttribute(attributeName, "TeSt");
-            println(`The ${attributeName} attribute is matched case insensitively in XML documents ${xmlElement.matches(`[${attributeName}^=test]`)}`);
+            println(`The ${attributeName} attribute is matched case-insensitively in XML documents ${xmlElement.matches(`[${attributeName}^=test]`)}`);
         }
     });
 </script>
