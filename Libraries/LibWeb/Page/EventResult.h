@@ -9,7 +9,7 @@
 namespace Web {
 
 enum class EventResult {
-    // The event is allowed to continue. It was not cancelled by the page, nor handled explicitly by the WebContent
+    // The event is allowed to continue. It was neither cancelled by the page, nor handled explicitly by the WebContent
     // process. The UI process is allowed to further process the event.
     Accepted,
 

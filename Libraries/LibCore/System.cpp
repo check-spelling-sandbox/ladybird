@@ -719,7 +719,7 @@ ErrorOr<ByteString> readlink(StringView pathname)
 {
     // FIXME: Try again with a larger buffer.
 #if defined(AK_OS_GNU_HURD)
-    // PATH_MAX is not defined, nor is there an upper limit on path lengths.
+    // PATH_MAX is neither defined, nor is there an upper limit on path lengths.
     // Let's do this the right way.
     int fd = TRY(open(pathname, O_READ | O_NOLINK));
     auto file = TRY(File::adopt_fd(fd, File::OpenMode::Read));

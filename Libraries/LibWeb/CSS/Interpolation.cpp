@@ -240,7 +240,7 @@ ValueComparingRefPtr<CSSStyleValue const> interpolate_property(DOM::Element& ele
 bool property_values_are_transitionable(PropertyID property_id, CSSStyleValue const& old_value, CSSStyleValue const& new_value, TransitionBehavior transition_behavior)
 {
     // When comparing the before-change style and after-change style for a given property,
-    // the property values are transitionable if they have an animation type that is neither not animatable nor discrete.
+    // the property values are transitionable if they have an animation type that is neither animatable nor discrete.
 
     auto animation_type = animation_type_from_longhand_property(property_id);
     if (animation_type == AnimationType::None || (transition_behavior != TransitionBehavior::AllowDiscrete && animation_type == AnimationType::Discrete))

@@ -260,7 +260,7 @@ void BaseAudioContext::queue_a_decoding_operation(GC::Ref<JS::PromiseCapability>
     auto& realm = this->realm();
 
     // FIXME: When queuing a decoding operation to be performed on another thread, the following steps
-    //        MUST happen on a thread that is not the control thread nor the rendering thread, called
+    //        MUST happen on a thread that is neither the control thread nor the rendering thread, called
     //        the decoding thread.
 
     // 1. Let can decode be a boolean flag, initially set to true.
