@@ -256,7 +256,7 @@ static void socket_notifier(CFSocketRef socket, CFSocketCallBackType notificatio
 {
     auto& notifier = ThreadData::the().notifier_by_fd(CFSocketGetNative(socket));
 
-    // This socket callback is not quite re-entrant. If Core::Notifier::dispatch_event blocks, e.g.
+    // This socket callback is not quite reentrant. If Core::Notifier::dispatch_event blocks, e.g.
     // to wait upon a Core::Promise, this socket will not receive any more notifications until that
     // promise is resolved or rejected. So we mark this socket as able to receive more notifications
     // before dispatching the event, which allows it to be triggered again.

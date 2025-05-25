@@ -289,7 +289,7 @@ void HTMLParser::the_end(GC::Ref<DOM::Document> document, GC::Ptr<HTMLParser> pa
 
     // The entirety of "the end" should be a no-op for HTML fragment parsers, because:
     // - the temporary document is not accessible, making the DOMContentLoaded event and "ready for post load tasks" do
-    //   nothing, making the parser not re-entrant from document.{open,write,close} and document.readyState inaccessible
+    //   nothing, making the parser not reentrant from document.{open,write,close} and document.readyState inaccessible
     // - there is no Window associated with it and no associated browsing context with the temporary document (meaning
     //   the Window load event is skipped and making the load timing info inaccessible)
     // - scripts are not able to be prepared, meaning the script queues are empty.

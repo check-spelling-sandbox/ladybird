@@ -161,7 +161,7 @@ void SVGScriptElement::process_the_script_element()
     m_already_processed = true;
 
     // 4. If the script content is inline, or if it is external and was fetched successfully, then the
-    //    script is executed. Note that at this point, these steps may be re-entrant if the execution
+    //    script is executed. Note that at this point, these steps may be reentrant if the execution
     //    of the script results in further 'script' elements being inserted into the document.
 
     // https://html.spec.whatwg.org/multipage/document-lifecycle.html#read-html
