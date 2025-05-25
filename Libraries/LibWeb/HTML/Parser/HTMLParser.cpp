@@ -772,8 +772,8 @@ HTMLParser::AdjustedInsertionLocation HTMLParser::find_appropriate_place_for_ins
 // https://html.spec.whatwg.org/multipage/parsing.html#create-an-element-for-the-token
 GC::Ref<DOM::Element> HTMLParser::create_element_for(HTMLToken const& token, Optional<FlyString> const& namespace_, DOM::Node& intended_parent)
 {
-    // FIXME: 1. If the active speculative HTML parser is not null, then return the result of creating a speculative mock element given given namespace, the tag name of the given token, and the attributes of the given token.
-    // FIXME: 2. Otherwise, optionally create a speculative mock element given given namespace, the tag name of the given token, and the attributes of the given token.
+    // FIXME: 1. If the active speculative HTML parser is not null, then return the result of creating a speculative mock element given namespace, the tag name of the given token, and the attributes of the given token.
+    // FIXME: 2. Otherwise, optionally create a speculative mock element given namespace, the tag name of the given token, and the attributes of the given token.
 
     // 3. Let document be intended parent's node document.
     GC::Ref<DOM::Document> document = intended_parent.document();
