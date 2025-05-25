@@ -49,7 +49,7 @@ Optional<AbortSignal::AbortAlgorithmID> AbortSignal::add_abort_algorithm(Functio
 // https://dom.spec.whatwg.org/#abortsignal-remove
 void AbortSignal::remove_abort_algorithm(AbortAlgorithmID id)
 {
-    // To remove an algorithm algorithm from an AbortSignal signal, remove algorithm from signal’s abort algorithms.
+    // To remove an algorithm from an AbortSignal signal, remove algorithm from signal’s abort algorithms.
     m_abort_algorithms.remove(id);
 }
 
