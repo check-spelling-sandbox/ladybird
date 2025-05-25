@@ -751,7 +751,7 @@ void DisplayListPlayerSkia::draw_line(DrawLine const& command)
         paint.setStrokeCap(SkPaint::Cap::kRound_Cap);
 
         // NOTE: As Skia doesn't render a dot exactly at the end of a line, we need
-        //       to extend it by less then an interval.
+        //       to extend it by less than an interval.
         auto direction = to - from;
         direction.normalize();
         to += direction * (interval / 2.0f);
