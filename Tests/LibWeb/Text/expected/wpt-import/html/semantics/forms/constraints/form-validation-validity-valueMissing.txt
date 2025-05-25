@@ -76,8 +76,8 @@ Pass	[INPUT in RADIO status] The checked attribute is false and the name attribu
 Pass	[INPUT in FILE status] The required attribute is not set
 Pass	[INPUT in FILE status] The Files attribute is null
 Pass	[select]  The required attribute is not set
-Pass	[select]  Selected the option with value equals to 1
-Pass	[select]  Selected the option with value equals to empty
+Pass	[select]  Selected the option with value equal to 1
+Pass	[select]  Selected the option with value equal to empty
 Pass	[textarea]  The required attribute is not set
 Pass	[textarea]  The value is not empty
 Fail	[textarea]  The value is empty
