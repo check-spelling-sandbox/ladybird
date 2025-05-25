@@ -112,7 +112,7 @@ bool Type::is_distinguishable_from(IDL::Interface const& interface, IDL::Type co
     //    and then taking its inner type inner type if the result is a nullable type. If these two innermost types
     //    appear or are in categories appearing in the following table and there is a “●” mark in the corresponding
     //    entry or there is a letter in the corresponding entry and the designated additional requirement below the
-    //    table is satisfied, then return true. Otherwise return false.
+    //    table is satisfied, then return true. Otherwise, return false.
     auto const& this_innermost_type = innermost_type();
     auto const& other_innermost_type = other.innermost_type();
 

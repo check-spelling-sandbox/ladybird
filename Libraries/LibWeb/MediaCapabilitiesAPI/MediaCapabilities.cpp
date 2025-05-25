@@ -197,12 +197,12 @@ MediaCapabilitiesDecodingInfo create_a_media_capabilities_decoding_info(MediaDec
     }
 
     // 5. If the user agent is able to decode the media represented by configuration at the indicated framerate without
-    //    dropping frames, set smooth to true. Otherwise set it to false.
+    //    dropping frames, set smooth to true. Otherwise, set it to false.
     // FIXME: Actually check this.
     info.smooth = false;
 
     // 6. If the user agent is able to decode the media represented by configuration in a power efficient manner, set
-    //    powerEfficient to true. Otherwise set it to false.
+    //    powerEfficient to true. Otherwise, set it to false.
     // FIXME: Actually check this... somehow.
     info.power_efficient = false;
 

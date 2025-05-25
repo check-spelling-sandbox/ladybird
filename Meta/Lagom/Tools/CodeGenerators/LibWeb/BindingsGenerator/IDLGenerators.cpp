@@ -2679,7 +2679,7 @@ static void generate_html_constructor(SourceGenerator& generator, IDL::Construct
     constructor_generator.append(R"~~~(
     }
 
-    // 6. Otherwise (i.e., if definition is for a customized built-in element):
+    // 6. Otherwise, (i.e., if definition is for a customized built-in element):
     else {
         // 1. Let valid local names be the list of local names for elements defined in this specification or in other applicable specifications that use the active function object as their element interface.
         static auto valid_local_names = MUST(DOM::valid_local_names_for_given_html_element_interface("@name@"sv));

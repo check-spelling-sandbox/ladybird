@@ -86,7 +86,7 @@ static RegularExpressionAndNameList generate_a_regular_expression_and_name_list(
         if (part.type == Part::Type::SegmentWildcard) {
             regexp_value = generate_a_segment_wildcard_regexp(options);
         }
-        // 6. Otherwise if part’s type is "full-wildcard", then set regexp value to full wildcard regexp value.
+        // 6. Otherwise, if part’s type is "full-wildcard", then set regexp value to full wildcard regexp value.
         else if (part.type == Part::Type::FullWildcard) {
             regexp_value = MUST(String::from_utf8(full_wildcard_regexp_value));
         }
@@ -236,7 +236,7 @@ PatternErrorOr<Component> Component::compile(Utf8View const& input, PatternParse
         flags |= regex::ECMAScriptFlags::UnicodeSets;
         flags |= regex::ECMAScriptFlags::Insensitive;
     }
-    // 5. Otherwise set flags to "v"
+    // 5. Otherwise, set flags to "v"
     else {
         flags |= regex::ECMAScriptFlags::UnicodeSets;
     }

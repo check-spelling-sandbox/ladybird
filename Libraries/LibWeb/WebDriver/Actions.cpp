@@ -1181,9 +1181,9 @@ static ErrorOr<void, WebDriver::Error> perform_pointer_move(ActionObject::Pointe
     // FIXME: 1. Let time delta be the time since the beginning of the current tick, measured in milliseconds on a monotonic clock.
     // FIXME: 2. Let duration ratio be the ratio of time delta and duration, if duration is greater than 0, or 1 otherwise.
     // FIXME: 3. If duration ratio is 1, or close enough to 1 that the implementation will not further subdivide the move action,
-    //           let last be true. Otherwise let last be false.
+    //           let last be true. Otherwise, let last be false.
     // FIXME: 4. If last is true, let x equal target x and y equal target y.
-    // FIXME: 5. Otherwise let x equal an approximation to duration ratio × (target x - start x) + start x, and y equal an
+    // FIXME: 5. Otherwise, let x equal an approximation to duration ratio × (target x - start x) + start x, and y equal an
     //           approximation to duration ratio × (target y - start y) + start y.
 
     // 6. Let current x equal the x property of input state.

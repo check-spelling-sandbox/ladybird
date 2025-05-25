@@ -66,7 +66,7 @@ ErrorOr<String> convert_line_endings_to_native(StringView string)
             if (!lexer.is_eof() && lexer.peek() == '\n')
                 lexer.ignore(1);
         }
-        // 2. Otherwise if the code point at position within s equals U+000A LF, advance position by 1 and append native line ending to result.
+        // 2. Otherwise, if the code point at position within s equals U+000A LF, advance position by 1 and append native line ending to result.
         else if (lexer.peek() == '\n') {
             lexer.ignore(1);
             TRY(result.try_append(native_line_ending));

@@ -1284,7 +1284,7 @@ GC::Ref<CSS::CSSStyleDeclaration> Window::get_computed_style(DOM::Element& eleme
         // FIXME: We can't pass a null element to CSSStyleProperties::create_resolved_style()
         if (!type.has_value()) {
         }
-        // 3. Otherwise let obj be the given pseudo-element of elt.
+        // 3. Otherwise, let obj be the given pseudo-element of elt.
         else {
             // TODO: Keep the function arguments of the pseudo-element if there are any.
             object = { element, type.value().type() };
@@ -1845,7 +1845,7 @@ JS::Value Window::named_item_value(FlyString const& name) const
     if (objects.elements.size() == 1)
         return objects.elements[0];
 
-    // 4. Otherwise return an HTMLCollection rooted at window's associated Document,
+    // 4. Otherwise, return an HTMLCollection rooted at window's associated Document,
     //    whose filter matches only named objects of window with the name name. (By definition, these will all be elements.)
     return DOM::HTMLCollection::create(mutable_this.associated_document(), DOM::HTMLCollection::Scope::Descendants, [name](auto& element) -> bool {
         if ((is<HTMLEmbedElement>(element) || is<HTMLFormElement>(element) || is<HTMLImageElement>(element) || is<HTMLObjectElement>(element))

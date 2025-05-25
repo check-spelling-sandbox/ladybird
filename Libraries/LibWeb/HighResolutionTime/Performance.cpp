@@ -325,7 +325,7 @@ void Performance::clear_measures(Optional<String> measure_name)
         return;
     }
 
-    // 2. Otherwise remove all PerformanceMeasure objects listed in the performance entry buffer whose name is measureName.
+    // 2. Otherwise, remove all PerformanceMeasure objects listed in the performance entry buffer whose name is measureName.
     window_or_worker().remove_entries_from_performance_entry_buffer({}, PerformanceTimeline::EntryTypes::measure, measure_name.value());
 
     // 3. Return undefined.

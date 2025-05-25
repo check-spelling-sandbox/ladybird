@@ -2642,7 +2642,7 @@ Web::WebDriver::PromptHandlerConfiguration WebDriverConnection::get_the_prompt_h
     static Web::WebDriver::UserPromptHandler::ValueType empty_user_prompt_handler;
     auto const& user_prompt_handler = Web::WebDriver::user_prompt_handler();
 
-    // 1. If the user prompt handler is null, let handlers be an empty map. Otherwise let handlers be user prompt handler.
+    // 1. If the user prompt handler is null, let handlers be an empty map. Otherwise, let handlers be user prompt handler.
     auto const& handlers = user_prompt_handler.has_value() ? *user_prompt_handler : empty_user_prompt_handler;
 
     // 2. If handlers contains type return handlers[type].

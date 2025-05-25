@@ -100,7 +100,7 @@ unsigned Selection::focus_offset() const
 bool Selection::is_collapsed() const
 {
     // The attribute must return true if and only if the anchor and focus are the same
-    // (including if both are null). Otherwise it must return false.
+    // (including if both are null). Otherwise, it must return false.
     if (!m_range)
         return true;
     return const_cast<Selection*>(this)->anchor_node() == const_cast<Selection*>(this)->focus_node()

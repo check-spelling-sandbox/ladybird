@@ -119,7 +119,7 @@ ErrorOr<Vector<Hunk>> from_text(StringView old_text, StringView new_text, size_t
         } else {
             if (!cur_hunk.lines.is_empty()) {
                 // We're currently in the middle of generating a hunk and have found a context line. If we have already added
-                // the number of context lines that were requested then we have already finished with this hunk. Otherwise we
+                // the number of context lines that were requested then we have already finished with this hunk. Otherwise, we
                 // need to continue looking through the hunk until we have located the requested number of context lines in a
                 // row.
                 if (current_context == context) {

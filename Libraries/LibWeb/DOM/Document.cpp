@@ -5770,7 +5770,7 @@ JS::Value Document::named_item_value(FlyString const& name) const
     if (elements.size() == 1)
         return elements.first();
 
-    // 4. Otherwise return an HTMLCollection rooted at the Document node, whose filter matches only named elements with the name name.
+    // 4. Otherwise, return an HTMLCollection rooted at the Document node, whose filter matches only named elements with the name name.
     return HTMLCollection::create(*const_cast<Document*>(this), HTMLCollection::Scope::Descendants, [name](auto& element) {
         return is_named_element_with_name(element, name);
     });

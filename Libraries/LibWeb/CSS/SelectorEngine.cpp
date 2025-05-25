@@ -37,7 +37,7 @@ static inline bool matches(CSS::Selector const& selector, int component_list_ind
 
 // Upward traversal for descendent (' ') and immediate child combinator ('>')
 // If we're starting inside a shadow tree, traversal stops at the nearest shadow host.
-// This is an implementation detail of the :host selector. Otherwise we would just traverse up to the document root.
+// This is an implementation detail of the :host selector. Otherwise, we would just traverse up to the document root.
 static inline GC::Ptr<DOM::Node const> traverse_up(GC::Ptr<DOM::Node const> node, GC::Ptr<DOM::Element const> shadow_host)
 {
     if (!node)

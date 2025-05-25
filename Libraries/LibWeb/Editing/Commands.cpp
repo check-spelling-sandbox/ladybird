@@ -1895,7 +1895,7 @@ static bool justify_indeterminate(DOM::Document const& document, JustifyAlignmen
     range = block_extend_a_range(*range);
 
     // Return true if among visible editable nodes that are contained in the result and have no children, at least one
-    // has alignment value "[alignment]" and at least one does not. Otherwise return false.
+    // has alignment value "[alignment]" and at least one does not. Otherwise, return false.
     Vector<GC::Ref<DOM::Node>> matching_nodes;
     range->for_each_contained([&matching_nodes](GC::Ref<DOM::Node> node) {
         if (is_visible_node(node) && node->is_editable() && !node->has_children())
@@ -1921,7 +1921,7 @@ static bool justify_state(DOM::Document const& document, JustifyAlignment alignm
     range = block_extend_a_range(*range);
 
     // Return true if there is at least one visible editable node that is contained in the result and has no children,
-    // and all such nodes have alignment value "[alignment]". Otherwise return false.
+    // and all such nodes have alignment value "[alignment]". Otherwise, return false.
     Vector<GC::Ref<DOM::Node>> matching_nodes;
     range->for_each_contained([&matching_nodes](GC::Ref<DOM::Node> node) {
         if (is_visible_node(node) && node->is_editable() && !node->has_children())
@@ -2342,7 +2342,7 @@ bool command_subscript_indeterminate(DOM::Document const& document)
         return true;
 
     // or if there is some formattable node effectively contained in the active range with effective command value
-    // "mixed". Otherwise false.
+    // "mixed". Otherwise, false.
     return has_mixed_value;
 }
 
@@ -2395,7 +2395,7 @@ bool command_superscript_indeterminate(DOM::Document const& document)
         return true;
 
     // or if there is some formattable node effectively contained in the active range with effective command value
-    // "mixed". Otherwise false.
+    // "mixed". Otherwise, false.
     return has_mixed_value;
 }
 

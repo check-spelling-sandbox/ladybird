@@ -104,7 +104,7 @@ WebIDL::ExceptionOr<GC::Ref<ImageData>> ImageData::initialize(JS::Realm& realm, 
         if (size.has_overflow())
             return WebIDL::IndexSizeError::create(realm, "The specified image size could not created"_string);
 
-        // 2. Otherwise (source was not given), initialize the data attribute of imageData to a new Uint8ClampedArray object.
+        // 2. Otherwise, (source was not given), initialize the data attribute of imageData to a new Uint8ClampedArray object.
         //    The Uint8ClampedArray object must use a new Canvas Pixel ArrayBuffer for its storage, and must have a zero start
         //    offset and a length equal to the length of its storage, in bytes. The Canvas Pixel ArrayBuffer must have the
         //    correct size to store rows × pixelsPerRow pixels.

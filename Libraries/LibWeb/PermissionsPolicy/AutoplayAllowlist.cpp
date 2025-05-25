@@ -35,7 +35,7 @@ Decision AutoplayAllowlist::is_allowed_for_origin(DOM::Document const& document,
     // 3. If feature is present in policy’s declared policy:
     if (m_allowlist.has_value()) {
         // 1. If the allowlist for feature in policy’s declared policy matches origin, then return "Enabled".
-        // 2. Otherwise return "Disabled".
+        // 2. Otherwise, return "Disabled".
         return m_allowlist->visit(
             [](Global) {
                 return Decision::Enabled;

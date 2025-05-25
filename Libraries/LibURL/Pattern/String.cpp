@@ -238,7 +238,7 @@ String generate_a_pattern_string(ReadonlySpan<Part> part_list, Options const& op
             // 3. Append ")" to the end of result.
             result.append(')');
         }
-        // 14. Otherwise if part’s type is "segment-wildcard" and custom name is false:
+        // 14. Otherwise, if part’s type is "segment-wildcard" and custom name is false:
         else if (part.type == Part::Type::SegmentWildcard && !custom_name) {
             // 1. Append "(" to the end of result.
             result.append('(');
@@ -249,7 +249,7 @@ String generate_a_pattern_string(ReadonlySpan<Part> part_list, Options const& op
             // 3. Append ")" to the end of result.
             result.append(')');
         }
-        // 15. Otherwise if part’s type is "full-wildcard":
+        // 15. Otherwise, if part’s type is "full-wildcard":
         else if (part.type == Part::Type::FullWildcard) {
             // 1. If custom name is false and one of the following is true:
             //     * previous part is null; or

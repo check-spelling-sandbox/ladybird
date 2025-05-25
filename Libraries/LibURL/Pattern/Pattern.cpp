@@ -145,7 +145,7 @@ PatternErrorOr<Pattern> Pattern::create(Input const& input, Optional<String> con
         //    canonicalize a pathname, and pathCompileOptions.
         url_pattern.m_pathname_component = TRY(Component::compile(processed_init.pathname->code_points(), canonicalize_a_pathname, path_compile_options));
     }
-    // 16. Otherwise set urlPattern’s pathname component to the result of compiling a component given
+    // 16. Otherwise, set urlPattern’s pathname component to the result of compiling a component given
     //     processedInit["pathname"], canonicalize an opaque pathname, and compileOptions.
     else {
         url_pattern.m_pathname_component = TRY(Component::compile(processed_init.pathname->code_points(), canonicalize_an_opaque_pathname, compile_options));

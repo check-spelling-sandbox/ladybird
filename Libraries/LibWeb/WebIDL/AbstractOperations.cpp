@@ -449,7 +449,7 @@ JS::ThrowCompletionOr<T> convert_to_int(JS::VM& vm, JS::Value value, EnforceRang
         if constexpr (IsUnsigned<T>) {
             lower_bound = 0;
         }
-        // 3. Otherwise let lowerBound be −2^(53) + 1.
+        // 3. Otherwise, let lowerBound be −2^(53) + 1.
         else {
             lower_bound = -JS::MAX_ARRAY_LIKE_INDEX;
         }

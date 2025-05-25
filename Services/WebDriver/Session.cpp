@@ -40,7 +40,7 @@ ErrorOr<NonnullRefPtr<Session>> Session::create(NonnullRefPtr<Client> client, Js
     // -> proxy is a proxy configuration object
     if (auto proxy = capabilities.get_object("proxy"sv); proxy.has_value()) {
         // Take implementation-defined steps to set the user agent proxy using the extracted proxy configuration. If the
-        // defined proxy cannot be configured return error with error code session not created. Otherwise set the has
+        // defined proxy cannot be configured return error with error code session not created. Otherwise, set the has
         // proxy configuration flag to true.
         return Error::from_string_literal("Proxy configuration is not yet supported");
     }

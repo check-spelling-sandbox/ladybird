@@ -335,7 +335,7 @@ WebIDL::ExceptionOr<void> CanvasPath::round_rect(double x, double y, double w, d
             if (radius_as_double < 0)
                 return WebIDL::SimpleException { WebIDL::SimpleExceptionType::RangeError, "roundRect: Radius can't be negative"sv };
 
-            // 5.2.3. Otherwise append «[ "x" → radius, "y" → radius ]» to normalizedRadii.
+            // 5.2.3. Otherwise, append «[ "x" → radius, "y" → radius ]» to normalizedRadii.
             normalized_radii.append(Geometry::DOMPointInit { radius_as_double, radius_as_double });
         }
     }

@@ -3342,7 +3342,7 @@ Vector<RecordedNodeValue> record_the_values_of_nodes(Vector<GC::Ref<DOM::Node>> 
                 ancestor = *ancestor->parent();
 
             // 4. If ancestor is an Element, add (node, command, ancestor's specified command value for
-            //    command) to values. Otherwise add (node, command, null) to values.
+            //    command) to values. Otherwise, add (node, command, null) to values.
             if (is<DOM::Element>(*ancestor))
                 values.empend(*node, command, specified_command_value(static_cast<DOM::Element&>(*ancestor), command));
             else

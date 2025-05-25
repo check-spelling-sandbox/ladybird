@@ -260,7 +260,7 @@ PatternErrorOr<Vector<Token>> Tokenizer::tokenize(Utf8View const& input, Tokeniz
                         break;
                     }
                 }
-                // 6. Otherwise if tokenizer’s code point is U+0028 (():
+                // 6. Otherwise, if tokenizer’s code point is U+0028 (():
                 else if (tokenizer.m_code_point == '(') {
                     // 1. Increment depth by 1.
                     ++depth;
@@ -433,7 +433,7 @@ bool Tokenizer::is_a_valid_name_code_point(u32 code_point, bool first)
     if (first)
         return code_point == '$' || code_point == '_' || Unicode::code_point_has_identifier_start_property(code_point);
 
-    // 2. Otherwise return the result of checking if code point is contained in the IdentifierPart set of code points.
+    // 2. Otherwise, return the result of checking if code point is contained in the IdentifierPart set of code points.
     return code_point == '$' || Unicode::code_point_has_identifier_continue_property(code_point);
 }
 

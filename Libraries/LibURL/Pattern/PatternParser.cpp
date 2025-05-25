@@ -105,11 +105,11 @@ PatternErrorOr<void> PatternParser::add_a_part(String const& prefix, Optional<To
         if (modifier_token->value == "?"sv) {
             modifier = Part::Modifier::Optional;
         }
-        // 2. Otherwise if modifier token’s value is "*" then set modifier to "zero-or-more".
+        // 2. Otherwise, if modifier token’s value is "*" then set modifier to "zero-or-more".
         else if (modifier_token->value == "*"sv) {
             modifier = Part::Modifier::ZeroOrMore;
         }
-        // 3. Otherwise if modifier token’s value is "+" then set modifier to "one-or-more".
+        // 3. Otherwise, if modifier token’s value is "+" then set modifier to "one-or-more".
         else if (modifier_token->value == "+"sv) {
             modifier = Part::Modifier::OneOrMore;
         }
@@ -159,11 +159,11 @@ PatternErrorOr<void> PatternParser::add_a_part(String const& prefix, Optional<To
     if (!regexp_or_wildcard_token.has_value()) {
         regexp_value = m_segment_wildcard_regexp;
     }
-    // 8. Otherwise if regexp or wildcard token’s type is "asterisk", then set regexp value to the full wildcard regexp value.
+    // 8. Otherwise, if regexp or wildcard token’s type is "asterisk", then set regexp value to the full wildcard regexp value.
     else if (regexp_or_wildcard_token->type == Token::Type::Asterisk) {
         regexp_value = MUST(String::from_utf8(full_wildcard_regexp_value));
     }
-    // 9. Otherwise set regexp value to regexp or wildcard token’s value.
+    // 9. Otherwise, set regexp value to regexp or wildcard token’s value.
     else {
         regexp_value = regexp_or_wildcard_token->value;
     }
@@ -181,7 +181,7 @@ PatternErrorOr<void> PatternParser::add_a_part(String const& prefix, Optional<To
         // 2. Set regexp value to the empty string.
         regexp_value = String {};
     }
-    // 12. Otherwise if regexp value is the full wildcard regexp value:
+    // 12. Otherwise, if regexp value is the full wildcard regexp value:
     else if (regexp_value == full_wildcard_regexp_value) {
         // 1. Set type to "full-wildcard".
         type = Part::Type::FullWildcard;
@@ -198,7 +198,7 @@ PatternErrorOr<void> PatternParser::add_a_part(String const& prefix, Optional<To
     if (name_token.has_value()) {
         name = name_token->value;
     }
-    // 15. Otherwise if regexp or wildcard token is not null:
+    // 15. Otherwise, if regexp or wildcard token is not null:
     else if (regexp_or_wildcard_token.has_value()) {
         // 1. Set name to parser’s next numeric name, serialized.
         name = String::number(m_next_numeric_name);

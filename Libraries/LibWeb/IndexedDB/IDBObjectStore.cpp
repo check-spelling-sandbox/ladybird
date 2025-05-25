@@ -317,7 +317,7 @@ WebIDL::ExceptionOr<GC::Ref<IDBRequest>> IDBObjectStore::add_or_put(GC::Ref<IDBO
                 return WebIDL::DataError::create(realm, key_value->value_as_string());
         }
 
-        // 4. Otherwise (kpk is failure):
+        // 4. Otherwise, (kpk is failure):
         else {
             // 1. If store does not have a key generator, throw a "DataError" DOMException.
             if (!store.uses_a_key_generator())

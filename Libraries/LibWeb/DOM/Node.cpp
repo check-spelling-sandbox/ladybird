@@ -2918,7 +2918,7 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
         if (is<HTML::HTMLInputElement>(*element)) {
             auto& input = (const_cast<HTML::HTMLInputElement&>(static_cast<HTML::HTMLInputElement const&>(*element)));
             // https://w3c.github.io/html-aam/#input-type-button-input-type-submit-and-input-type-reset-accessible-name-computation
-            // 3. Otherwise use the value attribute.
+            // 3. Otherwise, use the value attribute.
             if (input.type_state() == HTML::HTMLInputElement::TypeAttributeState::Button
                 || input.type_state() == HTML::HTMLInputElement::TypeAttributeState::SubmitButton
                 || input.type_state() == HTML::HTMLInputElement::TypeAttributeState::ResetButton)
@@ -2926,7 +2926,7 @@ ErrorOr<String> Node::name_or_description(NameOrDescription target, Document con
                     return value.release_value();
 
             // https://w3c.github.io/html-aam/#input-type-image-accessible-name-computation
-            // 3. Otherwise use alt attribute if present and its value is not the empty string.
+            // 3. Otherwise, use alt attribute if present and its value is not the empty string.
             if (input.type_state() == HTML::HTMLInputElement::TypeAttributeState::ImageButton)
                 if (auto alt = element->get_attribute(HTML::AttributeNames::alt); alt.has_value())
                     return alt.release_value();

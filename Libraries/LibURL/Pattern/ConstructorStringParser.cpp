@@ -84,7 +84,7 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
                 if (parser.is_a_hash_prefix()) {
                     parser.change_state(State::Hash, 1);
                 }
-                // 3. Otherwise if the result of running is a search prefix given parser is true:
+                // 3. Otherwise, if the result of running is a search prefix given parser is true:
                 else if (parser.is_a_search_prefix()) {
                     // 1. Run change state given parser, "search" and 1.
                     parser.change_state(State::Search, 1);
@@ -199,7 +199,7 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
                     // 2. Set skip to 3.
                     skip = 3;
                 }
-                // 5. Otherwise if parser’s protocol matches a special scheme flag is true, then set next state to "authority".
+                // 5. Otherwise, if parser’s protocol matches a special scheme flag is true, then set next state to "authority".
                 else if (parser.m_protocol_matches_a_special_scheme) {
                     next_state = State::Authority;
                 }
@@ -216,7 +216,7 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
             if (parser.is_an_identity_terminator()) {
                 parser.rewind_and_set_state(State::Username);
             }
-            // 2. Otherwise if any of the following are true:
+            // 2. Otherwise, if any of the following are true:
             //     * the result of running is a pathname start given parser;
             //     * the result of running is a search prefix given parser; or
             //     * the result of running is a hash prefix given parser,
@@ -235,7 +235,7 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
             if (parser.is_a_password_prefix()) {
                 parser.change_state(State::Password, 1);
             }
-            // 2. Otherwise if the result of running is an identity terminator given parser is true, then run change
+            // 2. Otherwise, if the result of running is an identity terminator given parser is true, then run change
             //    state given parser, "hostname", and 1.
             else if (parser.is_an_identity_terminator()) {
                 parser.change_state(State::Hostname, 1);
@@ -257,28 +257,28 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
             if (parser.is_an_ipv6_open()) {
                 ++parser.m_hostname_ipv6_bracket_depth;
             }
-            // 2. Otherwise if the result of running is an IPv6 close given parser is true, then decrement parser’s
+            // 2. Otherwise, if the result of running is an IPv6 close given parser is true, then decrement parser’s
             //    hostname IPv6 bracket depth by 1.
             else if (parser.is_an_ipv6_close()) {
                 VERIFY(parser.m_hostname_ipv6_bracket_depth != 0);
                 --parser.m_hostname_ipv6_bracket_depth;
             }
-            // 3. Otherwise if the result of running is a port prefix given parser is true and parser’s hostname IPv6
+            // 3. Otherwise, if the result of running is a port prefix given parser is true and parser’s hostname IPv6
             //    bracket depth is zero, then run change state given parser, "port", and 1.
             else if (parser.is_a_port_prefix() && parser.m_hostname_ipv6_bracket_depth == 0) {
                 parser.change_state(State::Port, 1);
             }
-            // 4. Otherwise if the result of running is a pathname start given parser is true, then run change state
+            // 4. Otherwise, if the result of running is a pathname start given parser is true, then run change state
             //    given parser, "pathname", and 0.
             else if (parser.is_a_pathname_start()) {
                 parser.change_state(State::Pathname, 0);
             }
-            // 5. Otherwise if the result of running is a search prefix given parser is true, then run change state
+            // 5. Otherwise, if the result of running is a search prefix given parser is true, then run change state
             //    given parser, "search", and 1.
             else if (parser.is_a_search_prefix()) {
                 parser.change_state(State::Search, 1);
             }
-            // 6. Otherwise if the result of running is a hash prefix given parser is true, then run change state
+            // 6. Otherwise, if the result of running is a hash prefix given parser is true, then run change state
             //    given parser, "hash", and 1.
             else if (parser.is_a_hash_prefix()) {
                 parser.change_state(State::Hash, 1);
@@ -292,12 +292,12 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
             if (parser.is_a_pathname_start()) {
                 parser.change_state(State::Pathname, 0);
             }
-            // 2. Otherwise if the result of running is a search prefix given parser is true, then run change state
+            // 2. Otherwise, if the result of running is a search prefix given parser is true, then run change state
             //   given parser, "search", and 1.
             else if (parser.is_a_search_prefix()) {
                 parser.change_state(State::Search, 1);
             }
-            // 3. Otherwise if the result of running is a hash prefix given parser is true, then run change state given
+            // 3. Otherwise, if the result of running is a hash prefix given parser is true, then run change state given
             //    parser, "hash", and 1.
             else if (parser.is_a_hash_prefix()) {
                 parser.change_state(State::Hash, 1);
@@ -311,7 +311,7 @@ PatternErrorOr<Init> ConstructorStringParser::parse(Utf8View const& input)
             if (parser.is_a_search_prefix()) {
                 parser.change_state(State::Search, 1);
             }
-            // 2. Otherwise if the result of running is a hash prefix given parser is true, then run change state given
+            // 2. Otherwise, if the result of running is a hash prefix given parser is true, then run change state given
             //    parser, "hash", and 1.
             else if (parser.is_a_hash_prefix()) {
                 parser.change_state(State::Hash, 1);
@@ -615,7 +615,7 @@ bool ConstructorStringParser::is_a_group_open() const
     if (m_token_list[m_token_index].type == Token::Type::Open)
         return true;
 
-    // 2. Otherwise return false.
+    // 2. Otherwise, return false.
     return false;
 }
 
@@ -626,7 +626,7 @@ bool ConstructorStringParser::is_a_group_close() const
     if (m_token_list[m_token_index].type == Token::Type::Close)
         return true;
 
-    // 2. Otherwise return false.
+    // 2. Otherwise, return false.
     return false;
 }
 

@@ -73,7 +73,7 @@ private:
     // An object store has a name, which is a name. At any one time, the name is unique within the database to which it belongs.
     String m_name;
 
-    // An object store optionally has a key path. If the object store has a key path it is said to use in-line keys. Otherwise it is said to use out-of-line keys.
+    // An object store optionally has a key path. If the object store has a key path it is said to use in-line keys. Otherwise, it is said to use out-of-line keys.
     Optional<KeyPath> m_key_path;
 
     // An object store optionally has a key generator.

@@ -146,7 +146,7 @@ GC::Ref<WebIDL::Promise> ReadableStreamBYOBReader::read(GC::Root<WebIDL::ArrayBu
         }
     }
 
-    // 6. Otherwise (i.e., it is a DataView),
+    // 6. Otherwise, (i.e., it is a DataView),
     if (view->is_data_view()) {
         // 1. If options["min"] > view.[[ByteLength]], return a promise rejected with a RangeError exception.
         if (options.min > view->byte_length()) {

@@ -513,7 +513,7 @@ JS_DEFINE_NATIVE_FUNCTION(SetPrototype::symmetric_difference)
             next = canonicalize_keyed_collection_key(*next);
 
             // ii. Let resultIndex be SetDataIndex(resultSetData, next).
-            // iii. If resultIndex is not-found, let alreadyInResult be false. Otherwise let alreadyInResult be true.
+            // iii. If resultIndex is not-found, let alreadyInResult be false. Otherwise, let alreadyInResult be true.
             auto already_in_result = result->set_has(*next);
 
             // iv. If SetDataHas(O.[[SetData]], next) is true, then
