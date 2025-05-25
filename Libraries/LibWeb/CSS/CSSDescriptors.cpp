@@ -202,7 +202,7 @@ String CSSDescriptors::serialized() const
     // 2. Let already serialized be an empty array.
     // AD-HOC: Not needed as we don't have shorthands.
 
-    // 3. Declaration loop: For each CSS declaration declaration in declaration block’s declarations, follow these substeps:
+    // 3. Declaration loop: For each CSS declaration in declaration block’s declarations, follow these substeps:
     for (auto const& descriptor : m_descriptors) {
         // 1. Let property be declaration’s property name.
         auto property = to_string(descriptor.descriptor_id);

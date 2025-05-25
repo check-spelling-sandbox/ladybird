@@ -1127,7 +1127,7 @@ String CSSStyleProperties::serialized() const
         // NB: We don't need to do this, as we don't have shorthands for custom properties.
     }
 
-    // 3. Declaration loop: For each CSS declaration declaration in declaration block’s declarations, follow these substeps:
+    // 3. Declaration loop: For each CSS declaration in declaration block’s declarations, follow these substeps:
     for (auto& declaration : m_properties) {
         // 1. Let property be declaration’s property name.
         auto property = declaration.property_id;
