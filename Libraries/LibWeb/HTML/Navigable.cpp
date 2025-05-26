@@ -971,7 +971,7 @@ static WebIDL::ExceptionOr<Navigable::NavigationParamsVariant> create_navigation
         response_holder->set_response(nullptr);
 
         // 5. If fetchController is null, then set fetchController to the result of fetching request,
-        //    with processEarlyHintsResponse set to processEarlyHintsResponseas defined below, processResponse
+        //    with processEarlyHintsResponse set to processEarlyHintsResponse as defined below, processResponse
         //    set to processResponse as defined below, and useParallelQueue set to true.
         if (!fetch_controller) {
             // FIXME: Let processEarlyHintsResponse be the following algorithm given a response earlyResponse:
