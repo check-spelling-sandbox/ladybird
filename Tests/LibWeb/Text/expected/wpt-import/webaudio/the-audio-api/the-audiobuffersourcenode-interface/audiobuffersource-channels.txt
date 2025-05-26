@@ -6,7 +6,7 @@ Found 22 tests
 Pass	# AUDIT TASK RUNNER STARTED.
 Pass	Executing "validate .buffer"
 Pass	Audit report
-Pass	> [validate .buffer] Validatation of AudioBuffer in .buffer attribute setter
+Pass	> [validate .buffer] Validation of AudioBuffer in .buffer attribute setter
 Pass	  source.buffer = 57 threw TypeError: "Not an object of type AudioBuffer".
 Pass	  source.buffer = null did not throw an exception.
 Pass	  source.buffer = buffer did not throw an exception.
