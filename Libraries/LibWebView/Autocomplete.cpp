@@ -85,7 +85,7 @@ void Autocomplete::query_autocomplete_engine(String query)
 
             auto content_type = response_headers.get("Content-Type"sv);
 
-            if (auto result = received_autocomplete_respsonse(engine, content_type, payload); result.is_error()) {
+            if (auto result = received_autocomplete_response(engine, content_type, payload); result.is_error()) {
                 warnln("Unable to handle autocomplete response: {}", result.error());
                 invoke_autocomplete_query_complete({});
             } else {
@@ -170,7 +170,7 @@ static ErrorOr<Vector<String>> parse_yahoo_autocomplete(JsonValue const& json)
     return results;
 }
 
-ErrorOr<Vector<String>> Autocomplete::received_autocomplete_respsonse(AutocompleteEngine const& engine, Optional<ByteString const&> content_type, StringView response)
+ErrorOr<Vector<String>> Autocomplete::received_autocomplete_response(AutocompleteEngine const& engine, Optional<ByteString const&> content_type, StringView response)
 {
     auto decoder = [&]() -> Optional<TextCodec::Decoder&> {
         if (!content_type.has_value())
