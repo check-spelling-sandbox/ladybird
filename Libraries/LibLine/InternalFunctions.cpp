@@ -412,7 +412,7 @@ void Editor::enter_search()
         m_notifier->set_enabled(true);
 
         if (search_string_result.is_error()) {
-            // Somethine broke, fail
+            // Something broke, fail
             m_input_error = search_string_result.error();
             finish();
             return;
