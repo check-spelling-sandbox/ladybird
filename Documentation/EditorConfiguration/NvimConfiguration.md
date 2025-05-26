@@ -97,7 +97,7 @@ or type `:CocConfig` in the command line.
 
 > **Note**: In case you already had another c++ language server configured in the
 `coc-settings.json` you might want to nuke it first and
-work towards your desired config by adding the other parts back in to avoid
+work towards your desired config by adding the other parts back to avoid
 conflicts.
 
 > **Note**: If you have configured `clangd` as a languageServer in
