@@ -285,7 +285,7 @@ private:
     virtual DispatchEventOfSameName handle_mousemove(Badge<EventHandler>, CSSPixelPoint, unsigned buttons, unsigned modifiers) override;
 
     bool scrollbar_contains_mouse_position(ScrollDirection, CSSPixelPoint);
-    void scroll_to_mouse_postion(CSSPixelPoint);
+    void scroll_to_mouse_position(CSSPixelPoint);
 
     OwnPtr<StackingContext> m_stacking_context;
 

@@ -919,7 +919,7 @@ Paintable::DispatchEventOfSameName PaintableBox::handle_mousedown(Badge<EventHan
             m_scroll_thumb_dragging_direction = direction;
 
             navigable()->event_handler().set_mouse_event_tracking_paintable(this);
-            scroll_to_mouse_postion(position);
+            scroll_to_mouse_position(position);
             return true;
         }
 
@@ -949,7 +949,7 @@ Paintable::DispatchEventOfSameName PaintableBox::handle_mousemove(Badge<EventHan
     position = adjust_position_for_cumulative_scroll_offset(position);
 
     if (m_last_mouse_tracking_position.has_value()) {
-        scroll_to_mouse_postion(position);
+        scroll_to_mouse_position(position);
         return Paintable::DispatchEventOfSameName::No;
     }
 
@@ -981,7 +981,7 @@ bool PaintableBox::scrollbar_contains_mouse_position(ScrollDirection direction, 
     return scrollbar_data->gutter_rect.contains(position);
 }
 
-void PaintableBox::scroll_to_mouse_postion(CSSPixelPoint position)
+void PaintableBox::scroll_to_mouse_position(CSSPixelPoint position)
 {
     VERIFY(m_last_mouse_tracking_position.has_value());
     VERIFY(m_scroll_thumb_dragging_direction.has_value());
