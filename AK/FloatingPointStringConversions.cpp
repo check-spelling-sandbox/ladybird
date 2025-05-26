@@ -1221,11 +1221,11 @@ struct FloatingPointBuilder {
             VERIFY((exponent & ~(0xff)) == 0);
         }
 
-        using BitSizedUnsigened = BitSizedUnsignedForFloatingPoint<T>;
+        using BitSizedUnsigned = BitSizedUnsignedForFloatingPoint<T>;
 
-        BitSizedUnsigened raw_bits = mantissa;
-        raw_bits |= BitSizedUnsigened(exponent) << FloatingPointInfo<T>::mantissa_bits();
-        raw_bits |= BitSizedUnsigened(is_negative) << FloatingPointInfo<T>::sign_bit_index();
+        BitSizedUnsigned raw_bits = mantissa;
+        raw_bits |= BitSizedUnsigned(exponent) << FloatingPointInfo<T>::mantissa_bits();
+        raw_bits |= BitSizedUnsigned(is_negative) << FloatingPointInfo<T>::sign_bit_index();
         return bit_cast<T>(raw_bits);
     }
 };
