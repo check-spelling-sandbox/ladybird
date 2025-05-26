@@ -12,7 +12,7 @@
 #   version (required) [string]
 #       Version of the file for caching purposes
 #
-#   version_file (reqiured) [string]
+#   version_file (required) [string]
 #       Filename to write the version to in the filesystem
 #
 #   cache [String]
