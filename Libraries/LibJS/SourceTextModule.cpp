@@ -83,7 +83,7 @@ static Vector<ModuleRequest> module_requests(Program& program)
             // ExportDeclaration : export ExportFromClause FromClause ;
 
             // 1. Let specifier be SV of FromClause.
-            // 2. Return a List whose sole element is the ModuleRequest Record { [[Specifer]]: specifier, [[Attributes]]: « » }.
+            // 2. Return a List whose sole element is the ModuleRequest Record { [[Specifier]]: specifier, [[Attributes]]: « » }.
             requested_modules_in_source_order.empend(module.module_request->module_specifier);
         } else {
             // ImportDeclaration : import ImportClause FromClause WithClause ;
