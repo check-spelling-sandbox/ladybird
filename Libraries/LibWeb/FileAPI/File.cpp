@@ -51,7 +51,7 @@ WebIDL::ExceptionOr<GC::Ref<File>> File::create(JS::Realm& realm, Vector<BlobPar
     auto bytes = TRY_OR_THROW_OOM(vm, process_blob_parts(file_bits, options.has_value() ? static_cast<BlobPropertyBag const&>(*options) : Optional<BlobPropertyBag> {}));
 
     // 2. Let n be the fileName argument to the constructor.
-    //    NOTE: Underlying OS filesystems use differing conventions for file name; with constructed files, mandating UTF-16 lessens ambiquity when file names are converted to byte sequences.
+    //    NOTE: Underlying OS filesystems use differing conventions for file name; with constructed files, mandating UTF-16 lessens ambiguity when file names are converted to byte sequences.
     auto name = file_name;
 
     auto type = String {};
