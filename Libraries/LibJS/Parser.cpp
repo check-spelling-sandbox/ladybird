@@ -2641,7 +2641,7 @@ NonnullRefPtr<AssignmentExpression const> Parser::parse_assignment_expression(As
         }
     }
 
-    // Note: The web reality is that all but &&=, ||= and ??= do allow left hand side CallExpresions.
+    // Note: The web reality is that all but &&=, ||= and ??= do allow left hand side CallExpressions.
     //       These are the exception as they are newer.
     auto has_web_reality_assignment_target_exceptions = assignment_op != AssignmentOp::AndAssignment
         && assignment_op != AssignmentOp::OrAssignment
