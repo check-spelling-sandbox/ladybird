@@ -205,8 +205,8 @@ Pass	#199 Test that a WebAssembly code returns a specific result
 Pass	#200 Test that a WebAssembly code returns a specific result
 Pass	#201 Test that a WebAssembly code returns a specific result
 Pass	#202 Test that a WebAssembly code returns a specific result
-Pass	#203 Test that a WebAssembly code exhauts the stack space
-Pass	#204 Test that a WebAssembly code exhauts the stack space
+Pass	#203 Test that a WebAssembly code exhausts the stack space
+Pass	#204 Test that a WebAssembly code exhausts the stack space
 Pass	#205 Test that a WebAssembly code returns a specific result
 Pass	#206 Test that a WebAssembly code returns a specific result
 Pass	#207 Test that a WebAssembly code returns a specific result
