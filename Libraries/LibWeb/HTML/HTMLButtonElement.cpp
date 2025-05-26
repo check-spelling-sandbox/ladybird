@@ -237,7 +237,7 @@ void HTMLButtonElement::activation_behavior(DOM::Event const& event)
                 MUST(target->show_popover(ThrowExceptions::No, this));
             }
 
-            // 2. Otheriwse, if the result of running check popover validity given target, true, false, and null is true,
+            // 2. Otherwise, if the result of running check popover validity given target, true, false, and null is true,
             //    then run the hide popover algorithm given target, true, true, and false.
             else if (MUST(target->check_popover_validity(ExpectedToBeShowing::Yes, ThrowExceptions::No, nullptr, IgnoreDomState::No))) {
                 MUST(target->hide_popover(FocusPreviousElement::Yes, FireEvents::Yes, ThrowExceptions::No, IgnoreDomState::No));

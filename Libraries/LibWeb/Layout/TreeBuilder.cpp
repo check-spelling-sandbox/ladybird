@@ -326,7 +326,7 @@ void TreeBuilder::restructure_block_node_in_inline_parent(NodeWithStyleAndBoxMod
     }
 
     // If we are part of an existing continuation and all inclusive ancestors have no previous siblings, we can reuse
-    // the existing middle wrapper. Otherwiser, we create a new middle wrapper to contain the block node and add it to
+    // the existing middle wrapper. Otherwise, we create a new middle wrapper to contain the block node and add it to
     // the nearest block ancestor.
     bool needs_new_continuation = true;
     GC::Ptr<NodeWithStyleAndBoxModelMetrics> middle_wrapper;
