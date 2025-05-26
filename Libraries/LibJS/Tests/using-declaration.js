@@ -168,7 +168,7 @@ describe("behavior with exceptions", () => {
         expect(inCatch).toBeTrue();
     });
 
-    test.xfail("normal error and multiple disposing erorrs give chaining suppressed errors", () => {
+    test.xfail("normal error and multiple disposing errors give chaining suppressed errors", () => {
         let inCatch = false;
         try {
             using a = { [Symbol.dispose]() {
