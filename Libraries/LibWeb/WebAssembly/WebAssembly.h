@@ -149,7 +149,7 @@ extern HashMap<GC::Ptr<JS::Object>, WebAssemblyCache> s_caches;
         explicit PrototypeName(JS::Realm&);                                                        \
     };
 
-DECLARE_WASM_NATIVE_ERROR_CONSTRUCTOR(CompilError, compile_error, CompileErrorPrototype, CompileErrorConstructor)
+DECLARE_WASM_NATIVE_ERROR_CONSTRUCTOR(CompileError, compile_error, CompileErrorPrototype, CompileErrorConstructor)
 DECLARE_WASM_NATIVE_ERROR_CONSTRUCTOR(LinkError, link_error, LinkErrorPrototype, LinkErrorConstructor)
 DECLARE_WASM_NATIVE_ERROR_CONSTRUCTOR(RuntimeError, runtime_error, RuntimeErrorPrototype, RuntimeErrorConstructor)
 
