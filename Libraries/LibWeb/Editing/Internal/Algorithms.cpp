@@ -3076,7 +3076,7 @@ void outdent(GC::Ref<DOM::Node> node)
         if (is_inline_node(*target) && !is<HTML::HTMLBRElement>(*target) && is<HTML::HTMLBRElement>(target->next_sibling()))
             target->next_sibling()->remove();
 
-        // 5. Let preceding siblings be the precedings siblings of target, and let following siblings be the followings
+        // 5. Let preceding siblings be the preceding siblings of target, and let following siblings be the followings
         //    siblings of target.
         Vector<GC::Ref<DOM::Node>> preceding_siblings;
         for (auto* sibling = target->previous_sibling(); sibling; sibling = sibling->previous_sibling())
