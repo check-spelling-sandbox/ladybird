@@ -55,7 +55,7 @@ test("strict mode does not propagate up the scope chain", () => {
 });
 
 test('only the string "use strict" yields strict mode code', () => {
-    "use stric";
+    "use strict_";
     expect(isStrictMode()).toBeFalse();
 });
 
