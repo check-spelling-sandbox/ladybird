@@ -254,7 +254,7 @@ ErrorOr<JsonValue> JsonParser::parse_number()
         if (ch == 'e' || ch == 'E') {
             char next = peek(1);
             if (!is_ascii_digit(next) && ((next != '+' && next != '-') || !is_ascii_digit(peek(2))))
-                return Error::from_string_literal("JsonParser: Must have digits after exponent with an optional sign inbetween");
+                return Error::from_string_literal("JsonParser: Must have digits after exponent with an optional sign in between");
 
             return fallback_to_double_parse();
         }
