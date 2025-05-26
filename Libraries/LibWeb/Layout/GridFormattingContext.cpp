@@ -1160,7 +1160,7 @@ void GridFormattingContext::expand_flexible_tracks(GridDimension dimension)
     auto& tracks_and_gaps = dimension == GridDimension::Column ? m_grid_columns_and_gaps : m_grid_rows_and_gaps;
     auto& tracks = dimension == GridDimension::Column ? m_grid_columns : m_grid_rows;
     auto& available_size = dimension == GridDimension::Column ? m_available_space->width : m_available_space->height;
-    // FIXME: This should ideally take a Span, as that is more idomatic, but Span does not yet support holding references
+    // FIXME: This should ideally take a Span, as that is more idiomatic, but Span does not yet support holding references
     auto find_the_size_of_an_fr = [&](Vector<GridTrack&> const& tracks, CSSPixels space_to_fill) -> CSSPixelFraction {
         // https://www.w3.org/TR/css-grid-2/#algo-find-fr-size
         auto treat_track_as_inflexiable = MUST(AK::Bitmap::create(tracks.size(), false));
