@@ -4,7 +4,7 @@ Found 37 tests
 
 37 Pass
 Pass	the event is an instance of ToggleEvent
-Pass	the event inherts from Event
+Pass	the event inherits from Event
 Pass	Missing type argument
 Pass	type argument is string
 Pass	type argument is null
