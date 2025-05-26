@@ -1670,7 +1670,7 @@ Web::WebDriver::Response WebDriverConnection::element_click_impl(StringView elem
             .get_element_origin = &Web::WebDriver::get_web_element_origin,
         };
 
-        // 3. Let input id be a the result of generating a UUID.
+        // 3. Let input id be the result of generating a UUID.
         auto input_id = MUST(Web::Crypto::generate_random_uuid());
 
         // 4. Let source be the result of create an input source with input state, and "pointer".
@@ -1996,7 +1996,7 @@ Web::WebDriver::Response WebDriverConnection::element_send_keys_impl(StringView 
     // 9. Let input state be the result of get the input state with session and session's current top-level browsing context.
     auto& input_state = Web::WebDriver::get_input_state(*current_top_level_browsing_context());
 
-    // 10. Let input id be a the result of generating a UUID.
+    // 10. Let input id be the result of generating a UUID.
     auto input_id = MUST(Web::Crypto::generate_random_uuid());
 
     // 11. Let source be the result of create an input source with input state, and "key".

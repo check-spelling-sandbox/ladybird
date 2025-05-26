@@ -131,7 +131,7 @@ void MediaCapabilities::initialize(JS::Realm& realm)
 void queue_a_media_capabilities_task(JS::VM& vm, Function<void()> steps)
 {
     // When an algorithm queues a Media Capabilities task T, the user agent MUST queue a global task T on the
-    // media capabilities task source using the global object of the the current realm record.
+    // media capabilities task source using the global object of the current realm record.
     queue_global_task(HTML::Task::Source::MediaCapabilities, vm.current_realm()->global_object(), GC::create_function(vm.current_realm()->heap(), move(steps)));
 }
 
