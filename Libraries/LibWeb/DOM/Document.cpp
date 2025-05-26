@@ -5838,7 +5838,7 @@ size_t Document::broadcast_active_resize_observations()
             continue;
         }
 
-        // 2. Let entries be an empty list of ResizeObserverEntryies.
+        // 2. Let entries be an empty list of ResizeObserverEntry objects.
         GC::RootVector<GC::Ref<ResizeObserver::ResizeObserverEntry>> entries(heap());
 
         // 3. For each observation in [[activeTargets]] perform these steps:
