@@ -38,7 +38,7 @@ enum class CoordinateRange : u8 {
 enum class StyleType : u8 {
     FlatColored = 0,
     LinearGradient = 1,
-    RadialGradinet = 2
+    RadialGradient = 2
 };
 
 enum class Command : u8 {
@@ -238,7 +238,7 @@ public:
         case StyleType::FlatColored:
             return TRY(read_color());
         case StyleType::LinearGradient:
-        case StyleType::RadialGradinet:
+        case StyleType::RadialGradient:
             return TRY(read_gradient());
         }
         return Error::from_string_literal("Invalid TinyVG: Bad style data");
