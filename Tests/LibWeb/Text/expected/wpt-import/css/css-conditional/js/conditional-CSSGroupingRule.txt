@@ -16,7 +16,7 @@ Fail	insertRule of invalid @media into @media
 Pass	insertRule of empty string into @media
 Pass	insertRule of valid @media rule followed by garbage into @media
 Pass	insertRule of valid style rule followed by garbage into @media
-Pass	insertRule of mutiple valid @media into @media
+Pass	insertRule of multiple valid @media into @media
 Pass	insertRule of valid style rulle followed by valid @media into @media
 Pass	insertRule of valid style rule followed by valid @media into @media
 Pass	insertRule of two valid style rules into @media
@@ -33,7 +33,7 @@ Fail	insertRule of invalid @media into @supports
 Pass	insertRule of empty string into @supports
 Pass	insertRule of valid @media rule followed by garbage into @supports
 Pass	insertRule of valid style rule followed by garbage into @supports
-Pass	insertRule of mutiple valid @media into @supports
+Pass	insertRule of multiple valid @media into @supports
 Pass	insertRule of valid style rulle followed by valid @media into @supports
 Pass	insertRule of valid style rule followed by valid @media into @supports
 Pass	insertRule of two valid style rules into @supports
