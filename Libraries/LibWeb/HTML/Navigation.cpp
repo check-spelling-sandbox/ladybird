@@ -276,7 +276,7 @@ WebIDL::ExceptionOr<NavigationResult> Navigation::navigate(String url, Navigatio
     //       navigation.navigate() can only be accessed by code with direct synchronous access to the
     //       window.navigation property. Thus, we avoid the complications about attributing the source document
     //       of the navigation, and we don't need to deal with the allowed by sandboxing to navigate check and its
-    //       acccompanying exceptionsEnabled flag. We just treat all navigations as if they come from the Document
+    //       accompanying exceptionsEnabled flag. We just treat all navigations as if they come from the Document
     //       corresponding to this Navigation object itself (i.e., document).
     TRY(document.navigable()->navigate({ .url = url_record.release_value(), .source_document = document, .history_handling = options.history, .navigation_api_state = move(serialized_state) }));
 
