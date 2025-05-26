@@ -358,7 +358,7 @@ public:
 
     virtual WebIDL::ExceptionOr<GC::Ref<JS::ArrayBuffer>> unwrap_key(AlgorithmParams const&, GC::Ref<CryptoKey>, ByteBuffer const&)
     {
-        return WebIDL::NotSupportedError::create(m_realm, "unwwrapKey is not supported"_string);
+        return WebIDL::NotSupportedError::create(m_realm, "unwrapKey is not supported"_string);
     }
 
     static NonnullOwnPtr<AlgorithmMethods> create(JS::Realm& realm) { return adopt_own(*new AlgorithmMethods(realm)); }
