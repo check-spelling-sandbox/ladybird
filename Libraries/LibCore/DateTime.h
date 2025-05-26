@@ -50,7 +50,7 @@ public:
     // %H:      require hour (24h format)
     // %I:      require hour (12h format)
     // %j:      require defining date with day number ? (not sure)
-    // %m:      require set to month entred - 1
+    // %m:      require set to month entered - 1
     // %M:      require minutes
     // %n:      require newline
     // %t:      require tab
