@@ -1850,7 +1850,7 @@ static FloatingPointBuilder build_negative_exponent_double(MinimalBigInt& mantis
     VERIFY(exponent < 0);
 
     // Building a fraction from a big integer is harder to understand
-    // But fundamentely we have mantissa * 10^-e and so divide by 5^f
+    // But fundamentally we have mantissa * 10^-e and so divide by 5^f
 
     auto parts_copy = initial;
     round<T>(parts_copy, [](FloatingPointBuilder& value, i32 shift) {
