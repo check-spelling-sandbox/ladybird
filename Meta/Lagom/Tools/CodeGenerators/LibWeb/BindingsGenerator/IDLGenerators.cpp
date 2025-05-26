@@ -2623,7 +2623,7 @@ JS_DEFINE_NATIVE_FUNCTION(@class_name@::@function.name:snakecase@)
 static void generate_html_constructor(SourceGenerator& generator, IDL::Constructor const& constructor, IDL::Interface const& interface)
 {
     auto constructor_generator = generator.fork();
-    // NOTE: A HTMLConstrcuctor must not have any parameters.
+    // NOTE: A HTMLConstructor must not have any parameters.
     constructor_generator.set("constructor.length", "0");
 
     // https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors
