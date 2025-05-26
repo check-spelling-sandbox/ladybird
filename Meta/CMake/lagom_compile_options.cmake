@@ -9,7 +9,7 @@ if(NOT MSVC)
 else()
     # char is signed
     add_cxx_compile_options(/J)
-    # full symbolic debugginng information
+    # full symbolic debugging information
     add_cxx_compile_options(/Z7)
 endif()
 
