@@ -217,11 +217,11 @@ Optional<u8> string_to_weekday_value(StringView weekday)
     return {};
 }
 
-static u8 weekday_to_integer(Optional<Unicode::Weekday> const& weekday, Unicode::Weekday falllback)
+static u8 weekday_to_integer(Optional<Unicode::Weekday> const& weekday, Unicode::Weekday fallback)
 {
     // NOTE: This fallback will be used if the ICU data lookup failed. Its value should be that of the
     //       default region ("001") in the CLDR.
-    switch (weekday.value_or(falllback)) {
+    switch (weekday.value_or(fallback)) {
     case Unicode::Weekday::Monday:
         return 1;
     case Unicode::Weekday::Tuesday:
