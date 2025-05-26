@@ -108,7 +108,7 @@ private:
 
     Web::WebDriver::PageLoadStrategy m_page_load_strategy { Web::WebDriver::PageLoadStrategy::Normal };
     Optional<JsonValue> m_timeouts_configuration;
-    bool m_strict_file_interactiblity { false };
+    bool m_strict_file_interactability { false };
 };
 
 }

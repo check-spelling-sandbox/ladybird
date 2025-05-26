@@ -83,9 +83,9 @@ ErrorOr<NonnullRefPtr<Session>> Session::create(NonnullRefPtr<Client> client, Js
         // 3. Let strictFileInteractability be the result of getting property "strictFileInteractability" from .
         //    capabilities. If strictFileInteractability is a boolean, set session's strict file interactability to
         //    strictFileInteractability.
-        if (auto strict_file_interactiblity = capabilities.get_bool("strictFileInteractability"sv); strict_file_interactiblity.has_value()) {
-            session->m_strict_file_interactiblity = *strict_file_interactiblity;
-            session->web_content_connection().async_set_strict_file_interactability(session->m_strict_file_interactiblity);
+        if (auto strict_file_interactability = capabilities.get_bool("strictFileInteractability"sv); strict_file_interactability.has_value()) {
+            session->m_strict_file_interactability = *strict_file_interactability;
+            session->web_content_connection().async_set_strict_file_interactability(session->m_strict_file_interactability);
         }
 
         // 4. Let timeouts be the result of getting a property "timeouts" from capabilities. If timeouts is not
@@ -231,7 +231,7 @@ ErrorOr<NonnullRefPtr<Core::LocalServer>> Session::create_server(NonnullRefPtr<S
         };
 
         web_content_connection->async_set_page_load_strategy(m_page_load_strategy);
-        web_content_connection->async_set_strict_file_interactability(m_strict_file_interactiblity);
+        web_content_connection->async_set_strict_file_interactability(m_strict_file_interactability);
         web_content_connection->async_set_user_prompt_handler(Web::WebDriver::user_prompt_handler());
         if (m_timeouts_configuration.has_value())
             web_content_connection->async_set_timeouts(*m_timeouts_configuration);

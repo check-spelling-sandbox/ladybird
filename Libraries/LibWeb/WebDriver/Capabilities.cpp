@@ -267,7 +267,7 @@ static JsonValue match_capabilities(JsonObject const& capabilities, SessionFlags
     // 2. If flags contains "http", add the following entries to matched capabilities:
     if (has_flag(flags, SessionFlags::Http)) {
         // "strictFileInteractability"
-        //     Boolean initially set to false, indicating that interactabilty checks will be applied to <input type=file>.
+        //     Boolean initially set to false, indicating that interactability checks will be applied to <input type=file>.
         matched_capabilities.set("strictFileInteractability"sv, false);
     }
 
