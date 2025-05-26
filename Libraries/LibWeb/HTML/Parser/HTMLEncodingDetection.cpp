@@ -378,7 +378,7 @@ ByteString run_encoding_sniffing_algorithm(DOM::Document& document, ByteBuffer c
 
     // 4. If the transport layer specifies a character encoding, and it is supported, return that encoding with the confidence certain.
     if (maybe_mime_type.has_value()) {
-        // FIXME: This is awkward because lecacy_extract_an_encoding cannot fail
+        // FIXME: This is awkward because legacy_extract_an_encoding cannot fail
         auto maybe_transport_encoding = Fetch::Infrastructure::legacy_extract_an_encoding(maybe_mime_type, "invalid"sv);
         if (maybe_transport_encoding != "invalid"sv)
             return maybe_transport_encoding;
