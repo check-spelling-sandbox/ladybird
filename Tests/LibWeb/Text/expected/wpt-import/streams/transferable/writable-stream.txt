@@ -10,4 +10,4 @@ Pass	desiredSize for a newly-transferred stream should be 1
 Pass	effective queue size of a transferred writable should be 2
 Pass	second write should wait for first underlying write to complete
 Pass	abort() should work
-Pass	writing a unclonable object should error the stream
+Pass	writing a uncloneable object should error the stream
