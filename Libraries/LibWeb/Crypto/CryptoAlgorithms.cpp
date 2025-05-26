@@ -7174,7 +7174,7 @@ WebIDL::ExceptionOr<GC::Ref<JS::Object>> X25519::export_key(Bindings::KeyFormat 
 
     // 3. If format is "jwt":
     else if (format == Bindings::KeyFormat::Jwk) {
-        // 1. Let jwk be a new JsonWebKey dictionar1y.
+        // 1. Let jwk be a new JsonWebKey dictionary.
         Bindings::JsonWebKey jwk = {};
 
         // 2. Set the kty attribute of jwk to "OKP".
